@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState }  from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -7,13 +8,17 @@ import {
   TouchableHighlight,
   Animated,
   Easing,
+  Image,
 } from 'react-native';
 import logo from './logo.png';
+import logod from './pobuext.png';
+
 
 class App extends Component {
   state = {
     spinValue: new Animated.Value(0),
   }
+
 
   onClick = () => {
     const wasRotated = this.state.spinValue._value === 1;
@@ -21,7 +26,7 @@ class App extends Component {
       this.state.spinValue,
       {
         toValue: wasRotated ? 0 : 1,
-        duration: 250,
+        duration: 50,
         easing: Easing.linear
       }
     ).start()
@@ -34,18 +39,45 @@ class App extends Component {
     });
 
     return (
+     
       <View style={styles.container}>
-        <Animated.Image source={logo} style={[styles.logo, { transform: [{rotate: spin}] }]}/>
-        <Text style={styles.title}>POBUUUUU</Text>
-        <Text>Open up src/App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        {Platform.OS !== 'web' && <Text>Shake your phone to open the developer menu.</Text>}
+
+
+      <Image source={logod} style={{width: '50%', height: 50, marginBottom: 50,alignItems: "stretch",}}/>
+
+        
+        <Text style={styles.title3}>
+          WHY POBU?
+        </Text>
+
+        <Text style={styles.title}>
+          Bookings + 
+          connections,
+          made easy
+        </Text>
+
+        <Text style={styles.title2}>
+          we value your privacy & efficiency, with pobu
+          you got it all blabla.
+        </Text>
+
+        <View style={{
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        
+      }}>
+        <Image resizeMode={'contain'} style={{width: '80%',}} source={logo} />
+        </View>
+     
+        {/* {Platform.OS !== 'web' && <Text>Shake your phone to open the developer menu.</Text>} */}
         <TouchableHighlight
           onPress={this.onClick}
           style={styles.button}
-          underlayColor={'#0A84D0'}
+          underlayColor={'#000'}
         >
-          <Text style={styles.buttonText}>Rotate Logo</Text>
+          <Text style={styles.buttonText}>Get Your Host</Text>
         </TouchableHighlight>
       </View>
     );
@@ -55,24 +87,51 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#d8d8d8',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   logo: {
-    width: 300,
+    width: '100%',
     height: 300,
   },
   title: {
     fontWeight: 'bold',
+    fontSize: 28,
+    width: '80%',
+    borderLeftColor: '#000',
+    borderLeftWidth: 2,
+    fontFamily: 'Quicksand-Bold',
+  },
+  title2: {
+    fontWeight: '100',
     fontSize: 16,
+    width: '80%',
+    fontFamily: 'Quicksand-Light',
+  },
+  title3: {
+    fontWeight: 'bold',
+    fontSize: 12,
+    width: '80%',
+ 
   },
   button: {
     borderRadius: 3,
     padding: 20,
     marginVertical: 10,
     marginTop: 10,
-    backgroundColor: '#1B95E0',
+    backgroundColor: '#3d009f',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 1.84,
+    
+    elevation: 5,
+   
   },
   buttonText: {
     color: '#fff',
