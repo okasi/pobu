@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+@font-face{
+  font-family: 'Quicksand';
+  src: url(./assets/fonts/Quicksand-Bold.ttf) format('truetype');
+}
 .App {
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
+
 }
+*{  font-family: 'Quicksand', sans-serif;}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

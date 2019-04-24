@@ -19,6 +19,7 @@
   },
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@babel/runtime": "^7.4.3",
     "react": "^16.7.x",
     "react-app-polyfill": "^0.2.*",
     "react-art": "^16.7.x",
@@ -80,6 +81,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "browserslist": [
     ">0.2%",
