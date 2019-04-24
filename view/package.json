@@ -6,7 +6,7 @@
     "start": "./node_modules/.bin/react-native start",
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",
     "android": "./node_modules/.bin/react-native run-android",
-    "ios": "./node_modules/.bin/react-native run-ios --simulator='iPhone 5'",
+    "ios": "./node_modules/.bin/react-native run-ios",
     "web": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "npm run test:web && npm run test:native",
@@ -19,12 +19,12 @@
   },
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "react": "^16.8.*",
+    "react": "^16.7.x",
     "react-app-polyfill": "^0.2.*",
-    "react-art": "^16.8.*",
-    "react-dom": "^16.8.*",
-    "react-native": "^0.59.*",
-    "react-native-web": "^0.11.*"
+    "react-art": "^16.7.x",
+    "react-dom": "^16.7.x",
+    "react-native": "0.55.x",
+    "react-native-web": "^0.11.x"
   },
   "devDependencies": {
     "@babel/core": "7.1.0",
