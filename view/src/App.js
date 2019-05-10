@@ -1,198 +1,96 @@
-import React, { Component, useEffect, useState }  from 'react';
+import React, { Component, useState } from "react";
+// import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import SwipeableRoutes from "react-swipeable-routes";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  TouchableHighlight,
-  Animated,
-  Easing,
-  Image,
-} from 'react-native';
-import logo from './logo.png';
-import logod from './pobuext.png';
+import useGlobalState from './hooks/useGlobalState.js.js'
+import { AppContext } from './store/context'
 
-import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
+import Home from "./routes/home";
+import About from "./routes/about";
+import Login from "./routes/login";
+import Register from "./routes/register";
+import Overview from "./routes/overview";
+import Profile from "./routes/profile";
 
-class App extends Component {
-  state = {
-    spinValue: new Animated.Value(0),
-  }
+import { AppBar, Tabs, Tab } from '@material-ui/core';
 
 
-  onClick = () => {
-    const wasRotated = this.state.spinValue._value === 1;
-    Animated.timing(
-      this.state.spinValue,
-      {
-        toValue: wasRotated ? 0 : 1,
-        duration: 50,
-        easing: Easing.linear
-      }
-    ).start()
-  }
+// const OtherColorView = ({ match }) => (
+//   <div style={{ height: 300, backgroundColor: match.params.color }}>
+//     {match.params.color}
+//   </div>
+// );
 
-  render() {
-    const spin = this.state.spinValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg']
-    });
+const App = () => {
+  const store = useGlobalState()
 
+  const [index, setIndex] = useState(0);
 
-    return (
-      <View style={styles.container}>
+  const handleChange = (event, value) => {
+    setIndex(value);
+  };
 
-        <View style={{width: '100%', flex: 1,}}>
-      
-        <Image  resizeMode={'contain'} source={logod} style={{width: 100, height: 50, marginBottom: 50,alignItems: "stretch",}}/>
-        </View>
+  return (
 
-        <View style={styles.flex}>
-      
-          <View style={styles.flex1}>
-            <Image resizeMode={'contain'} style={{ width: 300, height: 300}} source={logo} />
-          </View>
+    <Router>
+      <div className="App">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <AppContext.Provider value={store}>
 
-          <View style={styles.flex2}>
-            <Text style={styles.why}>
-              WHY POBU?
-            </Text>
+          {/* Navbar */} 
+          {/* Needs a bug fix because when wrapping Tab in Link it makes the selected indicator not work */}
+          <Tabs 
+            value={index} 
+            variant="fullWidth" 
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            <Link to="/"><Tab label="Home" /></Link>
+            <Link to="/about"><Tab label="About" /></Link>
+            {!store.state.isLoggedin
+              ? (
+                <>
+                  <Link to="/login"><Tab label="Login" /></Link>
+                  <Link to="/register"><Tab label="Register" /></Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/overview"><Tab label="Overview" /></Link>
+                  <Link to="/profile"><Tab label="Profile" /></Link>
+                </>
+              )}
+          </Tabs>
 
-            <Text style={styles.slogan}>
-              Bookings + 
-              connections,
-              made easy
-            </Text>
+          {/* Content */} 
+          {!store.state.isLoggedin
+            ? (
+              <>
+                <SwipeableRoutes enableMouseEvents>
+                  <Route path="/" component={Home} />
+                  <Route path="/about" component={About} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
+                </SwipeableRoutes>
+              </>
+            ) : (
+              <>
+                <SwipeableRoutes enableMouseEvents>
+                  <Route path="/" component={Home} />
+                  <Route path="/about" component={About} />
+                  <Route path="/overview" component={Overview} />
+                  <Route path="/profile" component={Profile} />
+                  {/* <Route path="/booking/:id" component={booking} defaultParams={{ color: "grey" }} /> */}
+                </SwipeableRoutes>
+              </>
+            )}
 
-            <Text style={styles.description}>
-              we value your privacy & efficiency, with pobu
-              you got it all blabla.
-            </Text>
-          </View>
-
-        </View>
-
-      
-        <TouchableHighlight
-          onPress={this.onClick}
-          style={styles.button}
-          underlayColor={'#000'}
-        >
-          <Text style={styles.buttonText}>Get Your Host</Text>
-        </TouchableHighlight>
-        
-      </View>
-    );
-  }
+        </AppContext.Provider>
+      </div>
+    </Router>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#d8d8d8',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%', 
-    height: '100%',
-  },
-  logo: {
-    width: vw(100), 
-    height: vh(100),
-  },
-  flex: {
-    flex: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    // flexWrap: 'wrap-reverse',
-    flexWrap: 'wrap',
-    width: 100*vw,
-    height: 100*vh,
-  },
-  flex1: {
-    flex: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: 300,
-  },
-  flex2: {
-    flex: 2,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    width: 300,
-  },
-  slogan: {
-    fontWeight: 'bold',
-    fontSize: 28,
-    borderLeftColor: '#000',
-    borderLeftWidth: 2,
-    fontFamily: 'Quicksand',
-  },
-  description: {
-    fontWeight: '100',
-    fontSize: 16,
-    width: '80%',
-    fontFamily: 'Quicksand',
-  },
-  why: {
-    fontWeight: 'bold',
-    fontSize: 12,
-    width: '80%',
- 
-  },
-  button: {
-    borderRadius: 3,
-    padding: 20,
-    marginVertical: 10,
-    marginTop: 10,
-
-  
-    backgroundColor: '#3d009f',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 1.84,
-    
-    elevation: 5,
-   
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-    fontFamily: 'Quicksand',
-  },
-});
-
-// const App = () => {
-
-//   const [users, setUsers] = useState([])
-
-//   useEffect(() => {
-//     fetch('/users')
-//       .then(res => res.json())
-//       .then(users => setUsers(users))
-//   },[])
-
-//   return (
-//     <View>
-//       <ul>
-//         {users.map(user =>
-//           <li key={user.id}>
-//             {user.username}
-//           </li>
-//         )}
-//       </ul>
-//     </View>
-//   )
-// }
-
-let hotWrapper = () => () => App;
-if (Platform.OS === 'web') {
-  const { hot } = require('react-hot-loader');
-  hotWrapper = hot;
-}
-export default hotWrapper(module)(App);
+export default App;
