@@ -87,7 +87,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installation
 Clone the repo
 ```
-git clone https://github.com/chas-academy/u10-business-idea-pobu/
+git clone https://github.com/okan-s/pobu.git
 ```
 
 Change to the `api` folder and install development and production dependencies.
