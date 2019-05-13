@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+html {
+  background: #d8d8d8;
+  font-family: 'Quicksand', sans-serif;
+}
+
 .App {
   height: 100vh;
   background: #d8d8d8;
@@ -14,7 +21,11 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  overflow-x: scroll;
+  overflow-x: overlay;
+}
+
+.nav-item-active {
+  background-color: aquamarine;
 }
 a {
   margin: auto 12px;

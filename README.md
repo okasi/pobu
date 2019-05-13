@@ -1,5 +1,5 @@
 # pobu.io
-*A peer-to-peer booking platform with WebRTC, React Native Web, Express, Node.js and MongoDB.*
+*A peer-to-peer booking platform with WebRTC, React, Express, Node.js and MongoDB.*
 
 
 ![Logo](docs/pobu2.png)
@@ -44,34 +44,50 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```json
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~4.1.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "http-errors": "~1.7.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
-  }
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "mongoose": "^5.5.7",
+    "mongoose-timestamp": "^0.6.0",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "validator": "^10.11.0"
+  },
 ```
 
 #### Front-end:
-- React Native Web
+- React 16.8
 
 ```json
   "dependencies": {
-    "react": "^16.8.*",
-    "react-app-polyfill": "^0.2.*",
-    "react-art": "^16.8.*",
-    "react-dom": "^16.8.*",
-    "react-native": "^0.59.*",
-    "react-native-web": "^0.11.*"
-  }
+    "axios": "^0.18.0",
+    "normalize.css": "^8.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "react-swipeable-routes": "^0.6.0"
+  },
 ```
 <br />
 
 ### Installation
 Clone the repo
 ```
-git clone https://github.com/chas-academy/u10-business-idea-pobu/
+git clone https://github.com/okan-s/pobu.git
 ```
 
 Change to the `api` folder and install development and production dependencies.
@@ -89,28 +105,18 @@ npm install
 
 You will need to set up MongoDB. 
 
-Seed the data
-```
- seed
-```
 
 Go to the `api` folder and start the server.
 ```
 cd api
-npm start
+npm server
 ```
 
 Go to the `view` folder and run the script start script.
 ```
 cd view
-// For web:
-npm run web
+npm run start
 
-// For iOS (Requires Xcode):
-npm run ios
-
-// For Android (Requires Android Studio):
-npm run android
 ```
 
 <br />
@@ -119,10 +125,10 @@ npm run android
 
 ### Problem
 Services such as Calendly, in their current state doesn't provide direct communication on their platform. 
-Therefor the hosts and clients are depended on third-party solutions for communication, then the problem of privacy occurs.
+Therefore the hosts and clients are dependent on third-party solutions for communication, that creates an issue of privacy.
 
 ### Solution
-A web and mobile based application that allows clients to book appointments with hosts on our platform. We provide live communication without any middle interferance which in term increases the privacy of our users.
+A web based application that allows clients to book appointments with hosts on our platform. We provide live communication without any middle interferance which in term increases the privacy of our users.
 
 
 <br />
@@ -137,6 +143,7 @@ A web and mobile based application that allows clients to book appointments with
 - Hosts
 - Admins
 
+
 <br />
 
 ## User Stories
@@ -149,12 +156,14 @@ A web and mobile based application that allows clients to book appointments with
 <br />
 
 ## Kanban
-- [Github Projects](https://github.com/chas-academy/u10-business-idea-pobu/projects/2)
+- [Github Projects](https://github.com/okan-s/pobu/projects/1)
 
 <br />
 
 ## Future
 *Future plans/ideas*
+
+When Expo SDK v33 is released, convert the view to native-web.
 
 <br />
 

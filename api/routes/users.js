@@ -1,13 +1,137 @@
-var express = require('express');
-var router = express.Router();
+const router = require('express').Router()
+const User = require('../models/User')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const passport = require('passport')
+const validateRegisterInput = require('../validation/register')
+const validateLoginInput = require('../validation/login')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  // res.send('respond with a resource');
-  res.json([
-    {id: 1, username: "somebody"},
-    {id: 2, username: "somebody_else"},
-  ])
-});
+router.route('/register')
+  .post((req, res) => {
+    const {
+      isValid,
+      errors
+    } = validateRegisterInput(req.body)
+    if (!isValid) {
+      return res.status(404).json(errors)
+    }
+    User.findOne({
+      email: req.body.email
+    })
+      .then(user => {
+        if (user) {
+          errors.email = 'Email was used!'
+          return res.status(404).json(errors)
+        }
+        bcrypt.genSalt(10, function (err, salt) {
+          bcrypt.hash(req.body.password, salt, function (err, hash) {
+            const newUser = new User({
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              email: req.body.email,
+              password: hash
+            })
+            newUser.save()
+              .then(newUser => res.json(newUser))
+              .catch(err => console.log(err))
+          })
+        })
+      })
+  })
 
-module.exports = router;
+router.route('/login')
+  .post((req, res) => {
+    const {
+      errors,
+      isValid
+    } = validateLoginInput(req.body)
+    if (!isValid) {
+      return res.status(404).json(errors)
+    }
+    User.findOne({
+      email: req.body.email
+    })
+      .then(user => {
+        if (user) {
+          bcrypt.compare(req.body.password, user.password)
+            .then(isMatch => {
+              if (isMatch) {
+                const token = jwt.sign({
+                  id: user._id
+                }, process.env.SECRET, {
+                    expiresIn: '1d'
+                  }, function (err, token) {
+                    return res.json({
+                      success: true,
+                      token: token
+                    })
+                  })
+              } else {
+                errors.password = 'Password is incorrect'
+                return res.status(404).json(errors)
+              }
+            })
+        } else {
+          errors.email = 'User not found'
+          return res.status(404).json(errors)
+        }
+      })
+  })
+
+router.route('/')
+  .get(passport.authenticate('jwt', {
+    session: false
+  }), (req, res) => {
+    res.json({
+      _id: req.user._id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      bookings: req.user.bookings,
+      bookables: req.user.bookables
+    })
+  })
+
+router.route('/search')
+  .post((req, res) => {
+    User.findOne({
+      $or: [{
+        email: req.body.text
+      }, {
+        firstName: req.body.text
+      },
+      {
+        lastName: req.body.text
+      }]
+    })
+      .then(user => res.json({
+        userId: user._id
+      }))
+      .catch(err => res.status(404).json({
+        msg: 'User not found'
+      }))
+  })
+
+router.route('/:id')
+  .get((req, res) => {
+    User.findById(req.params.id)
+      .then(user => {
+        if (user) {
+          return res.json({
+            _id: user._id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bookings: user.bookings,
+            bookables: user.bookables
+          })
+        } else {
+          return res.status(404).json({
+            msg: 'User not found'
+          })
+        }
+      })
+      .catch(err => console.log(err))
+  })
+
+module.exports = router
