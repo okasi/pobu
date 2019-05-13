@@ -1,10 +1,10 @@
-import React, { Component, useState } from "react";
-// import logo from "./logo.svg";
+import React, { useState } from "react";
+
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, } from "react-router-dom";
 import SwipeableRoutes from "react-swipeable-routes";
 
-import useGlobalState from './hooks/useGlobalState.js.js'
+import useGlobalState from './hooks/useGlobalState.js'
 import { AppContext } from './store/context'
 
 import Home from "./routes/home";
@@ -14,14 +14,8 @@ import Register from "./routes/register";
 import Overview from "./routes/overview";
 import Profile from "./routes/profile";
 
-import { AppBar, Tabs, Tab } from '@material-ui/core';
+import logo from "./assets/logod.png";
 
-
-// const OtherColorView = ({ match }) => (
-//   <div style={{ height: 300, backgroundColor: match.params.color }}>
-//     {match.params.color}
-//   </div>
-// );
 
 const App = () => {
   const store = useGlobalState()
@@ -31,38 +25,45 @@ const App = () => {
   const handleChange = (event, value) => {
     setIndex(value);
   };
-
+ 
   return (
 
     <Router>
       <div className="App">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <AppContext.Provider value={store}>
-
-          {/* Navbar */} 
-          {/* Needs a bug fix because when wrapping Tab in Link it makes the selected indicator not work */}
-          <Tabs 
+        <AppContext.Provider  style={{ height: '100%'}} value={store}>
+          <div 
+            style={{ color:'black', width: '100%', marginLeft: 'auto'}}
             value={index} 
             variant="fullWidth" 
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="on"
           >
-            <Link to="/"><Tab label="Home" /></Link>
-            <Link to="/about"><Tab label="About" /></Link>
-            {!store.state.isLoggedin
-              ? (
-                <>
-                  <Link to="/login"><Tab label="Login" /></Link>
-                  <Link to="/register"><Tab label="Register" /></Link>
-                </>
-              ) : (
-                <>
-                  <Link to="/overview"><Tab label="Overview" /></Link>
-                  <Link to="/profile"><Tab label="Profile" /></Link>
-                </>
-              )}
-          </Tabs>
+
+          <div className="nav">
+            <div className="logo-cont">
+              <img src={logo} className="logo" />
+            </div>
+            <div className="nav-items">
+              <Link to="/" style={{ textDecoration: 'none'}}><button className="nav-btns">home</button></Link>
+              <Link to="/about" style={{ textDecoration: 'none'}}><button className="nav-btns">About</button></Link>
+      
+              {!store.state.isLoggedin
+                ? (
+                  <>
+                    <Link to="/login" style={{ textDecoration: 'none'}}><button className="nav-btns">login</button></Link>
+                    <Link to="/register"style={{ textDecoration: 'none'}}><button className="nav-btns">register</button></Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/overview"><button className="nav-btns">Overview</button></Link>
+                    <Link to="/profile"><button className="nav-btns">Profile</button></Link>
+                  </>
+                )}
+              </div>
+          </div>
+
+        </div>
 
           {/* Content */} 
           {!store.state.isLoggedin
