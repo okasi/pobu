@@ -7,7 +7,7 @@ const Login = withRouter(({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
 
-  async function onRegister() {
+  async function onLogin() {
     try {
       await signIn({ email, password });
       history.replace('/overview');
@@ -51,8 +51,8 @@ const Login = withRouter(({ history }) => {
 
               <input
                 type="submit"
-                value="Register"
-                onClick={onRegister}
+                value="Login"
+                onClick={onLogin}
               />
 
               <br />
