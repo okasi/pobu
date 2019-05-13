@@ -18,53 +18,56 @@ const Login = withRouter(({ history }) => {
 
   return (
     <>
-      <h1>Login</h1>
-      <div style={{ height: 300, backgroundColor: 'lightblue' }}>
-        <center>
-          <form onSubmit={e => e.preventDefault()}>
+      <div className="auth-main">
+        <div className="auth-sub">
+          <div className="title">Login</div>
 
-            <label>
-                        Email:
-              <input
-                type="email"
-                required
-                        // value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </label>
+          <center>
+            <form onSubmit={e => e.preventDefault()}>
 
-            <br />
+              <label>
+                Email:
+                <input
+                  type="email"
+                  required
+                  // value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </label>
 
-            <label>
-                        Password:
-              <input
-                type="password"
-                required
-                        // value={password}
-                onChange={e => setPass(e.target.value)}
-              />
-            </label>
+              <br />
 
-            <br />
+              <label>
+                Password:
+                <input
+                  type="password"
+                  required
+                  // value={password}
+                  onChange={e => setPass(e.target.value)}
+                />
+              </label>
 
-            <input
-              type="submit"
-              value="Register"
-              onClick={onRegister}
-            />
+              <br />
 
-            <br />
-
-            <NavLink to="/register">
               <input
                 type="submit"
-                value="Go to register"
+                value="Register"
+                onClick={onRegister}
               />
-            </NavLink>
+
+              <br />
+
+              <NavLink to="/register">
+                <input
+                  type="submit"
+                  value="Go to register"
+                />
+              </NavLink>
 
 
-          </form>
-        </center>
+            </form>
+          </center>
+        </div>
       </div>
     </>
   );

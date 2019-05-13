@@ -30,90 +30,93 @@ const Register = withRouter(({ history }) => {
 
   return (
     <>
-      <h1>Register</h1>
-      <div style={{ height: 300, backgroundColor: 'lightgreen' }}>
-        <center>
-          <form onSubmit={e => e.preventDefault()}>
+      <div className="auth-main">
+        <div className="auth-sub">
+          <div className="title">Register</div>
+
+          <center>
+            <form onSubmit={e => e.preventDefault()}>
 
 
-            <label>
-            First Name:
-              <input
-                type="text"
-                required
-              // value={firstName}
-                onChange={e => setFirst(e.target.value)}
-              />
-            </label>
+              <label>
+                  First Name:
+                <input
+                  type="text"
+                  required
+                    // value={firstName}
+                  onChange={e => setFirst(e.target.value)}
+                />
+              </label>
 
-            <br />
+              <br />
 
-            <label>
-            Last Name:
-              <input
-                type="text"
-                required
-              // value={lastName}
-                onChange={e => setLast(e.target.value)}
-              />
-            </label>
+              <label>
+                  Last Name:
+                <input
+                  type="text"
+                  required
+                    // value={lastName}
+                  onChange={e => setLast(e.target.value)}
+                />
+              </label>
 
-            <br />
+              <br />
 
-            <label>
-            Email:
-              <input
-                type="email"
-                required
-              // value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </label>
+              <label>
+                  E-mail:
+                <input
+                  type="email"
+                  required
+                    // value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </label>
 
-            <br />
+              <br />
 
-            <label>
-            Password:
-              <input
-                type="password"
-                required
-              // value={password}
-                onChange={e => setPass(e.target.value)}
-              />
-            </label>
+              <label>
+                  Password:
+                <input
+                  type="password"
+                  required
+                    // value={password}
+                  onChange={e => setPass(e.target.value)}
+                />
+              </label>
 
-            <br />
+              <br />
 
-            <label>
-            Password Again:
-              <input
-                type="password"
-                required
-              // value={passwordSecond}
-                onChange={e => setPassSecond(e.target.value)}
-              />
-            </label>
+              <label>
+                  Confirm Password:
+                <input
+                  type="password"
+                  required
+                    // value={passwordSecond}
+                  onChange={e => setPassSecond(e.target.value)}
+                />
+              </label>
 
-            <br />
+              <br />
 
-            <input
-              type="submit"
-              value="Register"
-              onClick={onRegister}
-            />
-
-            <br />
-
-            <NavLink to="/login">
               <input
                 type="submit"
-                value="Go to login"
+                value="Register"
+                onClick={onRegister}
               />
-            </NavLink>
+
+              <br />
+
+              <NavLink to="/login">
+                <input
+                  type="submit"
+                  value="Go to login"
+                />
+              </NavLink>
 
 
-          </form>
-        </center>
+            </form>
+          </center>
+        </div>
       </div>
     </>
   );
