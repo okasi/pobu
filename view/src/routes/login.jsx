@@ -35,8 +35,6 @@ const Login = withRouter(({ history }) => {
                 />
               </label>
 
-              <br />
-
               <label>
                 Password:
                 <input
@@ -47,23 +45,24 @@ const Login = withRouter(({ history }) => {
                 />
               </label>
 
-              <br />
-
-              <input
-                type="submit"
-                value="Login"
-                onClick={onLogin}
-              />
-
-              <br />
-
-              <NavLink to="/register">
-                <input
+              <div className="auth-bar">
+                <button
                   type="submit"
-                  value="Go to register"
-                />
-              </NavLink>
+                  value="Login"
+                  onClick={onLogin} 
+                  className="reg-btn"
+                  style={{margin:'0'}}
+                >
+                  Login
+                </button >
 
+                <NavLink to="/register" style={{margin:'auto 0'}}>
+                  <input style={{background: 'none', color: 'gray', fontSize:'12px'}}
+                    type="submit"
+                    value="Go to register"
+                  />
+                </NavLink>  
+              </div>
 
             </form>
           </center>

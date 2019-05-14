@@ -37,7 +37,6 @@ const Register = withRouter(({ history }) => {
           <center>
             <form onSubmit={e => e.preventDefault()}>
 
-
               <label>
                   First Name:
                 <input
@@ -47,8 +46,6 @@ const Register = withRouter(({ history }) => {
                   onChange={e => setFirst(e.target.value)}
                 />
               </label>
-
-              <br />
 
               <label>
                   Last Name:
@@ -60,8 +57,6 @@ const Register = withRouter(({ history }) => {
                 />
               </label>
 
-              <br />
-
               <label>
                   E-mail:
                 <input
@@ -71,8 +66,6 @@ const Register = withRouter(({ history }) => {
                   onChange={e => setEmail(e.target.value)}
                 />
               </label>
-
-              <br />
 
               <label>
                   Password:
@@ -84,8 +77,6 @@ const Register = withRouter(({ history }) => {
                 />
               </label>
 
-              <br />
-
               <label>
                   Confirm Password:
                 <input
@@ -96,23 +87,24 @@ const Register = withRouter(({ history }) => {
                 />
               </label>
 
-              <br />
-
-              <input
-                type="submit"
-                value="Register"
-                onClick={onRegister}
-              />
-
-              <br />
-
-              <NavLink to="/login">
-                <input
+              <div className="auth-bar">
+                <button
                   type="submit"
-                  value="Go to login"
-                />
-              </NavLink>
+                  value="Register"
+                  onClick={onRegister} 
+                  className="reg-btn"
+                  style={{margin:'0'}}
+                >
+                  Register
+                </button >
 
+                <NavLink to="/login" style={{margin:'auto 0'}}>
+                  <input style={{background: 'none', color: 'gray', fontSize:'12px'}}
+                    type="submit"
+                    value="Go to login"
+                  />
+                </NavLink>
+              </div>
 
             </form>
           </center>

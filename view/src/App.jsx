@@ -46,14 +46,14 @@ const App = () => {
                 <img src={logo} className="logo" />
               </div>
               <div className="nav-items">
-                <NavLink exact to="/" style={{ textDecoration: 'none' }} activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
-                <NavLink to="/about" style={{ textDecoration: 'none' }} activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
+                <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
+                <NavLink to="/about" className="navi" activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
 
                 {!store.state.isLoggedin
                   ? (
                     <>
-                      <NavLink to="/login" style={{ textDecoration: 'none' }} activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
-                      <NavLink to="/register" style={{ textDecoration: 'none' }} activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                      <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
+                      <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
                     </>
                   ) : (
                     <>
