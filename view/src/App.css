@@ -62,25 +62,26 @@ a { text-decoration: none;}
 }
 
 .home {
-  height: 700px;
-  width: 100vw;
+  height: 90vh;
+  width: 70vw;
   flex-direction: row;
   flex-wrap: wrap-reverse; 
   display: flex;
   justify-content: space-evenly;
-  margin-top: 30px;
+  margin: auto;
 }
 
 .h-flex-1 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   width: 315px;
   text-align: left;
 }
 .h-flex-1 >img {
-  height:  285px;
+  height: auto;
   margin: auto;
+  width: 100%;
 }
 
 .h-flex-2 {
@@ -128,7 +129,7 @@ a { text-decoration: none;}
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 120px;
+  width: 125px;
   font-weight: 100;
   font-size: 15px;
   background: #3d009f;
@@ -175,6 +176,7 @@ label {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  font-size: 14px;
 }
 form {
   display: flex;
