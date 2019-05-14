@@ -43,7 +43,9 @@ const App = () => {
           >
             <div className="nav">
               <div className="logo-cont">
+              <NavLink exact to="/">
                 <img src={logo} className="logo" />
+                </NavLink>
               </div>
               <div className="nav-items">
                 <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
