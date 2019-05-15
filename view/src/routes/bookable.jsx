@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import moment from 'moment';
+var day = moment().date();
+var month = moment().month();
+var year= moment().year();
 
 export default function Bookable({ match }) {
+
+
+
   return (
     <>
       <div className="bookable-con">
@@ -10,14 +17,21 @@ export default function Bookable({ match }) {
 
             <br/>
             <br/>
-
-          <label for="date" style={{margin:'0'}}>
+          
+          {/* <label for="date" style={{margin:'0'}}>
             Avalible dates:
           </label>
           <div className="form-input" name="date">
             <select>
               <option value="" disabled>Dates:</option>
-              <option value="23">23/5</option>
+              <option value="23">{day}</option>
+              <option value="24">24/5</option>
+              <option value="25">25/5</option>
+              <option value="26">26/5</option>
+            </select>
+            <select>
+              <option value="" disabled>Dates:</option>
+              <option value="23">{month}</option>
               <option value="24">24/5</option>
               <option value="25">25/5</option>
               <option value="26">26/5</option>
@@ -25,6 +39,29 @@ export default function Bookable({ match }) {
             <button>
               Add
             </button>
+          </div> */}
+
+          <label style={{margin:'0'}}>
+            Day/month/Year
+          </label>
+          <div className="form-input">
+            <select className="time-sel">
+              <option value="" disabled>day</option>
+              <option value="mon">{day}</option>
+              <option value="mon">12</option>
+            </select>
+            <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
+            <select className="time-sel">
+              <option value="" disabled>month</option>
+              <option value="mon">{month}</option>
+              <option value="Tue">13</option>
+            </select>
+            <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
+            <select className="time-sel">
+              <option value="" disabled>year</option>
+              <option value="mon">{year}</option>
+              <option value="Tue">13</option>
+            </select>
           </div>
 
             <br/>
