@@ -5,12 +5,13 @@ var month = moment().month();
 var year= moment().year();
 var hour =moment().hour();
 
+var daysinmonth = moment().daysInMonth();
 
 
 
 
 var days = [];
-for (var i = day; i < 31; i++) {
+for (var i = day; i < daysinmonth+1; i++) {
   days.push(<option value={i}>{i}</option>);
 }
 
@@ -30,17 +31,28 @@ for (var i = 1; i < 25; i++) {
 }
 
 var minutes= [];
-for (var i = 1; i < 61; i++) {
+for (var i = 0; i < 61; i++) {
   minutes.push(<option value={i}>{i}</option>);
 }
 
 
 
 
-
 export default function Bookable({ match }) {
 
-
+  const [type, setType] = useState("");
+  const [fee, setFee] = useState("");
+  const [video, setVideo] = useState(" No");
+  const [voice, setVoice] = useState(" No");
+  const [chat, setChat] = useState(" No");
+  const [theDay, setTheDay] = useState(day);
+  const [theMonth, setTheMonth] = useState(month);
+  const [theYear, setTheYear] = useState(year);
+  const [theDuration, setTheDuration] = useState(0);
+  const [Hour1, setHour1] = useState("--");
+  const [Minute1, setMinute1] = useState("--");
+  const [Hour2, setHour2] = useState("--");
+  const [Minute2, setMinute2] = useState("--");
 
   return (
 
@@ -51,7 +63,17 @@ export default function Bookable({ match }) {
       <div className="bookable-con">
         <div className="bookable-con-sub">
           <h1>Add bookables</h1>
-          <input type="text" placeholder="Type of..."/>
+
+          <label for="type" style={{margin:'0'}}>
+            Type: {type}
+          </label>
+          <input 
+            type="text" 
+            placeholder="Type of..."
+            value={type}
+            onChange={e => setType(e.target.value)}
+            name="type"
+          />
 
             <br/>
             <br/>
@@ -83,18 +105,18 @@ export default function Bookable({ match }) {
             Day/month/Year
           </label>
           <div className="form-input">
-            <select className="time-sel">
-              <option value="" disabled>day</option>
+            <select className="time-sel" onChange={e => setTheDay(e.target.value)}>
+              <option value="" disabled selected>Day</option>
               {days}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
-            <select className="time-sel">
-              <option value="" disabled>month</option>
+            <select className="time-sel" onChange={e => setTheMonth(e.target.value)}>
+              <option value="" disabled selected>Month</option>
              {months}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
-            <select className="time-sel">
-              <option value="" disabled>year</option>
+            <select className="time-sel"  onChange={e => setTheYear(e.target.value)}>
+              <option value="" disabled selected>Year</option>
              {years}
             </select>
           </div>
@@ -105,13 +127,13 @@ export default function Bookable({ match }) {
             Avalible hour intervals:
           </label>
           <div className="form-input">
-            <select className="time-sel">
-              <option value="" disabled>Hour</option>
+            <select className="time-sel" onChange={e => setHour1(e.target.value)}>
+              <option value="" disabled selected>Hour</option>
               {hours}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>:</label>
-            <select className="time-sel">
-              <option value="" disabled>Minute:</option>
+            <select className="time-sel" onChange={e => setMinute1(e.target.value)}>
+              <option value="" disabled selected>Minute:</option>
               {minutes}
             </select>
 
@@ -119,13 +141,13 @@ export default function Bookable({ match }) {
               to:
             </label>
 
-            <select className="time-sel">
-              <option value="" disabled>Hour</option>
+            <select className="time-sel" onChange={e => setHour2(e.target.value)}>
+              <option value="" disabled selected>Hour</option>
               {hours}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>:</label>
-            <select className="time-sel">
-              <option value="" disabled>Minute:</option>
+            <select className="time-sel" onChange={e => setMinute2(e.target.value)}>
+              <option value="" disabled selected>Minute:</option>
               {minutes}
             </select>
             <button>
@@ -139,8 +161,8 @@ export default function Bookable({ match }) {
             Duration:
           </label>
           <div className="form-input" name="duration">
-              <select>
-                <option value="" disabled>Duration:</option>
+              <select onChange={e => setTheDuration(e.target.value)}>
+                <option value="" disabled selected>Duration:</option>
                 <option value="10">10 min</option>
                 <option value="20">20 min</option>
                 <option value="30">30 min</option>
@@ -159,10 +181,20 @@ export default function Bookable({ match }) {
             Fee:
           </label>
           <div className="form-input" name="fee">
-              <input type="checkbox" value="Paid" name="paid"/>
+              <input 
+                type="checkbox" 
+                value={fee} 
+                name="paid"
+                onClick={ () => setFee(' Paid')}
+                />
               <label for="paid" style={{margin: 'auto 10px auto 0'}}>Paid</label>
           
-              <input type="checkbox" value="free" name="free"/>
+              <input
+                type="checkbox"
+                value={fee} 
+                name="free"
+                onClick={ () => setFee(' Free')}
+              />
               <label for="paid" style={{margin: 'auto 10px auto 0'}}>free</label>
             </div>
 
@@ -172,13 +204,28 @@ export default function Bookable({ match }) {
             Communication:
           </label>
           <div className="form-input" name="communication" >
-              <input type="checkbox" value="text" name="text"/>
-              <label for="text" style={{margin: 'auto 10px auto 0'}}>Text</label>
+              <input 
+                type="checkbox" 
+                value={chat} 
+                name="chat"
+                onClick={ () => setChat(' Yes')}
+                />
+              <label for="text" style={{margin: 'auto 10px auto 0'}}>Chat</label>
           
-              <input type="checkbox" value="voice" name="voice"/>
+              <input
+                type="checkbox" 
+                value={voice} 
+                name="voice"
+                onClick={ () => setVoice(' Yes')}
+                />
               <label for="voice" style={{margin: 'auto 10px auto 0'}}>Voice</label>
 
-              <input type="checkbox" value="video" name="Video"/>
+              <input 
+                type="checkbox"
+                value={video}
+                name="Video"
+                onClick={ () => setVideo(' Yes')}
+                />
               <label for="Video" style={{margin: 'auto 10px auto 0'}}>Video</label>
 
               <input type="checkbox" value="irl" name="IRL"/>
@@ -193,6 +240,14 @@ export default function Bookable({ match }) {
         <div className="bookable-con-sub">
           <h1>Recent Bookables</h1>
           <div className="box">
+            <h5>Type of Service:{type}</h5>
+            <h5>Paid or free:{fee}</h5>
+            <h5>Chat:{chat}</h5>
+            <h5>Voice:{voice}</h5>
+            <h5>Video:{video}</h5>
+            <h5>Date: {theDay}/{theMonth}/{theYear}</h5>
+            <h5>Duration: {theDuration} min</h5>
+            <h5>Avaliable hours: {Hour1}:{Minute1}  to {Hour2}:{Minute2}</h5>
           </div>
         </div>    
       </div>
