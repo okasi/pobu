@@ -3,13 +3,51 @@ import moment from 'moment';
 var day = moment().date();
 var month = moment().month();
 var year= moment().year();
+var hour =moment().hour();
+
+
+
+
+
+var days = [];
+for (var i = day; i < 31; i++) {
+  days.push(<option value={i}>{i}</option>);
+}
+
+var months = [];
+for (var i = month; i < 13; i++) {
+  months.push(<option value={i}>{i}</option>);
+}
+
+var years = [];
+for (var i = year; i < 2025; i++) {
+  years.push(<option value={i}>{i}</option>);
+}
+
+var hours = [];
+for (var i = 1; i < 25; i++) {
+  hours.push(<option value={i}>{i}</option>);
+}
+
+var minutes= [];
+for (var i = 1; i < 61; i++) {
+  minutes.push(<option value={i}>{i}</option>);
+}
+
+
+
+
 
 export default function Bookable({ match }) {
 
 
 
   return (
+
+    
     <>
+
+    
       <div className="bookable-con">
         <div className="bookable-con-sub">
           <h1>Add bookables</h1>
@@ -47,20 +85,17 @@ export default function Bookable({ match }) {
           <div className="form-input">
             <select className="time-sel">
               <option value="" disabled>day</option>
-              <option value="mon">{day}</option>
-              <option value="mon">12</option>
+              {days}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
             <select className="time-sel">
               <option value="" disabled>month</option>
-              <option value="mon">{month}</option>
-              <option value="Tue">13</option>
+             {months}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>/</label>
             <select className="time-sel">
               <option value="" disabled>year</option>
-              <option value="mon">{year}</option>
-              <option value="Tue">13</option>
+             {years}
             </select>
           </div>
 
@@ -72,14 +107,12 @@ export default function Bookable({ match }) {
           <div className="form-input">
             <select className="time-sel">
               <option value="" disabled>Hour</option>
-              <option value="mon">12</option>
-              <option value="mon">12</option>
+              {hours}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>:</label>
             <select className="time-sel">
               <option value="" disabled>Minute:</option>
-              <option value="mon">23</option>
-              <option value="Tue">13</option>
+              {minutes}
             </select>
 
             <label style={{margin:'auto'}}>
@@ -88,14 +121,12 @@ export default function Bookable({ match }) {
 
             <select className="time-sel">
               <option value="" disabled>Hour</option>
-              <option value="mon">12</option>
-              <option value="mon">12</option>
+              {hours}
             </select>
             <label style={{margin:'auto 2px', color: 'black', fontSize:25}}>:</label>
             <select className="time-sel">
               <option value="" disabled>Minute:</option>
-              <option value="mon">23</option>
-              <option value="Tue">13</option>
+              {minutes}
             </select>
             <button>
               Add
