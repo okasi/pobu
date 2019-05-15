@@ -189,3 +189,44 @@ form {
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+
+.bookable-con {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 100px auto auto auto;
+  height: 80vh;
+  flex-wrap: wrap;
+}
+
+.bookable-con-sub {
+  display: flex;
+  width:315px;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: center; */
+  margin: auto;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  width: 315px;
+  height: 29px;
+ 
+}
+
+select {
+  width: 300px;
+}
+.time-sel{
+  width: 50px
+}
+
+.box {
+  background: #fff;
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgb(190, 190, 190);
+}

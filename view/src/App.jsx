@@ -13,6 +13,7 @@ import Login from './routes/login';
 import Register from './routes/register';
 import Overview from './routes/overview';
 import Profile from './routes/profile';
+import Bookable from'./routes/bookable';
 
 import logo from './assets/logod.png';
 
@@ -56,6 +57,7 @@ const App = () => {
                     <>
                       <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
                       <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
                     </>
                   ) : (
                     <>
@@ -76,6 +78,7 @@ const App = () => {
                   <Route path="/about" component={About} />
                   <Route path="/login" component={Login} />
                   <Route path="/register" component={Register} />
+                  <Route path="/bookable" component={Bookable} />
                 </SwipeableRoutes>
               </>
               ) : (
@@ -85,6 +88,7 @@ const App = () => {
                   <Route path="/about" component={About} />
                   <Route path="/overview" component={Overview} />
                   <Route path="/profile" component={Profile} />
+                  <Route path="/bookable" component={Bookable} />
                   {/* <Route path="/booking/:id" component={booking} defaultParams={{ color: "grey" }} /> */}
                 </SwipeableRoutes>
               </>

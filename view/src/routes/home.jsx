@@ -13,18 +13,18 @@ const Home = withRouter(({ history }) => (
       <div className="h-flex-2">
 
         <div className="why">
-            WHY POBU?
+          WHY POBU?
         </div>
 
         <div className="pitch">
-            Bookings +
-            connections,
-            made easy
+          Bookings +
+          connections,
+          made easy
         </div>
 
         <div className="slogan">
-            we value your privacy & efficiency, with pobu
-            you got it all blabla.
+          we value your privacy & efficiency, with pobu
+          you got it all blabla.
         </div>
 
         <NavLink to="/register">
