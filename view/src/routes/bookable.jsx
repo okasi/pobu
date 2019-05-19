@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-// import MultipleDatePicker from 'react-multiple-datepicker'
+import DatePicker from 'react-datepicker';
 
 var day = moment().date();
 var month = moment().month();
@@ -54,9 +54,12 @@ export default function Bookable({ match }) {
   const [Hour2, setHour2] = useState("--");
   const [Minute2, setMinute2] = useState("--");
 
-
+  const [selDate, setSelDate] = useState();
   
+
+ 
   return (
+   
     
 
     
@@ -105,14 +108,22 @@ export default function Bookable({ match }) {
           </div> */}
 
           <label style={{margin:'0'}}>
-            Day/month/Year
+            Select Date & Time:
+            {selDate}
           </label>
-          
-          {/*
-          <MultipleDatePicker 
-          onSubmit={dates => console.log("selected dates ", dates)}
-        />
-        */}
+          <DatePicker
+        
+            selected={selDate}
+            
+            onChange={input => alert(input)}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            timeCaption="time"
+            inline
+          />
+
 
           {/* <div className="form-input">
             <select className="time-sel" multiple size="10" onChange={e => setTheDay(e.target.value)}>
@@ -133,7 +144,7 @@ export default function Bookable({ match }) {
           </div> */}
 
             <br/>
-
+{/* 
           <label style={{margin:'0'}}>
             Avalible hour intervals:
           </label>
@@ -164,7 +175,7 @@ export default function Bookable({ match }) {
             <button>
               Add
             </button>
-          </div>
+          </div> */}
 
             <br/>
 

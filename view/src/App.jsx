@@ -1,11 +1,13 @@
 import React from 'react';
 
 import './App.css';
+import './datepick.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
 import useGlobalState from './hooks/useGlobalStore';
 import { AppContext } from './store/context';
+
 
 import Home from './routes/home';
 import About from './routes/about';
@@ -13,7 +15,9 @@ import Login from './routes/login';
 import Register from './routes/register';
 import Overview from './routes/overview';
 import Bookable from './routes/bookable';
+import Booking from'./routes/booking';
 import Profile from './routes/profile';
+
 
 import logo from './assets/logod.png';
 
@@ -53,6 +57,8 @@ const App = () => {
                     <>
                       <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
                       <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
+                      <NavLink to="/booking" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Booking</button></NavLink>
                     </>
                   ) : (
                     <>
@@ -63,7 +69,7 @@ const App = () => {
                   )}
               </div>
             </div>
-
+    
 
             {/* Content */}
             {!store.state.isLoggedIn
@@ -83,8 +89,9 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route path="/overview" component={Overview} />
                     <Route path="/bookable" component={Bookable} />
-                    <Route path="/profile" component={Profile} />
+                    <Route path="/booking" component={Booking} />
                     {/* <Route path="/booking/:id" component={booking} defaultParams={{ color: "grey" }} /> */}
+                    <Route path="/profile" component={Profile} />
                   </SwipeableRoutes>
                 </>
               )}
