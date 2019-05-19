@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+
+import MultipleDatePicker from 'react-multiple-datepicker'
+
 var day = moment().date();
 var month = moment().month();
 var year= moment().year();
-var hour =moment().hour();
-
-var daysinmonth = moment().daysInMonth();
-
-
-
-
-var days = [];
-for (var i = day; i < daysinmonth+1; i++) {
-  days.push(<option value={i}>{i}</option>);
-}
-
-var months = [];
-for (var i = month; i < 13; i++) {
-  months.push(<option value={i}>{i}</option>);
-}
-
-var years = [];
-for (var i = year; i < 2025; i++) {
-  years.push(<option value={i}>{i}</option>);
-}
-
-var hours = [];
-for (var i = 1; i < 25; i++) {
-  hours.push(<option value={i}>{i}</option>);
-}
-
-var minutes= [];
-for (var i = 0; i < 61; i++) {
-  minutes.push(<option value={i}>{i}</option>);
-}
+var hour = moment().hour();
 
 
 
 
 export default function Bookable({ match }) {
+  var daysinmonth = moment().daysInMonth();
 
+
+  var days = [];
+  for (var i = day; i < daysinmonth+1; i++) {
+    days.push(<option value={i}>{i}</option>);
+  }
+  
+  var months = [];
+  for (var i = month; i < 13; i++) {
+    months.push(<option value={i}>{i}</option>);
+  }
+  
+  var years = [];
+  for (var i = year; i < 2025; i++) {
+    years.push(<option value={i}>{i}</option>);
+  }
+  
+  var hours = [];
+  for (var i = 1; i < 25; i++) {
+    hours.push(<option value={i}>{i}</option>);
+  }
+  
+  var minutes= [];
+  for (var i = 0; i < 61; i+=5) {
+    minutes.push(<option value={i}>{i}</option>);
+  }
+  
   const [type, setType] = useState("");
   const [fee, setFee] = useState("");
   const [video, setVideo] = useState(" No");
@@ -54,14 +54,18 @@ export default function Bookable({ match }) {
   const [Hour2, setHour2] = useState("--");
   const [Minute2, setMinute2] = useState("--");
 
+
+  
   return (
+    
 
     
     <>
 
-    
+
       <div className="bookable-con">
         <div className="bookable-con-sub">
+        
           <h1>Add bookables</h1>
 
           <label for="type" style={{margin:'0'}}>
@@ -74,7 +78,6 @@ export default function Bookable({ match }) {
             onChange={e => setType(e.target.value)}
             name="type"
           />
-
             <br/>
             <br/>
           
@@ -104,8 +107,12 @@ export default function Bookable({ match }) {
           <label style={{margin:'0'}}>
             Day/month/Year
           </label>
-          <div className="form-input">
-            <select className="time-sel" onChange={e => setTheDay(e.target.value)}>
+          <MultipleDatePicker 
+          onSubmit={dates => console.log("selected dates ", dates)}
+        />
+
+          {/* <div className="form-input">
+            <select className="time-sel" multiple size="10" onChange={e => setTheDay(e.target.value)}>
               <option value="" disabled selected>Day</option>
               {days}
             </select>
@@ -119,7 +126,8 @@ export default function Bookable({ match }) {
               <option value="" disabled selected>Year</option>
              {years}
             </select>
-          </div>
+            
+          </div> */}
 
             <br/>
 
@@ -239,7 +247,7 @@ export default function Bookable({ match }) {
 
         <div className="bookable-con-sub">
           <h1>Recent Bookables</h1>
-          <div className="box">
+          <div className="boxa">
             <h5>Type of Service:{type}</h5>
             <h5>Paid or free:{fee}</h5>
             <h5>Chat:{chat}</h5>
