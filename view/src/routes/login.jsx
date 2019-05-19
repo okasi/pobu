@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-
+import { AppContext } from '../store/context';
 import { signIn } from '../services/auth';
+import { setToken, getValidToken, getUser } from '../services/auth';
+
 
 const Login = withRouter(({ history }) => {
+  const { state, actions } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
+
+
+  function checkLogin() {
+    if (setToken(getValidToken())) {
+      actions({
+        type: 'setState',
+        payload: { isLoggedIn: true }
+      })
+      return true
+    }
+  }
+
+  useEffect(() => {
+    checkLogin()
+  }, []);
 
   async function onLogin() {
     try {
       await signIn({ email, password });
-      history.replace('/overview');
+      if (checkLogin()){
+        history.replace('/overview');
+      }
     } catch (error) {
       alert(error.message);
     }
