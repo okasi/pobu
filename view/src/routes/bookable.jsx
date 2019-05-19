@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-import MultipleDatePicker from 'react-multiple-datepicker'
+// import MultipleDatePicker from 'react-multiple-datepicker'
 
 var day = moment().date();
 var month = moment().month();
@@ -107,9 +107,12 @@ export default function Bookable({ match }) {
           <label style={{margin:'0'}}>
             Day/month/Year
           </label>
+          
+          {/*
           <MultipleDatePicker 
           onSubmit={dates => console.log("selected dates ", dates)}
         />
+        */}
 
           {/* <div className="form-input">
             <select className="time-sel" multiple size="10" onChange={e => setTheDay(e.target.value)}>
