@@ -10,12 +10,6 @@ const Register = withRouter(({ history }) => {
   const [password, setPass] = useState('');
   const [passwordSecond, setPassSecond] = useState('');
 
-  // function handleSubmit(){
-  //   axios
-  //   .post('user/register', {
-
-  //   })
-  // }
 
   async function onRegister() {
     try {

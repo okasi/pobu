@@ -15,13 +15,14 @@ export function setToken(token) {
     // store the token
     localStorage.setItem(key, token);
     // Setting the Authorisation header for all future GET requests
-    // api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    api.defaults.headers.common.Authorization = token;
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    return true;
   } else {
-    // delete api.defaults.headers.common['Authorization']
+    // delete api.defaults.headers.common.Authorization;
     delete api.defaults.headers.common.Authorization;
     // Clear token from local storage
     localStorage.removeItem(key);
+    return false;
   }
 }
 
@@ -87,6 +88,17 @@ export function signUp(userData) {
     });
 }
 
+// Sends a GET request to api/users/ on the backend
+// should return data about logged in user
+export async function getUser() {
+  return api.get('/users/')
+    .then((res) => {
+      return res.data;
+    })
+    .catch((res) => {
+      console.error(res.response);
+    });
+}
 
 export function signOut() {
   setToken(null);
