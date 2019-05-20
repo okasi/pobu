@@ -8,6 +8,7 @@ export default function Bookable({ match }) {
  
   const currentDate = moment().toString();
   const [choosen, setChoosen] = useState();
+  const [time, setTime] = useState("");
   const [type, setType] = useState("");
   const [fee, setFee] = useState("");
   const [video, setVideo] = useState("");
@@ -40,13 +41,13 @@ export default function Bookable({ match }) {
             <br/>
         
           <label style={{margin:'0'}}>
-            Select Date & Time:
+            Select Date :
             {/* <b>{choosen}</b> */}
           </label>
           <DatePicker
             selected={selDate}
-            onChange={input =>  setChoosen(''+ input)}
-            showTimeSelect
+            onChange={input =>  setChoosen(''+  moment(input).format("dddd, MMMM Do YYYY"))}
+            // showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
             dateFormat="MMMM d, yyyy h:mm aa"
@@ -54,6 +55,23 @@ export default function Bookable({ match }) {
             // placeholderText="Pick date & time"
             placeholderText={choosen}
             // inline
+          />
+
+            <br/>
+
+          <label style={{margin:'0'}}>
+            Select Time:
+            {/* <b>{time}</b> */}
+          </label>
+          <DatePicker
+            selected={selDate}
+            onChange={input =>  setTime(''+ moment(input).format("hh:mm"))}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={15}
+            dateFormat="h:mm aa"
+            timeCaption="Time"
+            placeholderText={time}
           />
         
             <br/>
@@ -150,7 +168,11 @@ export default function Bookable({ match }) {
 
           <div className="boxa"  style={{textAlign: 'right'}}>
             <span style={{ fontWeight: '500', textTransform:'capitalize'}}>{type}</span>
-            <span style={{ fontWeight: '100', fontSize: '14px', margin: '5px 0', padding: '5px 0',borderBottom: ' 0.5px solid #d4d4d4'}}>{choosen}</span>
+            <span style={{ fontWeight: '100', fontSize: '14px', margin: '5px 0', padding: '5px 0',borderBottom: ' 0.5px solid #d4d4d4'}}>
+              {choosen}
+              <br/>
+              <span style={{fontSize: '16px'}}>{time}</span>
+            </span>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between', fontSize: '14px'}}>
               <i>{theDuration}</i>
               <i>{fee}</i>
@@ -163,7 +185,7 @@ export default function Bookable({ match }) {
           </div>
 
           <button style={{width: 150}} className="reg-btn">
-            Add to bookables
+            Add bookable
           </button>
         </div>
 
