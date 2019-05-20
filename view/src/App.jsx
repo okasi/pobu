@@ -80,6 +80,8 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
+                   
+                    <Route path="/bookable" component={Bookable} />
                   </SwipeableRoutes>
                 </>
               ) : (
