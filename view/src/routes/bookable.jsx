@@ -241,7 +241,7 @@ export default function Bookable({ match }) {
              
             </div> 
             {/* Checks if wallet key is vaild by checking that it has 8 digits atm */}
-            {nano.length == 8 &&
+            {fee == true && nano.length == 8 &&
               <i style={{fontSize: '12px'}}>Payment Added</i>
             }
 
