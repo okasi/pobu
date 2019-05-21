@@ -6,7 +6,7 @@ const cors = require('cors')
 const passport = require('passport')
 
 const users = require('./routes/users')
-// const posts = require('./routes/posts')
+const booking = require('./routes/booking')
 
 // setup environment
 dotenv.config()
@@ -14,17 +14,23 @@ dotenv.config()
 // mongo db connect
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
 
+//what we use brooo
 const app = express()
 
+// To handle HTTP POST
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+//cors
 app.use(cors())
 
+//passport
 app.use(passport.initialize())
 require('./config/passport')(passport)
 
+// routes
 app.use('/api/users', users)
-// app.use('/api/posts', posts)
+app.use('/api/booking', booking)
 
 // run app
 const PORT = process.env.PORT || 5000
