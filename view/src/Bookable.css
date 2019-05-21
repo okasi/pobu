@@ -1,0 +1,129 @@
+
+.bookable-con {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 100px auto auto auto;
+  flex-wrap: wrap;
+}
+  
+.bookable-con-sub {
+  display: flex;
+  max-width: 500px;
+  width: 80vw;
+  height: 100vh;
+  flex-direction: column;
+  margin: auto;
+}
+label {
+  color: #626263;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+input {
+  height: 25px;
+  border: none;
+  border-radius: 6px;
+  text-indent: 4px;
+}
+.react-datepicker__input-container {
+  width: 100%;
+  padding: 4px 0; 
+
+
+}
+
+.react-datepicker__input-container > input {
+  width: 100%;
+  padding: 0;
+
+}
+.form-input {
+  display: flex;
+  flex-direction: row;
+  max-width: 80vw;
+  height: 29px;
+  width: 315px;
+}
+select {
+  max-width: 315px;
+  border: none;
+}
+.bookable-con-sub > label {
+  margin: 0;
+}
+.bookable-con-sub > button {
+  width: 150px;
+}
+.preview{
+  max-width: calc(500px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: right;
+}
+.prev-name {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.prev-day-time {
+  font-weight: 100;
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #d4d4d4;
+}
+.prev-day-time > span {
+  font-size: 16px;
+}
+.prev-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+}
+  
+select {
+  max-width:300px;
+  border: none;
+}
+
+.boxa{
+  max-width: calc(500px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.reg-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 125px;
+  font-weight: 100;
+  font-size: 15px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family:'Quicksand';
+  height: 30px;
+}
