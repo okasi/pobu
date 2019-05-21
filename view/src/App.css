@@ -61,107 +61,6 @@ a { text-decoration: none;}
   margin: auto;
 }
 
-.home {
-  height: 90vh;
-  width: 70vw;
-  flex-direction: row;
-  flex-wrap: wrap-reverse; 
-  display: flex;
-  justify-content: space-evenly;
-  margin: auto;
-}
-
-.h-flex-1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 315px;
-  text-align: left;
-}
-.h-flex-1 >img {
-  height: auto;
-  margin: auto;
-  width: 100%;
-}
-
-.h-flex-2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 315px;
-  text-align: left;
-}
-
-.why {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  font-weight: bold;
-  font-size: 16px;
-  width: 300px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #3d3d3d;
-}
-
-.pitch {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  font-weight: bold;
-  font-size: 40px;
-  width: 300px;
-  font-family:'Quicksand';
-  /* border-left: 3px solid black;
-  padding-left: 10px */
-}
-
-
-.slogan {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  font-weight: 100;
-  font-size: 18px;
-  width: 300px;
-  font-family:'Quicksand';
-}
-.reg-btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 125px;
-  font-weight: 100;
-  font-size: 15px;
-  background: #3d009f;
-  border-radius: 4px;
-  color: #fff;
-  margin-top: 10px;
-  font-family:'Quicksand';
-  height: 30px;
-}
-
-
-
-.auth-main {
-  height: 80vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.auth-sub {
-  width: 60vw;
-  font-family: 'Quicksand';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.title {
-  text-align: right;
-  color: #444343;
-  font-size: 2em;
-  font-weight: bold;
-}
 
 input{
   height: 25px;
@@ -183,14 +82,27 @@ form {
   flex-direction: column;
   text-align: left;
 }
-
-.auth-bar {
+.reg-btn {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  width: 125px;
+  font-weight: 100;
+  font-size: 15px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family:'Quicksand';
+  height: 30px;
 }
 
-.bookable-con {
+
+
+
+
+
+/* .bookable-con {
   width: 80vw;
   display: flex;
   flex-direction: row;
@@ -205,9 +117,9 @@ form {
   width:315px;
   height: 100vh;
   flex-direction: column;
-  /* justify-content: center; */
+
   margin: auto;
-}
+} */
 
 .form-input {
   display: flex;
@@ -247,15 +159,6 @@ select {
   font-weight: bold;
 }
 
-.box{
-  width: 400px;
-  background: white;
-  height: 400px;
-  border-radius: 10px;
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
 
 .week{
   font-family: 'Quicksand', sans-serif;
@@ -334,16 +237,6 @@ justify-content: center;
   border-radius: 10px;
 }
 
-.book{
-  width: 300px;
-  height: 50px;
-  background: #0AE7B2;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius:  0 0 10px 10px;
-margin: 0 auto 0 50px;
-display: flex;
-justify-content: center;
-}
 
 .okbook{
   letter-spacing: 3px;
@@ -414,11 +307,10 @@ justify-content: center;
 
 .boxa{
   width: 295px;
-display: flex; 
-flex-direction: column;
-justify-content: center;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
   height: auto; 
-
   border-radius: 10px;
   background: #fff;
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);

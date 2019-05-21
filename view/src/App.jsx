@@ -1,13 +1,19 @@
 import React from 'react';
 
 import './App.css';
+import './Home.css';
 import './datepick.css';
+import './Overview.css';
+import './Bookable.css';
+import './Auth.css';
+import './Profile.css';
+import './Booking.css';
+
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
 import useGlobalState from './hooks/useGlobalStore';
 import { AppContext } from './store/context';
-
 
 import Home from './routes/home';
 import About from './routes/about';
@@ -56,8 +62,6 @@ const App = () => {
                     <>
                       <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
                       <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
-                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
-                      <NavLink to="/booking" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Booking</button></NavLink>
                     </>
                   ) : (
                     <>
