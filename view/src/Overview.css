@@ -1,0 +1,83 @@
+.overview-container {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 100px auto auto auto;
+  height: 80vh;
+  flex-wrap: wrap;
+}
+  
+.overview-card {
+  display: flex;
+  max-width:315px;
+  width: 80vw;
+  height: 100vh;
+  flex-direction: column;
+  margin: auto;
+  /* justify-content: center; */
+}
+
+.overview-sub-card{
+  max-width: calc(315px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 5px auto;
+  text-align: right;
+}
+.sub-card-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.sub-card-top > span  {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.sub-card-top > span > span {
+  font-weight: 100;
+  margin: 0 4px;
+  text-transform: lowercase;
+}
+.sub-card-top > button {
+  background: none;
+  border: none;
+  color: gray;
+  padding: 0;
+}
+.sub-card-date {
+  font-weight: 100;
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #d4d4d4;
+}
+.sub-card-date > span {
+  font-size: 16px;
+}
+
+.sub-card-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.sub-card-urlbox {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 13px;
+  box-shadow:inset 0px 2px 4px rgba(0, 0, 0, 0.25) ;
+  background: paleturquoise;
+  border-radius: 8px;
+  padding: 5px;
+}
