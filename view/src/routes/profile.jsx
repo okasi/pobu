@@ -36,21 +36,35 @@ const Profile = withRouter(({ history }) => {
 
   return (
     <>
-      <h1>Profile</h1>
-      <input
-        type="submit"
-        value="Logout"
-        onClick={onLogout}
-      />
-      {state.user ? (
-        <>
-          <h3>User id: {state.user._id}</h3>
-          <h3>Email: {state.user.email}</h3>
-          <h3>First name: {state.user.firstName}</h3>
-          <h3>Last name: {state.user.lastName}</h3>
-        </>
-      ) : (<h1>LMAO</h1>)
-      }
+      <div className="profile-con">
+        <h1>Profile</h1>
+        <input
+          type="submit"
+          value="Logout"
+          onClick={onLogout}
+        />
+        {state.user ? (
+          <>
+            <label>
+              Firstname:
+              <h3>{state.user.firstName}</h3>
+            </label>
+            <label>
+              Lastname:
+              <h3>{state.user.lastName}</h3>
+            </label>
+            <label>
+              Email:
+              <h3>{state.user.email}</h3>
+            </label>
+            <label>
+              User id:
+              <h3 style={{color: 'gray'}}>{state.user._id}</h3>
+            </label>
+          </>
+        ) : (<h1>Please login</h1>)
+        }
+      </div>
     </>
   );
 });

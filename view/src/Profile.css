@@ -1,0 +1,25 @@
+.profile-con {
+    width: 80vw;
+    margin: auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .profile-con > input {
+    width: auto;
+    margin: 0 0 0 auto;
+    background: #3D009F;
+    color: #fff;
+    text-align: center;
+    
+  }
+  
+  .profile-con > h1 {
+    text-align: right;
+  }
+  .profile-con > label > h3 {
+    color: #000;
+    font-size: 18px;
+  }
