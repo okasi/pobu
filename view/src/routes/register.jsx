@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-import { signUp } from '../services/auth';
+import { signUp } from '../services/api';
 
 const Register = withRouter(({ history }) => {
   const [firstName, setFirst] = useState('');

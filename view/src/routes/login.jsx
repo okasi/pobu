@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { AppContext } from '../store/context';
-import { signIn } from '../services/auth';
-import { setToken, getValidToken, getUser } from '../services/auth';
+import { signIn, setToken, getValidToken } from '../services/api';
 
 
 const Login = withRouter(({ history }) => {
@@ -27,7 +26,12 @@ const Login = withRouter(({ history }) => {
 
   async function onLogin() {
     try {
-      await signIn({ email, password });
+      await signIn(
+        { 
+          email, 
+          password,
+        }
+      );
       if (checkLogin()){
         history.replace('/overview');
       }

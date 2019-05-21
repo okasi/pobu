@@ -18,7 +18,6 @@ import Bookable from './routes/bookable';
 import Booking from'./routes/booking';
 import Profile from './routes/profile';
 
-
 import logo from './assets/logod.png';
 
 // const OtherColorView = ({ match }) => (

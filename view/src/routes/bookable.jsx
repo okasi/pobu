@@ -1,25 +1,66 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import { bookingCreate } from '../services/api';
 
 
 export default function Bookable({ match }) {
  
-  const currentDate = moment().toString();
-  const [choosen, setChoosen] = useState();
-  const [time, setTime] = useState("");
-  const [type, setType] = useState("");
+  const [name, setName] = useState("");
+
+  const [day, setDay] = useState(null);
+  const [time, setTime] = useState(null);
+ 
   const [fee, setFee] = useState(false);
-  const [video, setVideo] = useState(false);
-  const [voice, setVoice] = useState(false);
+  const [nano, setNano] = useState(false);
+
+  // const [irl, setIrl] = useState(false);
   const [chat, setChat] = useState(true);
-  const [irl, setIrl] = useState(false);
-  const [location, setLocation] = useState("");
-  const [theDuration, setTheDuration] = useState("");
+  const [voice, setVoice] = useState(false);
+  const [video, setVideo] = useState(false);
 
-  const [selDate, setSelDate] = useState("");
+  // const [location, setLocation] = useState("");
 
-  const [nano, setNano] = useState("");
+  const [theDuration, setTheDuration] = useState(null);
+
+  const [selDate, setSelDate] = useState(null);
+
+
+
+  async function onCreateSubmit() {
+
+    const date = moment(day + ' ' + time, 'dddd, MMMM Do YYYY HH:mm hh:mm a').toDate();
+
+    const communication = (() => {
+      if (video) {
+        return "Video"
+      }
+      if (voice) {
+        return "Voice"
+      }
+      if (chat) {
+        return "Chat"
+      }
+    })();
+
+    const duration = parseInt(theDuration, 10)
+    
+
+    let objId = await bookingCreate(
+      { 
+        name, 
+        date,
+        ...fee && {fee},
+        ...nano && {nano},
+        communication,
+        duration,
+      }
+    )
+
+    alert(objId)
+  
+
+  }
 
  
   return (
@@ -29,37 +70,32 @@ export default function Bookable({ match }) {
         <div className="bookable-con-sub">
           <h1>Add bookable</h1>
 
-          <label for="type" style={{margin:'0'}}>
-            Type:
-            {/* <b>{type}</b> */}
+          <label for="Name" style={{margin:'0'}}>
+            Name:
+            {/* <b>{name}</b> */}
           </label>
           <input
             style={{textTransform: 'capitalize'}} 
             type="text" 
-            placeholder="Type of..."
-            value={type}
-            onChange={e => setType(e.target.value)}
-            name="type"
+          
+            value={name}
+            onChange={e => setName(e.target.value)}
+            name="name"
           />
 
             <br/>
         
           <label style={{margin:'0'}}>
             Select Date :
-            {/* <b>{choosen}</b> */}
           </label>
           <DatePicker
             selected={selDate}
-            onChange={input =>  setChoosen(moment(input).format("dddd, MMMM Do YYYY"))}
+            onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
             timeFormat="HH:mm"
             timeIntervals={15}
             dateFormat="MMMM d, yyyy h:mm aa"
-            placeholderText={choosen}
+            placeholderText={day}
             minDate={moment().toDate()}
-            // timeCaption="time"
-            // showTimeSelect
-            // placeholderText="Pick date & time"
-            // inline
           />
 
             <br/>
@@ -203,9 +239,9 @@ export default function Bookable({ match }) {
           </div> */}
 
           <div className="boxa"  style={{textAlign: 'right'}}>
-            <span style={{ fontWeight: '500', textTransform:'capitalize'}}>{type}</span>
+            <span style={{ fontWeight: '500', textTransform:'capitalize'}}>{name}</span>
             <span style={{ fontWeight: '100', fontSize: '14px', margin: '5px 0', padding: '5px 0',borderBottom: ' 0.5px solid #d4d4d4'}}>
-              {choosen}
+              {day}
               <br/>
               <span style={{fontSize: '16px'}}>{time}</span>
               <br/>
@@ -257,8 +293,8 @@ export default function Bookable({ match }) {
            
           </div>
 
-          <button style={{width: 150}} className="reg-btn">
-            Add bookable
+          <button style={{width: 150}} className="reg-btn" onClick={onCreateSubmit}>
+            Create bookable
           </button>
         </div>
 

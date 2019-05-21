@@ -103,3 +103,18 @@ export async function getUser() {
 export function signOut() {
   setToken(null);
 }
+
+
+
+// Sends a POST request to api/booking/add on the backend
+export async function bookingCreate(bookableData) {
+  console.log(bookableData)
+  return api.post('/booking/add', bookableData)
+    .then((res) => {
+      console.log(res.data)
+      return res.data._id;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}
