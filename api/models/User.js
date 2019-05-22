@@ -24,7 +24,7 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  bookings: [],
+  // bookings: [],
 });
 
 module.exports = mongoose.model('User', userSchema)

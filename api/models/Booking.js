@@ -3,9 +3,15 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const bookingSchema = new Schema({
-  host: {
-		type: Schema.Types.Object,
-		required: true
+  _host: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+		required: true,
+  },
+
+  _client: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   
   name: {
@@ -37,10 +43,6 @@ const bookingSchema = new Schema({
   communication: {
     type: String,
     required: true,
-  },
-
-  client: {
-    type: Schema.Types.Object,
   },
 
   createdAt: {

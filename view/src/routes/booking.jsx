@@ -78,6 +78,7 @@ export default function Booking({ match }) {
         let res = await bookingAccept(match.params.id)
         console.log(res)
         checkBooking()
+        
         let data = await getUser()
         actions({
           type: 'setState',

@@ -85,8 +85,7 @@ router.route('/')
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       email: req.user.email,
-      bookings: req.user.bookings,
-      bookables: req.user.bookables
+      // bookings: req.user.bookings,
     })
   })
 
@@ -120,7 +119,7 @@ router.route('/:id')
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
-            bookings: user.bookings,
+            // bookings: user.bookings,
           })
         } else {
           return res.status(404).json({

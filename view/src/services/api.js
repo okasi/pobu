@@ -152,3 +152,25 @@ export async function bookingAccept(bookableId) {
       console.error(res.response.data.errmsg);
     });
 }
+
+// Sends a GET request to api/booking/host on the backend
+export async function getHostBookings() {
+  return api.get('/booking/host')
+    .then((res) => {
+      return res;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}
+
+// Sends a GET request to api/booking/client on the backend
+export async function getClientBookings() {
+  return api.get('/booking/client')
+    .then((res) => {
+      return res;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}

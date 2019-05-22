@@ -3,27 +3,49 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
+import { getHostBookings, getClientBookings } from '../services/api';
+
 const Overview = () => {
 
    const { state, actions } = useContext(AppContext);
 
-   const [bookings, setBookings] = useState([]);
+   const [hostBookings, setHostBookings] = useState(null);
+   const [clientBookings, setClientBookings] = useState([]);
+
 
    useEffect(() => {
-      if (state.user && state.user.bookings) {
-         setBookings(state.user.bookings)
-      }
-   }, [state.user && state.user.bookings])
+
+      (async function () {
+         if (state.user) {
+            try {
+               let x = await getHostBookings()
+               setHostBookings(x.data)
+               console.log(x.data)
+               console.log(hostBookings)
+
+               // let y = await getClientBookings()
+               // setClientBookings(y)
+               // console.log(y)
+               // console.log(clientBookings)
+
+            } catch (e) {
+               console.error(e);
+            }
+         }
+       }());
+   }, [state.user])
 
 
    return (
       <>
+    
          <div className="overview-container">
 
             <div className="overview-card">
                <h1>Bookings</h1>
-               {bookings.length > 0 && bookings.map(booking => {
-                  if(booking.client){
+               {state.user && clientBookings.length > 1 && clientBookings.map(booking => {
+                  
+                  if (booking.client == state.user._id) {
                      return (
                      <div className="overview-sub-card" key={booking._id}>
                         <div className="sub-card-top">
@@ -65,7 +87,7 @@ const Overview = () => {
                         </div>
                      </div>
                      )
-                  }
+                        }
                })}
             </div>
 
@@ -76,7 +98,10 @@ const Overview = () => {
                      <h1>+</h1>
                   </NavLink>
                </span>
-               {state.user && state.user.bookings.map(booking => {
+
+            {/*
+               {state.user && hostBookings.length > 1 && hostBookings.map(booking => {
+                  if (booking.host == state.user._id) {
                   return (
                      <div className="overview-sub-card" key={booking._id}>
                         <div className="sub-card-top">
@@ -115,7 +140,9 @@ const Overview = () => {
                         </i>
                      </div>
                   )
+                  }
                })}
+            */}
             </div>
 
          </div>
