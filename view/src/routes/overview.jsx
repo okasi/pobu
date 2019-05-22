@@ -89,7 +89,7 @@ const Overview = () => {
 
                {state.user && state.user.bookings.map(booking => {
                   return (
-                     <div className="overview-sub-card">
+                     <div className="overview-sub-card" key={booking._id}>
                         <div className="sub-card-top">
                            <button onClick={() => alert("trying to delete")}>✖</button>
                            <span>
