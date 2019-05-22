@@ -12,6 +12,7 @@ const booking = require('./routes/booking')
 dotenv.config()
 
 // mongo db connect
+mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
 
 //what we use brooo

@@ -38,7 +38,6 @@ router.route('/check')
 
       Booking.findById(req.body.bookableId)
       .then(data => {
-        console.log(data)
         return res.json(data)
       })
       .catch(err => {
@@ -54,12 +53,14 @@ router.route('/accept')
     passport.authenticate('jwt', { session: false }),
 		(req, res) => {
 
-      Booking.findOneAndUpdate(req.body.bookableId, {
-        client: req.user._id,
-      })
+      console.log(req.body.bookableId)
+
+      Booking.findOneAndUpdate(
+        {_id: req.body.bookableId}, 
+        {client: req.user._id}
+      )
 
       .then(data => {
-        console.log(data)
         return res.json(data)
       })
       .catch(err => {
