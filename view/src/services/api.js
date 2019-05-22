@@ -100,19 +100,44 @@ export async function getUser() {
     });
 }
 
+// Sign out
 export function signOut() {
   setToken(null);
 }
 
-
-
 // Sends a POST request to api/booking/add on the backend
 export async function bookingCreate(bookableData) {
-  console.log(bookableData)
+  // console.log(bookableData)
   return api.post('/booking/add', bookableData)
     .then((res) => {
-      console.log(res.data)
       return res.data._id;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}
+
+// Sends a POST request to api/booking/check on the backend
+export async function bookingCheck(bookableId) {
+  return api.post('/booking/check', {
+    bookableId,
+
+  })
+    .then((res) => {
+      return res;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}
+
+// Sends a POST request to api/booking/check on the backend
+export async function bookingAccept(bookableId) {
+  return api.post('/booking/accept', {
+    bookableId,
+  })
+    .then((res) => {
+      return res;
     })
     .catch((res) => {
       console.error(res.response.data.errmsg);

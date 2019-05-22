@@ -79,9 +79,7 @@ router.route('/login')
   })
 
 router.route('/')
-  .get(passport.authenticate('jwt', {
-    session: false
-  }), (req, res) => {
+  .get(passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
       _id: req.user._id,
       firstName: req.user.firstName,
@@ -92,46 +90,46 @@ router.route('/')
     })
   })
 
-router.route('/search')
-  .post((req, res) => {
-    User.findOne({
-      $or: [{
-        email: req.body.text
-      }, {
-        firstName: req.body.text
-      },
-      {
-        lastName: req.body.text
-      }]
-    })
-      .then(user => res.json({
-        userId: user._id
-      }))
-      .catch(err => res.status(404).json({
-        msg: 'User not found'
-      }))
-  })
+// router.route('/search')
+//   .post((req, res) => {
+//     User.findOne({
+//       $or: [{
+//         email: req.body.text
+//       }, {
+//         firstName: req.body.text
+//       },
+//       {
+//         lastName: req.body.text
+//       }]
+//     })
+//       .then(user => res.json({
+//         userId: user._id
+//       }))
+//       .catch(err => res.status(404).json({
+//         msg: 'User not found'
+//       }))
+//   })
 
-router.route('/:id')
-  .get((req, res) => {
-    User.findById(req.params.id)
-      .then(user => {
-        if (user) {
-          return res.json({
-            _id: user._id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            bookings: user.bookings,
-            bookables: user.bookables
-          })
-        } else {
-          return res.status(404).json({
-            msg: 'User not found'
-          })
-        }
-      })
-      .catch(err => console.log(err))
-  })
+// router.route('/:id')
+//   .get((req, res) => {
+//     User.findById(req.params.id)
+//       .then(user => {
+//         if (user) {
+//           return res.json({
+//             _id: user._id,
+//             email: user.email,
+//             firstName: user.firstName,
+//             lastName: user.lastName,
+//             bookings: user.bookings,
+//             bookables: user.bookables
+//           })
+//         } else {
+//           return res.status(404).json({
+//             msg: 'User not found'
+//           })
+//         }
+//       })
+//       .catch(err => console.log(err))
+//   })
 
 module.exports = router

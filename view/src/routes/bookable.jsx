@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import { withRouter } from 'react-router-dom';
 import { bookingCreate } from '../services/api';
 
 
-export default function Bookable({ match }) {
+const Bookable = withRouter(({ history }) => {
  
   const [name, setName] = useState("");
 
@@ -21,7 +22,7 @@ export default function Bookable({ match }) {
 
   // const [location, setLocation] = useState("");
 
-  const [theDuration, setTheDuration] = useState(null);
+  const [theDuration, setTheDuration] = useState(10);
 
   const [selDate, setSelDate] = useState(null);
 
@@ -58,7 +59,8 @@ export default function Bookable({ match }) {
     )
 
     alert(objId)
-  
+
+    history.replace(`/booking/${objId}`);
 
   }
 
@@ -70,7 +72,7 @@ export default function Bookable({ match }) {
         <div className="bookable-con-sub">
           <h1>Add bookable</h1>
 
-          <label for="name" style={{marginBottom:'4px'}}>
+          <label htmlFor="name" style={{marginBottom:'4px'}}>
             Name:
           </label>
           <input
@@ -114,7 +116,7 @@ export default function Bookable({ match }) {
         
             <br/>
 
-          <label for="duration" style={{marginBottom:'4px'}}>
+          <label htmlFor="duration" style={{marginBottom:'4px'}}>
             Duration:
           </label>
           <div className="form-input" name="duration">
@@ -131,7 +133,7 @@ export default function Bookable({ match }) {
 
             <br/>
 
-          <label for="fee" style={{fontWeight: 'bold'}}>
+          <label htmlFor="fee" style={{fontWeight: 'bold'}}>
             Fee:
           </label>
           <div className="form-input" name="fee">
@@ -141,7 +143,7 @@ export default function Bookable({ match }) {
               name="paid"
               onClick={ () => setFee(!fee)}
             />
-            <label for="paid" style={{margin: 'auto 10px auto 0'}}>
+            <label htmlFor="paid" style={{margin: 'auto 10px auto 0'}}>
               Paid
             </label>
 
@@ -160,7 +162,7 @@ export default function Bookable({ match }) {
 
             <br/>
 
-          <label for="communication" style={{fontWeight: 'bold'}}>
+          <label htmlFor="communication" style={{fontWeight: 'bold'}}>
             Communication:
           </label>
           <div className="form-input" name="communication" >
@@ -170,8 +172,9 @@ export default function Bookable({ match }) {
               name="chat"
               // onClick={ () => setChat(!chat)}
               defaultChecked
+              readOnly
             />
-            <label for="text" style={{margin: 'auto 10px auto 0'}}>
+            <label htmlFor="text" style={{margin: 'auto 10px auto 0'}}>
               Chat
             </label>
 
@@ -181,7 +184,7 @@ export default function Bookable({ match }) {
               name="voice"
               onClick={ () => setVoice(!voice)}
             />
-            <label for="voice" style={{margin: 'auto 10px auto 0'}}>
+            <label htmlFor="voice" style={{margin: 'auto 10px auto 0'}}>
               Voice
             </label>
 
@@ -191,7 +194,7 @@ export default function Bookable({ match }) {
               name="Video"
               onClick={ () => setVideo(!video)}
             />
-            <label for="Video" style={{margin: 'auto 10px auto 0'}}>
+            <label htmlFor="Video" style={{margin: 'auto 10px auto 0'}}>
               Video
             </label>
             {/* <input type="checkbox" value="irl" name="IRL"/>
@@ -255,4 +258,5 @@ export default function Bookable({ match }) {
       </div>
     </>
   );
-}
+})
+export default Bookable;
