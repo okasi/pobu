@@ -30,7 +30,7 @@ const Bookable = withRouter(({ history }) => {
 
   async function onCreateSubmit() {
 
-    const date = moment(day + ' ' + time, 'dddd, MMMM Do YYYY HH:mm hh:mm a').toDate();
+    const date = (day + ' ' + time);
 
     const communication = (() => {
       if (video) {
@@ -90,7 +90,8 @@ const Bookable = withRouter(({ history }) => {
           </label>
           <DatePicker
             selected={selDate}
-            onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
+            // onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
+            onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
             timeFormat="HH:mm"
             timeIntervals={15}
             dateFormat="MMMM d, yyyy h:mm aa"
@@ -113,6 +114,29 @@ const Bookable = withRouter(({ history }) => {
             timeCaption="Time"
             placeholderText={time}
           />
+
+
+<br/>
+
+<label>
+  Select Date :
+</label>
+
+<input
+      type="date"
+      onChange={(e) =>  setDay(e.target.value)}
+    ></input>
+
+  <br/>
+
+    <label>
+      Select Time:
+    </label>
+    <input
+      type="time"
+      step="600"
+      onChange={(e) =>  setTime(e.target.value)}
+    ></input>
         
             <br/>
 

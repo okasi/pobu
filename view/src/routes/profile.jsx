@@ -58,8 +58,11 @@ const Profile = withRouter(({ history }) => {
               <h3>{state.user.email}</h3>
             </label>
             <label>
-              User id:
-              <h3 style={{color: 'gray'}}>{state.user._id}</h3>
+              {/* User id: */}
+              <details>
+                <summary>User ID:</summary>
+                <h3 style={{color: 'gray'}}>{state.user._id}</h3>
+              </details>
             </label>
           </>
         ) : (<h1>Please login</h1>)

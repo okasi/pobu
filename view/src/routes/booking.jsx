@@ -82,7 +82,7 @@ export default function Booking({ match }) {
 
   return (
     <>
-      <h1>Booking</h1>
+      {/* <h1>Booking</h1>
       <h2>You are: {who}</h2>
       <h2>ID: {match.params.id}</h2>
       <h2>Name: {data.name}</h2>
@@ -94,30 +94,38 @@ export default function Booking({ match }) {
         <button onClick={acceptBooking}>
           Accept booking
         </button>
-      }
+      } */}
 
 
       <div className="booking">
       <div className="booking-con">
         <div className="booking-card-1">
+        {who == "Host" && !already &&
+          <div className="booking-sub-desc">
+            You are this bookings
+          </div>
+        }
+        {who == "Guest" && !already &&
           <div className="booking-sub-desc">
             Get connected with
           </div>
+        }
           <div className="booking-host-name">
-            Lucky Luke
+            {/* Lucky Luke */}
+            {who}
           </div>
         </div>
 
         <div className="booking-card-2">
           <div className="booking-box">      
             <span>
-              {booking3.name}
+              {data.name}
             </span>
             <span className="book-date">
-                {booking3.day}
+                {moment(data.date).format('MM/DD/YYYY hh:mm')}
                 <br/>
                 <span>
-                  {booking3.time} - {booking3.theDuration}
+                   {data.duration} min
                 </span>
                 <br/>
             </span>
@@ -125,28 +133,26 @@ export default function Booking({ match }) {
             <div className="book-details">
                 {/* <i>{booking3.theDuration}</i> */}
                 <i>
-                  {booking3.chat === true &&
-                      <i> Chat</i>
-                  }
-                  {booking3.voice === true && 
-                      <i>, Voice</i>
-                  }
-                  {booking3.video === true &&
-                      <i>, Video</i>
-                  }
+                  {data.communication}
+                  
                 </i>
-                {booking3.fee === true &&
+                { data.fee === 1 &&
                   <i> Paid </i>
                 }
-                {booking3.fee === false &&
+                { data.fee != 1 &&
                   <i>Free </i>
                 }
             </div> 
           </div>
-          <button className="book" onClick={()=> alert(`You have a ${booking3.name} booked with ${booking3.clientName}, ${booking3.day} - ${booking3.time}`)}>
-            Book
+          {who == "Guest" && !already &&
+          <button className="book" 
+          // onClick={()=> window.confirm(`You have a ${booking3.name} booked with ${booking3.clientName}, ${booking3.day} - ${booking3.time}`)}
+          onClick={acceptBooking}
+          onClick={() => { if (window.confirm(`Do you want to book ${data.name} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) acceptBooking() } } 
+          >
+           Accept booking
           </button>
-    
+          }
         </div>
       </div>
     </div>
