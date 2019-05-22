@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import vector from '../assets/logo.png';
 import { FaTwitter } from 'react-icons/fa'
