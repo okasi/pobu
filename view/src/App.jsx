@@ -44,7 +44,7 @@ const App = () => {
             <div className="nav">
               <div className="logo-cont">
                 <NavLink exact to="/">
-                  <img src={logo} className="logo" />
+                  <img src={logo} className="logo" alt="logo"/>
                 </NavLink>
               </div>
               <div className="nav-items">
@@ -56,8 +56,6 @@ const App = () => {
                     <>
                       <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
                       <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
-                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
-                      <NavLink to="/booking" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Booking</button></NavLink>
                     </>
                   ) : (
                     <>
@@ -79,8 +77,7 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
-                   
-                    <Route path="/bookable" component={Bookable} />
+                    <Route path="/booking/:id" component={Booking} />
                   </SwipeableRoutes>
                 </>
               ) : (
@@ -90,12 +87,12 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route path="/overview" component={Overview} />
                     <Route path="/bookable" component={Bookable} />
-                    <Route path="/booking" component={Booking} />
-                    {/* <Route path="/booking/:id" component={booking} defaultParams={{ color: "grey" }} /> */}
                     <Route path="/profile" component={Profile} />
+                    <Route path="/booking/:id" component={Booking} />
                   </SwipeableRoutes>
                 </>
               )}
+              
           </div>
 
         </AppContext.Provider>
