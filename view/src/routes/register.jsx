@@ -26,80 +26,77 @@ const Register = withRouter(({ history }) => {
     <>
       <div className="auth-main">
         <div className="auth-sub">
-          <div className="title">Register</div>
-
-          <center>
-            <form onSubmit={e => e.preventDefault()}>
-
-              <label>
+          <div className="auth-title">Register</div>
+            <center>
+              <form  className="auth-form" onSubmit={e => e.preventDefault()}>
+                <label className="auth-label">
                   First Name:
-                <input
-                  type="text"
-                  required
-                    // value={firstName}
-                  onChange={e => setFirst(e.target.value)}
-                />
-              </label>
-
-              <label>
-                  Last Name:
-                <input
-                  type="text"
-                  required
-                    // value={lastName}
-                  onChange={e => setLast(e.target.value)}
-                />
-              </label>
-
-              <label>
-                  E-mail:
-                <input
-                  type="email"
-                  required
-                    // value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </label>
-
-              <label>
-                  Password:
-                <input
-                  type="password"
-                  required
-                    // value={password}
-                  onChange={e => setPass(e.target.value)}
-                />
-              </label>
-
-              <label>
-                  Confirm Password:
-                <input
-                  type="password"
-                  required
-                    // value={passwordSecond}
-                  onChange={e => setPassSecond(e.target.value)}
-                />
-              </label>
-
-              <div className="auth-bar">
-                <button
-                  type="submit"
-                  value="Register"
-                  onClick={onRegister} 
-                  className="reg-btn"
-                  style={{margin:'0'}}
-                >
-                  Register
-                </button >
-
-                <NavLink to="/login" style={{margin:'auto 0'}}>
-                  <input style={{background: 'none', color: 'gray', fontSize:'12px'}}
-                    type="submit"
-                    value="Go to login"
+                  <input
+                    type="text"
+                    required
+                      // value={firstName}
+                    onChange={e => setFirst(e.target.value)}
                   />
-                </NavLink>
-              </div>
+                </label>
 
+                <label className="auth-label">
+                    Last Name:
+                  <input
+                    type="text"
+                    required
+                      // value={lastName}
+                    onChange={e => setLast(e.target.value)}
+                  />
+                </label>
+
+                <label className="auth-label">
+                    E-mail:
+                  <input
+                    type="email"
+                    required
+                      // value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </label>
+
+                <label className="auth-label">
+                    Password:
+                  <input
+                    type="password"
+                    required
+                      // value={password}
+                    onChange={e => setPass(e.target.value)}
+                  />
+                </label>
+
+                <label className="auth-label">
+                    Confirm Password:
+                  <input
+                    type="password"
+                    required
+                      // value={passwordSecond}
+                    onChange={e => setPassSecond(e.target.value)}
+                  />
+                </label>
+
+                <div className="auth-bar">
+                  <button
+                    type="submit"
+                    value="Register"
+                    onClick={onRegister} 
+                    className="reg-btn"
+                    style={{margin:'0'}}
+                  >
+                    Register
+                  </button >
+                  <NavLink to="/login" style={{margin:'auto 0'}}>
+                    <input 
+                      className="auth-redirect"
+                      type="submit"
+                      value="Go to login"
+                    />
+                  </NavLink>
+                </div>
             </form>
           </center>
         </div>

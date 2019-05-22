@@ -1,0 +1,63 @@
+.auth-main {
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .auth-sub {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Quicksand';
+  }
+  .auth-title {
+    text-align: right;
+    color: #444343;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .auth-form{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .auth-redirect {
+    background: none;
+    color: gray;
+    font-size: 12px;
+    border: none;
+  }
+  .auth-label {
+    color: #626263;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .auth-label > input{
+    height: 25px;
+    border: none;
+    border-radius: 6px;
+    text-indent: 4px;
+  }
+  .auth-bar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .reg-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 125px;
+    font-weight: 100;
+    font-size: 15px;
+    background: #3d009f;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 10px;
+    font-family:'Quicksand';
+    height: 30px;
+  }

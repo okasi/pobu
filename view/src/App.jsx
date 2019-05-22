@@ -1,13 +1,19 @@
 import React from 'react';
 
 import './App.css';
+import './Home.css';
 import './datepick.css';
+import './Overview.css';
+import './Bookable.css';
+import './Auth.css';
+import './Profile.css';
+import './Booking.css';
+
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
 import useGlobalState from './hooks/useGlobalStore';
 import { AppContext } from './store/context';
-
 
 import Home from './routes/home';
 import About from './routes/about';

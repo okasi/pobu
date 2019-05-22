@@ -44,50 +44,45 @@ const Login = withRouter(({ history }) => {
     <>
       <div className="auth-main">
         <div className="auth-sub">
-          <div className="title">Login</div>
-
-          <center>
-            <form onSubmit={e => e.preventDefault()}>
-
-              <label>
-                Email:
-                <input
-                  type="email"
-                  required
-                  // value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </label>
-
-              <label>
-                Password:
-                <input
-                  type="password"
-                  required
-                  // value={password}
-                  onChange={e => setPass(e.target.value)}
-                />
-              </label>
-
-              <div className="auth-bar">
-                <button
-                  type="submit"
-                  value="Login"
-                  onClick={onLogin} 
-                  className="reg-btn"
-                  style={{margin:'0'}}
-                >
-                  Login
-                </button >
-
-                <NavLink to="/register" style={{margin:'auto 0'}}>
-                  <input style={{background: 'none', color: 'gray', fontSize:'12px'}}
-                    type="submit"
-                    value="Go to register"
+          <div className="auth-title">Login</div>
+            <center>
+              <form className="auth-form" onSubmit={e => e.preventDefault()}>
+                <label className="auth-label">
+                  Email:
+                  <input
+                    type="email"
+                    required
+                    // value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
-                </NavLink>  
-              </div>
-
+                </label>
+                <label className="auth-label">
+                  Password:
+                  <input
+                    type="password"
+                    required
+                    // value={password}
+                    onChange={e => setPass(e.target.value)}
+                  />
+                </label>
+                <div className="auth-bar">
+                  <button
+                    type="submit"
+                    value="Login"
+                    onClick={onLogin} 
+                    className="reg-btn"
+                    style={{margin:'0'}}
+                  >
+                    Login
+                  </button >
+                  <NavLink to="/register" style={{margin:'auto 0'}}>
+                    <input 
+                      className="auth-redirect"
+                      type="submit"
+                      value="Go to register"
+                    />
+                  </NavLink>  
+                </div>
             </form>
           </center>
         </div>
