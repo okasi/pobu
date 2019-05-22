@@ -1,20 +1,23 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
 import { NavLink, withRouter } from 'react-router-dom';
+
 import vector from '../assets/logo.png';
+
 import { FaTwitter, FaInstagram, } from 'react-icons/fa'
 import { MdInfo } from 'react-icons/md'
+
+
 const Home = withRouter(({ history }) => {
+  
   const { state } = useContext(AppContext);
 
   return (
     <>
       <div className="home">
-
         <div className="home-card-1">
-          <img src={vector} alt=""/>
+          <img src={vector} alt="Vector"/>
         </div>
-
         <div className="home-card-2">
           <div className="why">
             WHY POBU?
@@ -39,17 +42,11 @@ const Home = withRouter(({ history }) => {
           }
         </div>
       </div>
-      <div style={{display:'flex', width: '90%', flexDirection:'row', justifyContent: 'flex-end', margin: '0 auto'}}>
-        <a 
-          href="http://twitter.com/pobu_io/"
-          style={{color: '#000'}}
-        >
+      <div className="home-social">
+        <a href="http://twitter.com/pobu_io/" target="_blank">
           <FaTwitter />
         </a>
-        {/* <FaInstagram /> */}
-        <MdInfo />
       </div>
-      
     </>
   );
 })
