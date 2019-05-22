@@ -83,7 +83,6 @@ const Bookable = withRouter(({ history }) => {
   return (
    
     <>
-   
       <div className="bookable-con">
         <div className="bookable-con-sub">
           <h1>Add bookable</h1>

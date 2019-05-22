@@ -81,7 +81,7 @@ router.route('/accept')
 
       Booking.findOneAndUpdate(
         {_id: req.body.bookableId}, 
-        {client: req.user._id}
+        {_client: req.user._id}
       )
 
       .then(data => {

@@ -18,15 +18,16 @@ const Overview = () => {
       (async function () {
          if (state.user) {
             try {
-               let x = await getHostBookings()
+               const x = await getHostBookings()
                setHostBookings(x.data)
-               console.log(x.data)
+               console.log(x)
                console.log(hostBookings)
+           
 
-               // let y = await getClientBookings()
-               // setClientBookings(y)
-               // console.log(y)
-               // console.log(clientBookings)
+               let y = await getClientBookings()
+               setClientBookings(y.data)
+               console.log(y)
+               console.log(clientBookings)
 
             } catch (e) {
                console.error(e);
@@ -38,6 +39,7 @@ const Overview = () => {
 
    return (
       <>
+
     
          <div className="overview-container">
 
@@ -99,8 +101,8 @@ const Overview = () => {
                   </NavLink>
                </span>
 
-            {/*
-               {state.user && hostBookings.length > 1 && hostBookings.map(booking => {
+            
+               {state.user && hostBookings && hostBookings.map(booking => {
                   if (booking.host == state.user._id) {
                   return (
                      <div className="overview-sub-card" key={booking._id}>
@@ -142,7 +144,7 @@ const Overview = () => {
                   )
                   }
                })}
-            */}
+            
             </div>
 
          </div>

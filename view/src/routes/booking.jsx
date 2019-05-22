@@ -26,15 +26,15 @@ export default function Booking({ match }) {
      
         let res = await bookingCheck(match.params.id)
 
-        if (res.data.host == state.user._id) {
+        if (res.data._host == state.user._id) {
           setWho('Host');
         }
 
-        if (res.data.client == state.user._id) {
+        if (res.data._client == state.user._id) {
           setWho('Client');
         }
 
-        if (res.data.client) {
+        if (res.data._client) {
           setAlready(true)
         }
 
@@ -42,13 +42,13 @@ export default function Booking({ match }) {
         console.log(res.data)
 
 
-        if (res.data.host) {
-          let hostres = await getUserById(res.data.host)
+        if (res.data._host) {
+          let hostres = await getUserById(res.data._host)
           setHost(`${hostres.firstName} ${hostres.lastName}`);
         }
 
-        if (res.data.client) {
-          let clientres = await getUserById(res.data.client)
+        if (res.data._client) {
+          let clientres = await getUserById(res.data._client)
           setClient(`${clientres.firstName} ${clientres.lastName}`);
         }
         
@@ -78,7 +78,7 @@ export default function Booking({ match }) {
         let res = await bookingAccept(match.params.id)
         console.log(res)
         checkBooking()
-        
+
         let data = await getUser()
         actions({
           type: 'setState',
