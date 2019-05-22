@@ -133,7 +133,6 @@ export async function bookingCreate(bookableData) {
 export async function bookingCheck(bookableId) {
   return api.post('/booking/check', {
     bookableId,
-
   })
     .then((res) => {
       return res;
@@ -145,9 +144,7 @@ export async function bookingCheck(bookableId) {
 
 // Sends a POST request to api/booking/check on the backend
 export async function bookingAccept(bookableId) {
-  return api.post('/booking/accept', {
-    bookableId,
-  })
+  return api.post('/booking/accept', {bookableId})
     .then((res) => {
       return res;
     })
