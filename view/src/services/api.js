@@ -100,6 +100,18 @@ export async function getUser() {
     });
 }
 
+// Sends a GET request to api/users/:id on the backend
+// should return data about the user by the id
+export async function getUserById(id) {
+  return api.get(`/users/${id}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((res) => {
+      console.error(res.response);
+    });
+}
+
 // Sign out
 export function signOut() {
   setToken(null);
