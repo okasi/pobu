@@ -137,7 +137,7 @@ export default function Booking({ match }) {
           {who == "Guest" && !already &&
             <button className="book" 
               onClick={acceptBooking}
-              onClick={() => { if (window.confirm(`Do you want to book ${data.name} with ${hostName} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) acceptBooking() } } 
+              // onClick={() => { if (window.confirm(`Do you want to book ${data.name} with ${hostName} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) acceptBooking() } } 
             >
               Accept booking
             </button>

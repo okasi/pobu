@@ -1,11 +1,19 @@
-
+/* .bookable {
+  margin: auto;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: auto;
+  height: 80vh;
+} */
 .bookable-con {
   width: 80vw;
-  height: 80vh;
+  /* height: 80vh; */
+    height: fit-content;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 100px auto auto auto;
+  /* margin: 100px auto auto auto; */
+    margin:50px auto auto auto;
   flex-wrap: wrap;
 }
   
@@ -21,7 +29,7 @@ label {
   color: #626263;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   font-size: 14px;
 }
 input {
@@ -47,13 +55,14 @@ input {
   flex-direction: row;
   max-width: 80vw;
   height: 29px;
-  width: 315px;
+  /* width: 315px; */
+    width: 100%;
 }
 select {
   max-width: 315px;
   border: none;
 }
-.bookable-con-sub > label {
+.bookable-con-sub > div > label {
   margin: 0;
 }
 .bookable-con-sub > button {
@@ -114,7 +123,7 @@ select {
 }
 
 .reg-btn {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
   width: 125px;
@@ -125,5 +134,47 @@ select {
   color: #fff;
   margin-top: 10px;
   font-family:'Quicksand';
-  height: 30px;
+  height: 30px; */
+  
+  .reg-btn {
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+  font-weight: 100;
+  font-size: 14px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family: 'Quicksand';
+  height: auto;
+  padding: 10px 17px;
+}
+}
+
+input[type=date],
+input[type=time],
+select[name=minutes] {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 100% 50%;
+  background-color:#fff;
+  width: 95%;
+  height: 25px;
+}
+
+.react-datepicker-wrapper{
+  width: 100%;
+}
+
+select[name=minutes] {
+  width: 100%;
+  max-width: 100%;
+  text-indent: 6px;
+}
+
+.bookable-con-sub > label {
+ margin-bottom: 0;
 }
