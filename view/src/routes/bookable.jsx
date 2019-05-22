@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { withRouter } from 'react-router-dom';
-import { bookingCreate } from '../services/api';
+import { bookingCreate, getUser } from '../services/api';
 
+import { AppContext } from '../store/context';
 
 const Bookable = withRouter(({ history }) => {
+
+  const { state, actions } = useContext(AppContext);
  
   const [name, setName] = useState("");
 
@@ -46,7 +49,6 @@ const Bookable = withRouter(({ history }) => {
 
     const duration = parseInt(theDuration, 10)
     
-
     let objId = await bookingCreate(
       { 
         name, 
@@ -61,6 +63,12 @@ const Bookable = withRouter(({ history }) => {
     alert(objId)
 
     history.replace(`/booking/${objId}`);
+
+    let data = await getUser()
+    actions({
+      type: 'setState',
+      payload: { user: data }
+    })
 
   }
 

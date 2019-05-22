@@ -9,6 +9,7 @@ import { AppContext } from '../store/context';
 import { BrowserRouter, Route } from 'react-router-dom'
 
 export default function Booking({ match }) {
+
   const [who, setWho] = useState('Guest');
   const [data, setData] = useState('Guest');
   const [already, setAlready] = useState(false);
@@ -60,6 +61,14 @@ export default function Booking({ match }) {
   }
 
   useEffect(() => {
+    if (getValidToken() == null) {
+      return <Redirect to='/login' />
+    }
+  }, [])
+
+  useEffect(() => {
+
+  
     if (state.user) {
       checkBooking()
     }
@@ -76,10 +85,6 @@ export default function Booking({ match }) {
         alert(error.message);
       }
     }());
-  }
-
-  if (getValidToken() == null) {
-    return <Redirect to='/login' />
   }
 
   return (
