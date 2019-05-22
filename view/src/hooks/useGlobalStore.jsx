@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 
 // useGlobalism todo
-// GLOBAL ROUTE MANAGEMENT 
+// GLOBAL ROUTE MANAGEMENT kimseeee yooook muuuu
+// POSSIBLE TO MAKE <REDIRECT> WORK HERE???? :D
 // API SERVICES HERE
 // ALL API RELATED ACTIONS HERE
 
