@@ -4,13 +4,14 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { signUp } from '../services/api';
 
 const Register = withRouter(({ history }) => {
+
   const [firstName, setFirst] = useState('');
   const [lastName, setLast] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
   const [passwordSecond, setPassSecond] = useState('');
 
-
+  
   async function onRegister() {
     try {
       await signUp({
@@ -34,7 +35,6 @@ const Register = withRouter(({ history }) => {
                   <input
                     type="text"
                     required
-                      // value={firstName}
                     onChange={e => setFirst(e.target.value)}
                   />
                 </label>
@@ -54,7 +54,6 @@ const Register = withRouter(({ history }) => {
                   <input
                     type="email"
                     required
-                      // value={email}
                     onChange={e => setEmail(e.target.value)}
                   />
                 </label>
@@ -64,7 +63,6 @@ const Register = withRouter(({ history }) => {
                   <input
                     type="password"
                     required
-                      // value={password}
                     onChange={e => setPass(e.target.value)}
                   />
                 </label>
@@ -74,7 +72,6 @@ const Register = withRouter(({ history }) => {
                   <input
                     type="password"
                     required
-                      // value={passwordSecond}
                     onChange={e => setPassSecond(e.target.value)}
                   />
                 </label>
@@ -85,7 +82,6 @@ const Register = withRouter(({ history }) => {
                     value="Register"
                     onClick={onRegister} 
                     className="reg-btn"
-                    style={{margin:'0'}}
                   >
                     Register
                   </button >
