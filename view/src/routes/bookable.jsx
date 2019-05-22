@@ -6,6 +6,13 @@ import { bookingCreate, getUser } from '../services/api';
 
 import { AppContext } from '../store/context';
 
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
+
 const Bookable = withRouter(({ history }) => {
 
   const { state, actions } = useContext(AppContext);
@@ -76,6 +83,7 @@ const Bookable = withRouter(({ history }) => {
   return (
    
     <>
+   
       <div className="bookable-con">
         <div className="bookable-con-sub">
           <h1>Add bookable</h1>
@@ -90,69 +98,73 @@ const Bookable = withRouter(({ history }) => {
             onChange={e => setName(e.target.value)}
             name="name"
           />
-
+          <BrowserView className="browserview">
             <br/>
+
+            <label>
+              Select Date :
+            </label>
+            <DatePicker
+              selected={selDate}
+              // onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
+              onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="MMMM d, yyyy h:mm aa"
+              placeholderText={day}
+              minDate={moment().toDate()}
+            />
+
+              <br/>
+              <br/>
+
+            <label>
+              Select Time:
+            </label>
+            <DatePicker
+              selected={selDate}
+              onChange={input =>  setTime(moment(input).format("hh:mm a"))}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              dateFormat="h:mm aa"
+              timeCaption="Time"
+              placeholderText={time}
+            />
+          </BrowserView>
+          <MobileView>
+            
+          <br/>
 
           <label>
             Select Date :
           </label>
-          <DatePicker
-            selected={selDate}
-            // onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
-            onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            dateFormat="MMMM d, yyyy h:mm aa"
-            placeholderText={day}
-            minDate={moment().toDate()}
-          />
+
+          <input
+                type="date"
+                onChange={(e) =>  setDay(e.target.value)}
+              ></input>
 
             <br/>
+            <br/>
 
-          <label>
-            Select Time:
-          </label>
-          <DatePicker
-            selected={selDate}
-            onChange={input =>  setTime(moment(input).format("hh:mm a"))}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            dateFormat="h:mm aa"
-            timeCaption="Time"
-            placeholderText={time}
-          />
+              <label>
+                Select Time:
+              </label>
+              <input
+                type="time"
+                step="600"
+                onChange={(e) =>  setTime(e.target.value)}
+              ></input>
+          </MobileView>
 
-
-<br/>
-
-<label>
-  Select Date :
-</label>
-
-<input
-      type="date"
-      onChange={(e) =>  setDay(e.target.value)}
-    ></input>
-
-  <br/>
-
-    <label>
-      Select Time:
-    </label>
-    <input
-      type="time"
-      step="600"
-      onChange={(e) =>  setTime(e.target.value)}
-    ></input>
-        
             <br/>
 
           <label htmlFor="duration" style={{marginBottom:'4px'}}>
             Duration:
           </label>
           <div className="form-input" name="duration">
-            <select onChange={e => setTheDuration(e.target.value+" min")}>
+            <select name="minutes" onChange={e => setTheDuration(e.target.value+" min")}>
               <option value="" disabled defaultValue>Duration:</option>
               <option value="10">10 min</option>
               <option value="20">20 min</option>
