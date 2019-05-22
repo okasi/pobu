@@ -3,13 +3,11 @@ import { AppContext } from '../store/context';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import vector from '../assets/logo.png';
-
-import { FaTwitter, FaInstagram, } from 'react-icons/fa'
-import { MdInfo } from 'react-icons/md'
+import { FaTwitter } from 'react-icons/fa'
 
 
-const Home = withRouter(({ history }) => {
-  
+function Home() {
+
   const { state } = useContext(AppContext);
 
   return (
@@ -43,12 +41,12 @@ const Home = withRouter(({ history }) => {
         </div>
       </div>
       <div className="home-social">
-        <a href="http://twitter.com/pobu_io/" target="_blank">
+        <a href="http://twitter.com/pobu_io/" target="_blank" rel="noopener noreferrer">
           <FaTwitter />
         </a>
       </div>
     </>
   );
-})
+}
 
 export default Home;
