@@ -7,70 +7,47 @@ const Overview = () => {
       day:"Thursday, May 23rd 2019", 
       time:"05:15 pm", 
       fee: false, 
-      theDuration: "50 min", 
+      duration: "50 min", 
       chat: true, 
       voice: true, 
       video: false, 
       nano: false,
       id: "/booking",
       clientName: "Lucky Luke",
+      who: "Host",
    };
   
    const booking2 = {
       name:"Meeting",
       day:"Friday, May 31st 2019", 
       time:"03:15 pm", fee: false, 
-      theDuration: "30 min", 
+      duration: "30 min", 
       chat: true, 
       voice: true, 
       video: true, 
       nano: false,
       id: "/booking",
       clientName: "John Doe",
+      who: "Guest",
    };
 
-   const booking3 = {
-      name:"Meeting",
-      day:"Tuesday, May 21st 2019", 
-      time:"07:15 pm",
-      fee: false, 
-      theDuration: "30 min", 
-      chat: true, 
-      voice: true, 
-      video: true, 
-      nano: false,
-      id: "/booking",
-      clientName: "John Doe",
-   };
 
-   const bookable1 = {
+   const bookabledata = {
       name:"advisory services", 
-      day:"Thursday, May 23rd 2019", 
-      time:"05:15 pm", 
+      day:"2019-06-01", 
+      time:"17:15", 
       fee: false, 
-      theDuration: "50 min", 
+      duration: "50 min", 
       chat: true, 
       voice: true, 
       video: false, 
       nano: false,
-      id: "/bookable",
+      id: "0293248247",
       clientName: "You",
-      link: "pobu.io/booking/123212",
    };
+
+   const link = `booking/${bookabledata.id}`
   
-   const bookable2 = {
-      name:"Lunch Meeting",
-      day:"Friday, May 31st 2019", 
-      time:"03:15 pm", fee: false, 
-      theDuration: "30 min", 
-      chat: true, 
-      voice: true, 
-      video: true, 
-      nano: false,
-      id: "/bookable",
-      clientName: "You",
-      link: "pobu.io/booking/32322",
-   };
 
   
    return (
@@ -79,47 +56,7 @@ const Overview = () => {
             {/* <h1>Overview</h1> */}
             <div className="overview-card">
                <h1>Bookings</h1>
-               <div className="overview-sub-card">
-                  <div className="sub-card-top">
-                     <button onClick={() => alert("trying to delete")}>✖</button>
-                     <span>
-                        {booking3.name}
-                        <span>
-                           with
-                        </span>
-                        {booking3.clientName}
-                     </span>
-                  </div>
-                  <span className="sub-card-date">
-                     {booking3.day}
-                     <br/>
-                     <span>
-                        {booking3.time}
-                     </span>
-                     <br/>
-                  </span>
-
-                  <div className="sub-card-details">
-                     <i>{booking3.theDuration}</i>
-                     <i>
-                        {booking3.chat === true &&
-                           <i> Chat</i>
-                        }
-                        {booking3.voice === true && 
-                           <i>, Voice</i>
-                        }
-                        {booking3.video === true &&
-                           <i>, Video</i>
-                        }
-                     </i>
-                     {booking3.fee === true &&
-                        <i> Paid </i>
-                     }
-                     {booking3.fee === false &&
-                        <i>Free </i>
-                     }
-                  </div> 
-               </div>
+              
       
                {/* <NavLink to={booking1.id} style={{color: "#000", margin: "5px 0"}}> */}
                <div className="overview-sub-card">
@@ -133,16 +70,22 @@ const Overview = () => {
                         {booking1.clientName}
                      </span>
                   </div>
-                  <span className="sub-card-date">
-                     {booking1.day}
-                     <br/>
+                  <div className="sub-card-top">
                      <span>
-                        {booking1.time}
+                        <br/>
+                        <span style={{textTransform: 'capitalize', padding: 4, fontSize: 12, margin: 'auto', borderRadius: 5, background: '#fbc7c7'}}>{booking1.who}</span>
                      </span>
-                     <br/>
-                  </span>
+                     <span className="sub-card-date">
+                        {booking1.day}
+                        <br/>
+                        <span>
+                           {booking1.time}
+                        </span>
+                        <br/>
+                     </span>
+                  </div>
                   <div className="sub-card-details">
-                     <i>{booking1.theDuration}</i>
+                     <i>{booking1.duration}</i>
                      <i>
                         {booking1.chat === true &&
                            <i> Chat</i>
@@ -176,6 +119,12 @@ const Overview = () => {
                         {booking2.clientName}
                      </span>
                   </div>
+                  <div className="sub-card-top">
+                     <span>
+                        <br/>
+                        <span style={{textTransform: 'capitalize', padding: 4, fontSize: 12, margin: 'auto', borderRadius: 5, background: '#fbc7c7'}}>{booking2.who}</span>
+                     </span>  
+
                   <span className="sub-card-date">
                      {booking2.day}
                      <br/>
@@ -184,8 +133,9 @@ const Overview = () => {
                      </span>
                      <br/>
                   </span>
+                  </div>
                   <div className="sub-card-details">
-                     <i>{booking2.theDuration}</i>
+                     <i>{booking2.duration}</i>
                      <i>
                         {booking2.chat === true &&
                            <i> Chat</i>
@@ -216,105 +166,56 @@ const Overview = () => {
                   </NavLink>
                </span>
 
-               {/* <NavLink to={bookable1.id} style={{color: "#000", margin: "5px 0"}}> */}
+               {/* <NavLink to={bookabledata.id} style={{color: "#000", margin: "5px 0"}}> */}
                <div className="overview-sub-card">
                   <div className="sub-card-top">
-                     <button  onClick={(e) => { if (window.confirm(`Do you want to delete ${bookable1.name} with ${bookable1.clientName}?`)) window.onCancel(alert('Deleted')) } }  className="deleteme" style={{color:'gray', background: 'none', border: 'none', padding: '0'}}>✖</button>
+                     <button  onClick={(e) => { if (window.confirm(`Do you want to delete ${bookabledata.name} with ${bookabledata.clientName}?`)) window.onCancel(alert('Deleted')) } }  className="deleteme" style={{color:'gray', background: 'none', border: 'none', padding: '0'}}>✖</button>
                      <span>
-                        {bookable1.name}
+                        {bookabledata.name}
                         <span>
                            with
                         </span>
-                        {bookable1.clientName}
+                        {bookabledata.clientName}
                      </span>
                   </div>
                   
                   <span className="sub-card-date">
-                     {bookable1.day}
+                     {bookabledata.day}
                      <br/>
                      <span>
-                        {bookable1.time}
+                        {bookabledata.time}
                      </span>
                      <br/>
                   </span>
                   <div className="sub-card-details">
-                     <i>{bookable1.theDuration}</i>
+                     <i>{bookabledata.duration}</i>
                      <i>
-                        {bookable1.chat === true &&
+                        {bookabledata.chat === true &&
                            <i> Chat</i>
                         }
-                        {bookable1.voice === true && 
+                        {bookabledata.voice === true && 
                            <i>, Voice</i>
                         }
-                        {bookable1.video === true &&
+                        {bookabledata.video === true &&
                            <i>, Video</i>
                         }
                      </i>
-                     {bookable1.fee === true &&
+                     {bookabledata.fee === 1 &&
                         <i> Paid </i>
                      }
-                     {bookable1.fee === false &&
+                     {bookabledata.fee != 1 &&
                         <i>Free </i>
                      }
                   </div> 
 
                   <i className="sub-card-urlbox">
-                     <a href={bookable1.link}>
-                        {bookable1.link}
+                     <a href={link}>
+                        pobu.io/{link}
                      </a>
                   </i>
                </div>
                {/* </NavLink> */}
             
-            
-               {/* <NavLink to={bookable2.id} style={{color: "#000", margin: "5px 0"}}> */}
-               <div className="overview-sub-card">
-                  <div className="sub-card-top">
-                  <button onClick={() => alert("trying to delete")}>✖</button>
-                     <span>
-                        {bookable2.name} 
-                        <span>
-                           with
-                        </span>
-                        {bookable2.clientName}
-                     </span>
-                  </div>
-                  <span className="sub-card-date">
-                     {bookable2.day}
-                     <br/>
-                     <span>
-                        {bookable2.time}
-                     </span>
-                     <br/>
-                  </span>
-                  <div className="sub-card-details">
-                     <i>{bookable2.theDuration}</i>
-                     <i>
-                        {bookable2.chat === true &&
-                           <i> Chat</i>
-                        }
-                        {bookable2.voice === true && 
-                           <i>, Voice</i>
-                        }
-                        {bookable2.video === true &&
-                           <i>, Video</i>
-                        }
-                     </i>
-                     {bookable2.fee === true &&
-                        <i> Paid </i>
-                     }
-                     {bookable2.fee === false &&
-                        <i>Free </i>
-                     }
-                  </div> 
-                  
-                  <i className="sub-card-urlbox">
-                     <a href={bookable2.link}>
-                        {bookable2.link}
-                     </a>
-                  </i>
-               </div>
-               {/* </NavLink> */}
             </div>
          </div>
       </>
