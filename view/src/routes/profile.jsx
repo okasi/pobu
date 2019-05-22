@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { AppContext } from '../store/context';
-import { signOut, getUser } from '../services/auth';
+import { signOut, getUser } from '../services/api';
 
 const Profile = withRouter(({ history }) => {
 
