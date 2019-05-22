@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
 import { NavLink, withRouter } from 'react-router-dom';
 import vector from '../assets/logo.png';
-
+import { FaTwitter, FaInstagram, } from 'react-icons/fa'
+import { MdInfo } from 'react-icons/md'
 const Home = withRouter(({ history }) => {
   const { state } = useContext(AppContext);
 
@@ -38,6 +39,17 @@ const Home = withRouter(({ history }) => {
           }
         </div>
       </div>
+      <div style={{display:'flex', width: '90%', flexDirection:'row', justifyContent: 'flex-end', margin: '0 auto'}}>
+        <a 
+          href="http://twitter.com/pobu_io/"
+          style={{color: '#000'}}
+        >
+          <FaTwitter />
+        </a>
+        {/* <FaInstagram /> */}
+        <MdInfo />
+      </div>
+      
     </>
   );
 })
