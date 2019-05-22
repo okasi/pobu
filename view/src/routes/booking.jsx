@@ -19,19 +19,6 @@ export default function Booking({ match }) {
   
   const { state, actions } = useContext(AppContext);
 
-  const booking3 = {
-    name:"Recruitment", 
-    day:"Thursday, May 23rd 2019", 
-    time:"05:15 pm", 
-    fee: false, 
-    theDuration: "50 min", 
-    chat: true, 
-    voice: true, 
-    video: false, 
-    nano: false,
-    id: "/booking",
-    clientName: "Lucky Luke",
-  };
 
   function checkBooking() {
     (async function () {
@@ -102,78 +89,60 @@ export default function Booking({ match }) {
 
   return (
     <>
-      {/* <h1>Booking</h1>
-      <h2>You are: {who}</h2>
-      <h2>ID: {match.params.id}</h2>
-      <h2>Name: {data.name}</h2>
-      <h2>Communication: {data.communication}</h2>
-      <h2>Duration: {data.duration} min</h2>
-      <h2>Date: {moment(data.date).format('MM/DD/YYYY hh:mm')}</h2>
-      <h2>Host: {hostName}</h2>
-
-      {who == "Guest" && !already &&
-        <button onClick={acceptBooking}>
-          Accept booking
-        </button>
-      } */}
-
-
       <div className="booking">
-      <div className="booking-con">
-        <div className="booking-card-1">
-        {who == "Host" && !already &&
-          <div className="booking-sub-desc">
-            You are this bookings
+        <div className="booking-con">
+          <div className="booking-card-1">
+            {who == "Host" && !already &&
+              <div className="booking-sub-desc">
+                You are this bookings host
+              </div>
+            }
+            {who == "Guest" && !already &&
+              <div className="booking-sub-desc">
+                Get connected with
+              </div>
+            }
+            <div className="booking-host-name">
+              {hostName}
+            </div>
           </div>
-        }
-        {who == "Guest" && !already &&
-          <div className="booking-sub-desc">
-            Get connected with
-          </div>
-        }
-          <div className="booking-host-name">
-            {/* Lucky Luke */}
-            {who}
-          </div>
-        </div>
 
-        <div className="booking-card-2">
-          <div className="booking-box">      
-            <span>
-              {data.name}
-            </span>
-            <span className="book-date">
-                {moment(data.date).format('MM/DD/YYYY hh:mm')}
-                <br/>
-                <span>
-                   {data.duration} min
-                </span>
-                <br/>
-            </span>
+          <div className="booking-card-2">
+            <div className="booking-box">      
+              <span>
+                {data.name}
+              </span>
+              <span className="book-date">
+                  {moment(data.date).format('MM/DD/YYYY hh:mm')}
+                  <br/>
+                  <span>
+                    {data.duration} min
+                  </span>
+                  <br/>
+              </span>
 
-            <div className="book-details">
-                {/* <i>{booking3.theDuration}</i> */}
+              <div className="book-details">
                 <i>
                   {data.communication}
-                  
                 </i>
                 { data.fee === 1 &&
-                  <i> Paid </i>
+                  <i>Paid</i>
                 }
                 { data.fee != 1 &&
-                  <i>Free </i>
+                  <i>Free</i>
                 }
-            </div> 
+              </div> 
           </div>
+
           {who == "Guest" && !already &&
-          <button className="book" 
-          // onClick={()=> window.confirm(`You have a ${booking3.name} booked with ${booking3.clientName}, ${booking3.day} - ${booking3.time}`)}
-          onClick={acceptBooking}
-          onClick={() => { if (window.confirm(`Do you want to book ${data.name} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) acceptBooking() } } 
-          >
-           Accept booking
-          </button>
+            <button className="book" 
+              onClick={acceptBooking}
+              onClick={() => { if (window.confirm(`Do you want to book ${data.name} with ${hostName} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) acceptBooking() } } 
+            >
+              Accept booking
+            </button>
           }
+          
         </div>
       </div>
     </div>
