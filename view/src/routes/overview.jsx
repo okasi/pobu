@@ -7,6 +7,14 @@ const Overview = () => {
 
    const { state, actions } = useContext(AppContext);
 
+   const [bookings, setBookings] = useState([]);
+
+   useEffect(() => {
+      if (state.user && state.user.bookings) {
+         setBookings(state.user.bookings)
+      }
+   }, [state.user && state.user.bookings])
+
 
    return (
       <>
@@ -14,7 +22,7 @@ const Overview = () => {
 
             <div className="overview-card">
                <h1>Bookings</h1>
-               {state.user && state.user.bookings.map(booking => {
+               {bookings.length > 0 && bookings.map(booking => {
                   if(booking.client){
                      return (
                      <div className="overview-sub-card" key={booking._id}>
