@@ -1,12 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import moment from 'moment';
 import { bookingCheck, bookingAccept, getUser, getValidToken, getUserById } from '../services/api';
-
 import { Redirect } from 'react-router'
-
 import { AppContext } from '../store/context';
 
-import { BrowserRouter, Route } from 'react-router-dom'
 
 export default function Booking({ match }) {
 
@@ -26,11 +23,11 @@ export default function Booking({ match }) {
      
         let res = await bookingCheck(match.params.id)
 
-        if (res.data._host == state.user._id) {
+        if (res.data._host === state.user._id) {
           setWho('Host');
         }
 
-        if (res.data._client == state.user._id) {
+        if (res.data._client === state.user._id) {
           setWho('Client');
         }
 
@@ -61,7 +58,7 @@ export default function Booking({ match }) {
   }
 
   useEffect(() => {
-    if (getValidToken() == null) {
+    if (getValidToken() === null) {
       return <Redirect to='/login' />
     }
   }, [])
@@ -96,12 +93,12 @@ export default function Booking({ match }) {
       <div className="booking">
         <div className="booking-con">
           <div className="booking-card-1">
-            {who == "Host" && !already &&
+            {who === "Host" && !already &&
               <div className="booking-sub-desc">
                 You are this bookings host
               </div>
             }
-            {who == "Guest" && !already &&
+            {who === "Guest" && !already &&
               <div className="booking-sub-desc">
                 Get connected with
               </div>
@@ -113,11 +110,15 @@ export default function Booking({ match }) {
 
           <div className="booking-card-2">
             <div className="booking-box">      
-              <span>
+              <span 
+                className="book-title"
+                style={{fontWeight: 'bold', fontSize: 18}}
+              >
                 {data.name}
               </span>
+
               <span className="book-date">
-                  {moment(data.date).format('MM/DD/YYYY hh:mm')}
+                  {moment(data.date).format('MM/DD/YYYY - hh:mm')}
                   <br/>
                   <span>
                     {data.duration} min
@@ -132,28 +133,24 @@ export default function Booking({ match }) {
                 { data.fee === 1 &&
                   <i>Paid</i>
                 }
-                { data.fee != 1 &&
+                { data.fee !== 1 &&
                   <i>Free</i>
                 }
               </div> 
           </div>
 
-          {who == "Guest" && !already &&
+          {who === "Guest" && !already &&
             <button className="book" 
-
-              // onClick={acceptBooking}
               onClick={() => { 
                   if (window.confirm(`Do you want to book ${data.name} with ${hostName} on ${moment(data.date).format('MM/DD/YYYY hh:mm')}`)) {
                     acceptBooking() 
                   } 
                 }
               } 
-              
             >
               Accept booking
             </button>
           }
-          
         </div>
       </div>
     </div>

@@ -1,106 +1,108 @@
 .booking {
-    display: flex;
-    height: 90vh;
+  display: flex;
+  height: 90vh;
 }
 
 .booking-con {
-    height: 60vh;
-    width: 70vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: auto;
-    flex-wrap: wrap;
+  height: 60vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: auto;
+  flex-wrap: wrap;
 }
 
 .booking-card-1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 315px;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 315px;
+  text-align: left;
 }
 
 .booking-sub-desc {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    font-weight: bold;
-    font-size: 16px;
-    max-width: 310px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #3d3d3d;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-weight: bold;
+  font-size: 16px;
+  max-width: 310px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3d3d3d;
 }
 
 .booking-host-name {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    font-weight: bold;
-    font-size: 40px;
-    max-width: 310px;
-    font-family:'Quicksand';
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-weight: bold;
+  font-size: 40px;
+  max-width: 310px;
+  font-family:'Quicksand';
 }
 
 .booking-card-2{
-    width: 80vw;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
+  width: 80vw;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
 }
 
-
 .booking-box{
-    width: 80vw;
-    max-width: 400px;
-    background: white;
-    height: 250px;
-    border-radius: 10px;
-    text-align: center;
-    font-family: 'Quicksand', sans-serif;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-
+  width: 80vw;
+  max-width: 400px;
+  background: white;
+  height: 250px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 
 .book-date {
-    font-weight: 400;
-    font-size: 18px;
-    margin: 5px 0;
-    padding: 5px 0;
-    border-bottom: 0.5px solid #d4d4d4;
-    border: none;
-  }
-  .book-date > span {
-    font-size: 16px;
-  }
-  
-  .book-details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    font-size: 14px;
-  }
-  
+  font-weight: 400;
+  font-size: 18px;
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #d4d4d4;
+  border: none;
+}
 
+.book-date > span {
+  font-size: 16px;
+}
+  
+.book-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 14px;
+}
+  
 .book{
-    width: 50vw;
-    max-width: 300px;
-    height: 50px;
-    background: #0AE7B2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius:  0 0 10px 10px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: none;
-  }
+  width: 50vw;
+  max-width: 300px;
+  height: 50px;
+  background: #0AE7B2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius:  0 0 10px 10px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 18px;
+}
