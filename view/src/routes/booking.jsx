@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import moment from 'moment';
-import { bookingCheck, bookingAccept, getUser, getValidToken } from '../services/api';
+import { bookingCheck, bookingAccept, getUser, getValidToken, getUserById } from '../services/api';
 
 import { Redirect } from 'react-router'
 
@@ -12,6 +12,9 @@ export default function Booking({ match }) {
   const [who, setWho] = useState('Guest');
   const [data, setData] = useState('Guest');
   const [already, setAlready] = useState(false);
+
+  const [hostName, setHost] = useState('');
+  const [clientName, setClient] = useState('');
   
   const { state, actions } = useContext(AppContext);
 
@@ -49,6 +52,18 @@ export default function Booking({ match }) {
 
         setData(res.data)
         console.log(res.data)
+
+
+        if (res.data.host) {
+          let hostres = await getUserById(res.data.host)
+          setHost(`${hostres.firstName} ${hostres.lastName}`);
+        }
+
+        if (res.data.client) {
+          let clientres = await getUserById(res.data.client)
+          setClient(`${clientres.firstName} ${clientres.lastName}`);
+        }
+        
         
       } 
       catch (error) {
@@ -89,6 +104,7 @@ export default function Booking({ match }) {
       <h2>Communication: {data.communication}</h2>
       <h2>Duration: {data.duration} min</h2>
       <h2>Date: {moment(data.date).format('MM/DD/YYYY hh:mm')}</h2>
+      <h2>Host: {hostName}</h2>
 
       {who == "Guest" && !already &&
         <button onClick={acceptBooking}>
