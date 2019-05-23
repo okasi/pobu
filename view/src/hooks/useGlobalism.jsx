@@ -63,7 +63,7 @@ export function getDecodedToken() {
 export default function useGlobalStore() {
   const [state, setState] = useState('');
 
-  const actions = (action) => {
+  const actions = async (action) => {
     const { type, payload } = action;
     switch (type) {
 
@@ -81,11 +81,11 @@ export default function useGlobalStore() {
           .then((res) => {
               console.log("SUCCESSFULLY REGISTERED")
               console.log(res)
-              history.push('/login');
               actions({
                 type: 'USER_LOGIN',
                 payload: { ...payload }
               })
+              history.push('/login');
           })
           .catch((res) => {
             console.error(res.response);
@@ -106,21 +106,24 @@ export default function useGlobalStore() {
       // with the email & password returning the JWT
       // belonging to the user with supplied credentials
       case 'USER_LOGIN':
+        if (payload == undefined) {
+          return false
+        }
         return api.post('/users/login', { ...payload })
-        .then((res) => {
-          actions({
-            type: 'setState',
-            payload: { isLoggedIn: true }
+          .then((res) => {
+            actions({
+              type: 'setState',
+              payload: { isLoggedIn: true }
+            })
+            setToken(res.data.token);
+            getDecodedToken();
+            console.log("SUCCESSFULLY LOGGED IN")
+            history.push('/overview');
+            window.location.reload();
           })
-          setToken(res.data.token);
-          getDecodedToken();
-          console.log("SUCCESSFULLY LOGGED IN")
-          history.push('/overview');
-          window.location.reload();
-        })
-        .catch((res) => {
-          console.log(res.response);
-        });
+          .catch((res) => {
+            console.log(res.response);
+          });
 
         
       // Removes token from localstorage & resets auth bearer & sets global state isLoggedIn to false
@@ -153,13 +156,20 @@ export default function useGlobalStore() {
       // Sends a GET request to api/users/:id on the backend
       // should return data about the user by the id
       case 'USER_ID_GET':
-        return api.get(`/users/${payload}`)
-          .then((res) => {
-            return res.data;
-          })
-          .catch((res) => {
-            console.error(res.response);
-          });
+        try {
+          const res = await api.get(`/users/${payload}`);
+          return res.status === 200 ? res.data : null;
+        } catch (error) {
+          console.log(error)
+        }
+        
+
+          // .then((res) => {
+          //   return res.data;
+          // })
+          // .catch((res) => {
+          //   console.error(res.response);
+          // });
 
 
       // Sends a POST request to api/booking/add on the backend
@@ -187,13 +197,19 @@ export default function useGlobalStore() {
 
       // Sends a GET request to api/booking/host on the backend
       case 'BOOKING_HOST':
-        return api.get('/booking/host')
-          .then((res) => {
-            return res;
-          })
-          .catch((res) => {
-            console.error(res.response);
-          });
+        try {
+          const res = await api.get('/booking/host');
+          return res.status === 200 ? res.data : null;
+        } catch (error) {
+          console.log(error)
+        }
+        // return api.get('/booking/host')
+        //   .then((res) => {
+        //     return res;
+        //   })
+        //   .catch((res) => {
+        //     console.error(res.response);
+        //   });
       
 
       // Sends a GET request to api/booking/client on the backend

@@ -3,14 +3,12 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
-import { getHostBookings, getClientBookings, getUserById, bookingDelete } from '../services/api';
-
 const Overview = () => {
 
   const { state, actions } = useContext(AppContext);
 
-  const [hostBookings, setHostBookings] = useState(null);
-  const [clientBookings, setClientBookings] = useState(null);
+  const [hostBookings, setHostBookings] = useState([]);
+  const [clientBookings, setClientBookings] = useState([]);
 
 
   useEffect(() => {
@@ -21,11 +19,25 @@ const Overview = () => {
           const hostRes = await actions({
             type: 'BOOKING_HOST',
           })
-          setHostBookings(hostRes.data)
+
+          const populatedHostBookings = await Promise.all(
+            hostRes.map(async (hostBooking) => {
+              hostBooking._host = await actions({
+                type: 'USER_ID_GET',
+                payload: hostBooking._host
+              });
+
+              return hostBooking;
+            })
+          );
+
+          setHostBookings(populatedHostBookings);
+
 
           const clientRes = await actions({
             type: 'BOOKING_CLIENT',
           })
+          
           setClientBookings(clientRes.data)
 
         } catch (e) {
@@ -44,17 +56,6 @@ const Overview = () => {
           <h1>Bookings</h1>
           {state.user && clientBookings && clientBookings.map(booking => {
 
-            let cName = ""
-            Promise.resolve(actions({
-              type: 'USER_ID_GET',
-              payload: booking._client
-            }))
-              .then(res => {
-                console.log(res.firstName)
-                cName = res.firstName;
-              })
-
-          
 
             if (booking._client == state.user._id) {
               return (
@@ -66,7 +67,7 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-                      {cName}
+
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -110,20 +111,20 @@ const Overview = () => {
           </span>
 
 
-          {state.user && hostBookings && hostBookings.map(booking => {
-            if (booking._host == state.user._id) {
+          {state.user && hostBookings && hostBookings.map((booking) => {
+            if (booking._host._id == state.user._id) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
-                    <button onClick={(e) => { 
+                    <button onClick={(e) => {
                       if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
-                        
-                          alert('Deleted')
-                          actions({
-                            type: 'BOOKING_DELETE',
-                            payload: {bookableId: booking._id}
-                          })
-                        
+
+                        alert('Deleted')
+                        actions({
+                          type: 'BOOKING_DELETE',
+                          payload: { bookableId: booking._id }
+                        })
+
                       }
                     }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
                     <span>
@@ -131,19 +132,18 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-                      {booking.clientName}
+                      {booking._host.firstName}
                     </span>
                   </div>
                   <span className="sub-card-date">
-                      {moment(booking.date).format('MM/DD/YYYY')}
-                    <br/>
+                    {moment(booking.date).format('MM/DD/YYYY')}
+                    <br />
                     <span>
                       {moment(booking.date).format('hh:mm')}
                     </span>
                   </span>
                   <div className="sub-card-details">
-                    <i>{booking.duration}</i>
-                    <i>{booking.theDuration}</i>
+                    <i>{booking.duration} min</i>
                     <i>
                       {booking.communication}
                     </i>

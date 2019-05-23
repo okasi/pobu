@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { withRouter } from 'react-router-dom';
-import { bookingCreate, getUser } from '../services/api';
 import { AppContext } from '../store/context';
 import { BrowserView, MobileView} from "react-device-detect";
 
@@ -146,7 +145,7 @@ const Bookable = withRouter(({ history }) => {
           <div className="form-input" name="duration">
             <select 
               name="minutes" 
-              onChange={e => setTheDuration(e.target.value+" min")}
+              onChange={e => setTheDuration(e.target.value)}
             >
               <option value="" disabled defaultValue>Duration:</option>
               <option value="10">10 min</option>
@@ -242,7 +241,7 @@ const Bookable = withRouter(({ history }) => {
             </span>
 
             <div className="prev-details">
-              <i>{theDuration}</i>
+              <i>{theDuration} min</i>
               <i>
                 {chat === true &&
                   <i> Chat</i>

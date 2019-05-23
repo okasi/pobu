@@ -6,6 +6,7 @@ const passport = require('passport')
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login')
 
+
 router.route('/register')
   .post((req, res) => {
     const {
@@ -38,6 +39,7 @@ router.route('/register')
         })
       })
   })
+
 
 router.route('/login')
   .post((req, res) => {
@@ -78,6 +80,7 @@ router.route('/login')
       })
   })
 
+
 router.route('/')
   .get(passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
@@ -89,25 +92,6 @@ router.route('/')
     })
   })
 
-// router.route('/search')
-//   .post((req, res) => {
-//     User.findOne({
-//       $or: [{
-//         email: req.body.text
-//       }, {
-//         firstName: req.body.text
-//       },
-//       {
-//         lastName: req.body.text
-//       }]
-//     })
-//       .then(user => res.json({
-//         userId: user._id
-//       }))
-//       .catch(err => res.status(404).json({
-//         msg: 'User not found'
-//       }))
-//   })
 
 router.route('/:id')
   .get((req, res) => {
@@ -129,5 +113,25 @@ router.route('/:id')
       })
       .catch(err => console.log(err))
   })
+
+// router.route('/search')
+//   .post((req, res) => {
+//     User.findOne({
+//       $or: [{
+//         email: req.body.text
+//       }, {
+//         firstName: req.body.text
+//       },
+//       {
+//         lastName: req.body.text
+//       }]
+//     })
+//       .then(user => res.json({
+//         userId: user._id
+//       }))
+//       .catch(err => res.status(404).json({
+//         msg: 'User not found'
+//       }))
+//   })
 
 module.exports = router

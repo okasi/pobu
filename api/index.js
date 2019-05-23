@@ -33,6 +33,23 @@ require('./config/passport')(passport)
 app.use('/api/users', users)
 app.use('/api/booking', booking)
 
-// run app
+//which port
 const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+
+
+
+
+// run app
+server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+
+// socket.io goes below
+var socket = require('socket.io');
+io = socket(server);
+
+io.on('connection', (socket) => {
+  console.log(socket.id);
+
+  socket.on('SEND_MESSAGE', function(data){
+      io.emit('RECEIVE_MESSAGE', data);
+  })
+});
