@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
-import { getHostBookings, getClientBookings, getUserById } from '../services/api';
+import { getHostBookings, getClientBookings, getUserById, bookingDelete } from '../services/api';
 
 const Overview = () => {
 
@@ -106,7 +106,14 @@ const Overview = () => {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
-                    <button onClick={(e) => { if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) window.onCancel(alert('Deleted')) }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
+                    <button onClick={(e) => { 
+                      if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
+                        
+                          alert('Deleted')
+                          bookingDelete(booking._id)
+                        
+                      }
+                    }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
                     <span>
                       {booking.name}
                       <span>

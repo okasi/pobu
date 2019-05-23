@@ -97,4 +97,26 @@ router.route('/accept')
     }
   )
 
+  router.route('/delete')
+	.post(
+    passport.authenticate('jwt', { session: false }),
+		(req, res) => {
+
+      Booking.findOneAndRemove(
+        {
+          _id: req.body.bookableId,
+          _host: req.user._id,
+        }
+      )
+      .then(data => {
+        return res.json(data)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).send(res.json(err))
+      })
+
+    }
+  )
+
 module.exports = router
