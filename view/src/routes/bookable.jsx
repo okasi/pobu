@@ -45,7 +45,9 @@ const Bookable = withRouter(({ history }) => {
 
     const duration = parseInt(theDuration, 10)
     
-    let objId = await bookingCreate(
+    let objId = await actions({
+      type: 'BOOKING_CREATE',
+      payload: 
       { 
         name, 
         date,
@@ -54,16 +56,12 @@ const Bookable = withRouter(({ history }) => {
         communication,
         duration,
       }
-    )
-
-    alert(objId)
+    })
 
     history.replace(`/booking/${objId}`);
 
-    let data = await getUser()
     actions({
-      type: 'setState',
-      payload: { user: data }
+      type: 'USER_DATA',
     })
 
   }

@@ -12,7 +12,9 @@ import './Booking.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
-import useGlobalState from './hooks/useGlobalStore';
+import history from './store/history';
+
+import useGlobalState from './hooks/useGlobalism';
 import { AppContext } from './store/context';
 
 import Home from './routes/home';
@@ -32,7 +34,7 @@ const App = () => {
   const store = useGlobalState();
 
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
         <AppContext.Provider value={store}>
           <div

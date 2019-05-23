@@ -18,10 +18,14 @@ const Overview = () => {
     (async function () {
       if (state.user) {
         try {
-          const hostRes = await getHostBookings()
+          const hostRes = await actions({
+            type: 'BOOKING_HOST',
+          })
           setHostBookings(hostRes.data)
 
-          const clientRes = await getClientBookings()
+          const clientRes = await actions({
+            type: 'BOOKING_CLIENT',
+          })
           setClientBookings(clientRes.data)
 
         } catch (e) {
@@ -41,11 +45,16 @@ const Overview = () => {
           {state.user && clientBookings && clientBookings.map(booking => {
 
             let cName = ""
-            Promise.resolve(getUserById(booking._client))
-            .then(res => {
-              console.log(res.firstName)
-              let cName = res.firstName;
-            })
+            Promise.resolve(actions({
+              type: 'USER_ID_GET',
+              payload: booking._client
+            }))
+              .then(res => {
+                console.log(res.firstName)
+                cName = res.firstName;
+              })
+
+          
 
             if (booking._client == state.user._id) {
               return (
@@ -110,7 +119,10 @@ const Overview = () => {
                       if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
                         
                           alert('Deleted')
-                          bookingDelete(booking._id)
+                          actions({
+                            type: 'BOOKING_DELETE',
+                            payload: {bookableId: booking._id}
+                          })
                         
                       }
                     }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
