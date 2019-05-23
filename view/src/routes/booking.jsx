@@ -3,6 +3,7 @@ import moment from 'moment';
 import { bookingCheck, bookingAccept, getUser, getValidToken, getUserById } from '../services/api';
 import { Redirect } from 'react-router'
 import { AppContext } from '../store/context';
+import history from '../store/history';
 
 
 export default function Booking({ match }) {
@@ -21,7 +22,11 @@ export default function Booking({ match }) {
     (async function () {
       try {
      
-        let res = await bookingCheck(match.params.id)
+        let res = await actions({
+          type: 'BOOKING_DATA',
+          payload: {bookableId: match.params.id}
+        })
+        
 
         if (res.data._host === state.user._id) {
           setWho('Host');
@@ -40,26 +45,32 @@ export default function Booking({ match }) {
 
 
         if (res.data._host) {
-          let hostres = await getUserById(res.data._host)
+          let hostres = await actions({
+            type: 'USER_ID_GET',
+            payload: res.data._host
+          })
           setHost(`${hostres.firstName} ${hostres.lastName}`);
         }
 
         if (res.data._client) {
-          let clientres = await getUserById(res.data._client)
+          let clientres = await actions({
+            type: 'USER_ID_GET',
+            payload: res.data._client
+          })
           setClient(`${clientres.firstName} ${clientres.lastName}`);
         }
         
         
       } 
       catch (error) {
-        alert(error.message);
+        // alert(error.message);
       }
     }());
   }
 
   useEffect(() => {
-    if (getValidToken() === null) {
-      return <Redirect to='/login' />
+    if (state.isLoggedIn != true) {
+      history.push('/login');
     }
   }, [])
 
@@ -72,18 +83,19 @@ export default function Booking({ match }) {
   function acceptBooking() {
     (async function () {
       try {
-        let res = await bookingAccept(match.params.id)
+        let res = await await actions({
+          type: 'BOOKING_ACCEPT',
+          payload: {bookableId: match.params.id}
+        })
         console.log(res)
         checkBooking()
 
-        let data = await getUser()
         actions({
-          type: 'setState',
-          payload: { user: data }
+          type: 'USER_DATA',
         })
       } 
       catch (error) {
-        alert(error.message);
+        // alert(error.message);
       }
     }());
   }

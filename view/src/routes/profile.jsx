@@ -1,39 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import { AppContext } from '../store/context';
-import { signOut, getUser } from '../services/api';
 
 
-const Profile = withRouter(({ history }) => {
+const Profile = () => {
 
   const { state, actions } = useContext(AppContext);
 
-  async function onLogout() {
-    try {
-      await signOut();
-      history.replace('/');
-      actions({
-        type: 'setState',
-        payload: { isLoggedIn: false }
-      })
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
   useEffect(() => {
-    (async function () {
-      try {
-        let data = await getUser()
-        actions({
-          type: 'setState',
-          payload: { user: data }
-        })
-        // console.log(data)
-      } catch (e) {
-        console.error(e);
-      }
-    }());
+    actions({
+      type: 'USER_DATA',
+    })
   }, [state.isLoggedIn])
 
   return (
@@ -43,7 +19,11 @@ const Profile = withRouter(({ history }) => {
         <input
           type="submit"
           value="Logout"
-          onClick={onLogout}
+          onClick={() => {
+            actions({
+              type: 'USER_LOGOUT',
+            })
+          }}
           className="reg-btn"
         />
         {state.user ? (
@@ -80,6 +60,6 @@ const Profile = withRouter(({ history }) => {
       </div>
     </>
   );
-});
+};
 
 export default Profile;

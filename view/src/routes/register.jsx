@@ -1,27 +1,15 @@
-import React, { useState } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { AppContext } from '../store/context';
 
-import { signUp } from '../services/api';
-
-const Register = withRouter(({ history }) => {
+const Register = () => {
+  const { actions } = useContext(AppContext);
 
   const [firstName, setFirst] = useState('');
   const [lastName, setLast] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
   const [passwordSecond, setPassSecond] = useState('');
-
-  
-  async function onRegister() {
-    try {
-      await signUp({
-        firstName, lastName, email, password, passwordSecond,
-      });
-      history.replace('/overview');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
 
   return (
     <>
@@ -80,7 +68,12 @@ const Register = withRouter(({ history }) => {
                   <button
                     type="submit"
                     value="Register"
-                    onClick={onRegister} 
+                    onClick={() => {
+                      actions({
+                        type: 'USER_REGISTER',
+                        payload: { firstName, lastName, email, password, passwordSecond }
+                      })
+                    }} 
                     className="reg-btn"
                   >
                     Register
@@ -99,6 +92,6 @@ const Register = withRouter(({ history }) => {
       </div>
     </>
   );
-});
+};
 
 export default Register;

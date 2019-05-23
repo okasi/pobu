@@ -35,15 +35,15 @@ router.route('/check')
 	.post(
     passport.authenticate('jwt', { session: false }),
 		(req, res) => {
-
+      console.log(req.body)
       Booking.findById(req.body.bookableId)
-      .then(data => {
-        return res.json(data)
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).send(res.json(err))
-      })
+        .then(data => {
+          return res.json(data)
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).send(res.json(err))
+        })
 
     }
   )
