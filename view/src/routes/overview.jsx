@@ -111,14 +111,15 @@ const Overview = () => {
                       {booking.name}
                       <span>
                         with
-                              </span>
+                      </span>
                       {booking.clientName}
                     </span>
                   </div>
                   <span className="sub-card-date">
-                    <br />
+                      {moment(booking.date).format('MM/DD/YYYY')}
+                    <br/>
                     <span>
-                      {moment(booking.date).format('MM/DD/YYYY hh:mm')}
+                      {moment(booking.date).format('hh:mm')}
                     </span>
                   </span>
                   <div className="sub-card-details">

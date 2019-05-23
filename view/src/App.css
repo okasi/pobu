@@ -16,6 +16,7 @@ html {
   justify-content: space-between;
   width: 100vw;
 }
+
 .nav-items {
   width: 70vw;
   display: flex;
@@ -29,11 +30,13 @@ html {
   color: #000;
 
 }
+
 .navi {
   margin: auto 12px;
 }
 
 a { text-decoration: none;}
+
 .nav-btns {
   border: none;
   background: none;
@@ -61,13 +64,15 @@ a { text-decoration: none;}
   margin: auto;
 }
 
+.book:hover{
+  background: #777777;
+}
 
 input{
   height: 25px;
   border: none;
   border-radius: 6px;
   text-indent: 4px;
-
 }
 
 label {
@@ -77,11 +82,13 @@ label {
   margin-bottom: 20px;
   font-size: 14px;
 }
+
 form {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
+
 .reg-btn {
   display: flex;
   flex-direction: row;
@@ -97,232 +104,21 @@ form {
   height: 30px;
 }
 
-
-
-
-
-
-/* .bookable-con {
-  width: 80vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 100px auto auto auto;
-  height: 80vh;
-  flex-wrap: wrap;
-}
-
-.bookable-con-sub {
-  display: flex;
-  width:315px;
-  height: 100vh;
-  flex-direction: column;
-
-  margin: auto;
-} */
-
 .form-input {
   display: flex;
   flex-direction: row;
   width: 315px;
   height: 29px;
- 
 }
 
 select {
   width: 315px;
   border: none;
 }
-.time-sel{
-  width: 50px
-}
-
-.boxa {
-  background: #fff;
-  height: fit-content;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgb(190, 190, 190);
-}
-
-.get {
-  font-family: helvetica neue;
-  padding-left: 5px;
-  font-weight: 900;
-  color: #777777;
-  font-size: 136x;
-}
-
-.host-name{
-  font-family: 'Quicksand', sans-serif;
-  font-size: 70px;
-  width: 400px;
-  font-weight: bold;
-}
-
-
-.week{
-  font-family: 'Quicksand', sans-serif;
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  margin: auto;
-  margin: 30px auto 30px auto;
-}
-.week > div {
-  width: 25px;
-  height: 25px;
-  display: flex; flex-direction: column;
-  justify-content: center;
-}
-.selected {
-  background: purple;
-  border-radius: 70px 70px 70px 0;
-  color: white;
-
-}
-
-.rowy{
-  display: flex;
-
-}
-
-.time{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 300px;
-  width: 80px;
-  background: #c4c4c4;
-  margin: auto 0;
-letter-spacing: 2px;
-  font-weight: 300;
-  border-radius: 0 10px 10px 0;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.mont{
-  margin: 30px 0 50px 0;
-  display: flex; justify-content: space-evenly;
-}
-.times {
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  height: 260px;  
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.timesy{
-  text-align: center;
-  font-family: 'Quicksand', sans-serif;
-
-}
-.selectime{
-  background: #D5B132;
-  width: 80%;
-  margin: 0 auto;
-  border-radius: 6px;
-}
-
-.boxy{
-  width: 250px;
-display: flex; flex-direction: column;
-justify-content: center;
-  height: 60px; margin: auto;
-  border-radius: 10px;
-  background: rgba(128, 128, 128, 0.1);
-  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-}
-
-
-.okbook{
-  letter-spacing: 3px;
-  margin: auto;
-  font-size: 18px;
-  color: white;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.userbook {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.bookopt{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 500px;
-  margin: auto;
-}
-
-.disabled{
-  opacity: 0.3;
-}
-
-.day-item:hover{
-  color: #3D009F;
-  font-weight:500;
-}
-
-.time-item:hover{
-  color: #3D009F;
-  font-weight:500;
-}
-
-.time-item {
-  margin: 10px 0;
-}
-
-
-.book:hover{
-  background: #777777;
-}
-
-.classy {
-  height: 400px;
-
-  width: 300px;
-  margin: 50px auto auto auto;
-  font-size: 24px;
-}
-
-.container {
-  display: flex; 
-  width: 80vw;
-  margin: auto;
-  height: 100vh;
-  flex-wrap: wrap;
-}
-
-.sc-kGXeez{
-  position: initial;
-}
-
-.boxa{
-  width: 295px;
-  display: flex; 
-  flex-direction: column;
-  justify-content: center;
-  height: auto; 
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 20px;
-}
 
 .react-datepicker__input-container > input {
   width: 315px;
 }
-
-
 
 input[type="color"],
 input[type="date"],

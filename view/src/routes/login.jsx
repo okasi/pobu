@@ -5,11 +5,12 @@ import { signIn, setToken, getValidToken } from '../services/api';
 
 
 const Login = withRouter(({ history }) => {
+
   const { state, actions } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
 
-
+  
   function checkLogin() {
     if (setToken(getValidToken())) {
       actions({
@@ -52,7 +53,6 @@ const Login = withRouter(({ history }) => {
                   <input
                     type="email"
                     required
-                    // value={email}
                     onChange={e => setEmail(e.target.value)}
                   />
                 </label>
@@ -61,7 +61,6 @@ const Login = withRouter(({ history }) => {
                   <input
                     type="password"
                     required
-                    // value={password}
                     onChange={e => setPass(e.target.value)}
                   />
                 </label>
@@ -71,7 +70,6 @@ const Login = withRouter(({ history }) => {
                     value="Login"
                     onClick={onLogin} 
                     className="reg-btn"
-                    style={{margin:'0'}}
                   >
                     Login
                   </button >

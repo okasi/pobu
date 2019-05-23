@@ -3,15 +3,9 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { withRouter } from 'react-router-dom';
 import { bookingCreate, getUser } from '../services/api';
-
 import { AppContext } from '../store/context';
+import { BrowserView, MobileView} from "react-device-detect";
 
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
 
 const Bookable = withRouter(({ history }) => {
 
@@ -25,17 +19,12 @@ const Bookable = withRouter(({ history }) => {
   const [fee, setFee] = useState(false);
   const [nano, setNano] = useState(false);
 
-  // const [irl, setIrl] = useState(false);
   const [chat, setChat] = useState(true);
   const [voice, setVoice] = useState(false);
   const [video, setVideo] = useState(false);
 
-  // const [location, setLocation] = useState("");
-
   const [theDuration, setTheDuration] = useState(10);
-
   const [selDate, setSelDate] = useState(null);
-
 
 
   async function onCreateSubmit() {
@@ -79,14 +68,11 @@ const Bookable = withRouter(({ history }) => {
 
   }
 
- 
   return (
-   
     <>
       <div className="bookable-con">
         <div className="bookable-con-sub">
           <h1>Add bookable</h1>
-
           <label htmlFor="name" style={{marginBottom:'4px'}}>
             Name:
           </label>
@@ -97,15 +83,15 @@ const Bookable = withRouter(({ history }) => {
             onChange={e => setName(e.target.value)}
             name="name"
           />
+
           <BrowserView className="browserview">
-            <br/>
+              <br/>
 
             <label>
               Select Date :
             </label>
             <DatePicker
               selected={selDate}
-              // onChange={input =>  setDay(moment(input).format("dddd, MMMM Do YYYY"))}
               onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
               timeFormat="HH:mm"
               timeIntervals={15}
@@ -132,38 +118,38 @@ const Bookable = withRouter(({ history }) => {
             />
           </BrowserView>
           <MobileView>
-            
-          <br/>
+              <br/>
 
-          <label>
-            Select Date :
-          </label>
+            <label>
+              Select Date :
+            </label>
+            <input
+              type="date"
+              onChange={(e) =>  setDay(e.target.value)}
+            />
 
-          <input
-                type="date"
-                onChange={(e) =>  setDay(e.target.value)}
-              ></input>
+              <br/>
+              <br/>
 
-            <br/>
-            <br/>
-
-              <label>
-                Select Time:
-              </label>
-              <input
-                type="time"
-                step="600"
-                onChange={(e) =>  setTime(e.target.value)}
-              ></input>
+            <label>
+              Select Time:
+            </label>
+            <input
+              type="time"
+              step="600"
+              onChange={(e) =>  setTime(e.target.value)}
+            />
           </MobileView>
 
             <br/>
-
           <label htmlFor="duration" style={{marginBottom:'4px'}}>
             Duration:
           </label>
           <div className="form-input" name="duration">
-            <select name="minutes" onChange={e => setTheDuration(e.target.value+" min")}>
+            <select 
+              name="minutes" 
+              onChange={e => setTheDuration(e.target.value+" min")}
+            >
               <option value="" disabled defaultValue>Duration:</option>
               <option value="10">10 min</option>
               <option value="20">20 min</option>
@@ -175,10 +161,10 @@ const Bookable = withRouter(({ history }) => {
           </div>
 
             <br/>
-
           <label htmlFor="fee" style={{fontWeight: 'bold'}}>
             Fee:
           </label>
+
           <div className="form-input" name="fee">
             <input 
               type="checkbox" 
@@ -240,24 +226,21 @@ const Bookable = withRouter(({ history }) => {
             <label htmlFor="Video" style={{margin: 'auto 10px auto 0'}}>
               Video
             </label>
-            {/* <input type="checkbox" value="irl" name="IRL"/>
-            <label for="irl" style={{margin: 'auto 10px auto 0'}}>
-              IRL
-            </label> */}
+     
           </div>
 
           <div className="preview">
             <span className="prev-name">
               {name}
             </span>
+
             <span className="prev-day-time">
               {day}
               <br/>
-              <span>{time}</span>
+              <span>
+                {time}
+              </span>
               <br/>
-              {/* {irl === true &&
-                <i style={{fontSize: '12px'}}>@{location}</i>
-              } */}
             </span>
 
             <div className="prev-details">
@@ -294,6 +277,7 @@ const Bookable = withRouter(({ history }) => {
               <i style={{fontSize: '12px'}}>Invaild key</i>
             }
           </div>
+          
           <button className="reg-btn" onClick={onCreateSubmit}>
             Create bookable
           </button>

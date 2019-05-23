@@ -33,27 +33,32 @@
   margin: 5px auto;
   text-align: right;
 }
+
 .sub-card-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
 }
+
 .sub-card-top > span  {
   font-weight: 500;
   text-transform: capitalize;
 }
+
 .sub-card-top > span > span {
   font-weight: 100;
   margin: 0 4px;
   text-transform: lowercase;
 }
+
 .sub-card-top > button {
   background: none;
   border: none;
   color: gray;
   padding: 0;
 }
+
 .sub-card-date {
   font-weight: 100;
   font-size: 14px;

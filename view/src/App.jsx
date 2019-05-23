@@ -26,13 +26,9 @@ import Profile from './routes/profile';
 
 import logo from './assets/logod.png';
 
-// const OtherColorView = ({ match }) => (
-//   <div style={{ height: 300, backgroundColor: match.params.color }}>
-//     {match.params.color}
-//   </div>
-// );
 
 const App = () => {
+
   const store = useGlobalState();
 
   return (
@@ -59,17 +55,17 @@ const App = () => {
 
                 {!store.state.isLoggedIn
                   ? (
-                    <>
-                      <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
-                      <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
-                    </>
+                  <>
+                    <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
+                    <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                  </>
                   ) : (
-                    <>
-                      <NavLink to="/overview" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
-                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
-                      <NavLink to="/profile" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Profile</button></NavLink>
-                    </>
-                  )}
+                  <>
+                    <NavLink to="/overview" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
+                    <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
+                    <NavLink to="/profile" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Profile</button></NavLink>
+                  </>
+                )}
               </div>
             </div>
     
@@ -77,32 +73,29 @@ const App = () => {
             {/* Content */}
             {!store.state.isLoggedIn
               ? (
-                <>
-                  <SwipeableRoutes enableMouseEvents>
-                    <Route path="/" component={Home} />
-                    <Route path="/about" component={About} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/booking/:id" component={Booking} />
-                  </SwipeableRoutes>
-                </>
+              <>
+                <SwipeableRoutes enableMouseEvents>
+                  <Route path="/" component={Home} />
+                  <Route path="/about" component={About} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
+                  <Route path="/booking/:id" component={Booking} />
+                </SwipeableRoutes>
+              </>
               ) : (
-                <>
-                  <SwipeableRoutes enableMouseEvents>
-                    <Route path="/" component={Home} />
-                    <Route path="/about" component={About} />
-                    <Route path="/overview" component={Overview} />
-                    <Route path="/bookable" component={Bookable} />
-                    <Route path="/profile" component={Profile} />
-                    <Route path="/booking/:id" component={Booking} />
-                  </SwipeableRoutes>
-                </>
-              )}
-              
+              <>
+                <SwipeableRoutes enableMouseEvents>
+                  <Route path="/" component={Home} />
+                  <Route path="/about" component={About} />
+                  <Route path="/overview" component={Overview} />
+                  <Route path="/bookable" component={Bookable} />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/booking/:id" component={Booking} />
+                </SwipeableRoutes>
+              </>
+            )}  
           </div>
-
         </AppContext.Provider>
-
       </div>
     </Router>
   );

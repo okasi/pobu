@@ -1,19 +1,21 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 import vector from '../assets/logo.png';
+import { FaTwitter } from 'react-icons/fa'
+
 
 function Home() {
+
   const { state } = useContext(AppContext);
 
   return (
     <>
       <div className="home">
-
         <div className="home-card-1">
-          <img src={vector} alt=""/>
+          <img src={vector} alt="Vector"/>
         </div>
-
         <div className="home-card-2">
           <div className="why">
             WHY POBU?
@@ -37,6 +39,11 @@ function Home() {
             ) : (null)
           }
         </div>
+      </div>
+      <div className="home-social">
+        <a href="http://twitter.com/pobu_io/" target="_blank" rel="noopener noreferrer">
+          <FaTwitter />
+        </a>
       </div>
     </>
   );
