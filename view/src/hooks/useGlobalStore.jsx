@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
-
 // useGlobalism todo
-// GLOBAL ROUTE MANAGEMENT kimseeee yooook muuuu
-// POSSIBLE TO MAKE <REDIRECT> WORK HERE???? :D
+// GLOBAL ROUTE MANAGEMENT https://stackoverflow.com/a/45849608
 // API SERVICES HERE
 // ALL API RELATED ACTIONS HERE
 
@@ -32,13 +30,19 @@ export default function useGlobalStore() {
       case 'USER_DATA':
         return;
 
-      case 'USER_ID_CHECK':
+      case 'USER_ID_CET':
         return;
 
       case 'BOOKING_CREATE':
         return;
 
       case 'BOOKING_DATA':
+        return;
+
+      case 'BOOKING_HOST':
+        return;
+      
+      case 'BOOKING_CLIENT':
         return;
 
       case 'BOOKING_ACCEPT':

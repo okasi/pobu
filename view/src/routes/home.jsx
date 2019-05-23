@@ -3,7 +3,7 @@ import { AppContext } from '../store/context';
 import { NavLink, withRouter } from 'react-router-dom';
 import vector from '../assets/logo.png';
 
-const Home = withRouter(({ history }) => {
+function Home() {
   const { state } = useContext(AppContext);
 
   return (
@@ -40,6 +40,6 @@ const Home = withRouter(({ history }) => {
       </div>
     </>
   );
-})
+}
 
 export default Home;
