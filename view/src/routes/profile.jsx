@@ -29,7 +29,7 @@ const Profile = withRouter(({ history }) => {
           type: 'setState',
           payload: { user: data }
         })
-        console.log(data)
+        // console.log(data)
       } catch (e) {
         console.error(e);
       }

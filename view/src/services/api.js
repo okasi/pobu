@@ -174,3 +174,14 @@ export async function getClientBookings() {
       console.error(res.response.data.errmsg);
     });
 }
+
+// Sends a POST request to api/booking/check on the backend
+export async function bookingDelete(bookableId) {
+  return api.post('/booking/accept', {bookableId})
+    .then((res) => {
+      return res;
+    })
+    .catch((res) => {
+      console.error(res.response.data.errmsg);
+    });
+}
