@@ -175,9 +175,9 @@ export async function getClientBookings() {
     });
 }
 
-// Sends a POST request to api/booking/check on the backend
+// Sends a POST request to api/booking/delete on the backend
 export async function bookingDelete(bookableId) {
-  return api.post('/booking/accept', {bookableId})
+  return api.post('/booking/delete', {bookableId})
     .then((res) => {
       return res;
     })
