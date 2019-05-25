@@ -290,10 +290,10 @@ export default function Booking({ match }) {
     <div id="videos-container"></div>
   */}
 
-  messagingBox
+  {/* messagingBox
   <div id="messagingBox">
   <textarea onKeyDown={messageHandler}></textarea>
-</div>
+</div> */}
 
 
 
