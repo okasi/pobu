@@ -96,6 +96,11 @@ const Overview = () => {
                       <i>Free </i>
                     }
                   </div>
+                  <i className="sub-card-urlbox">
+                    <a href={`/booking/${booking._id}`}>
+                      {booking._id}
+                    </a>
+                  </i>
                 </div>
               )
             }
