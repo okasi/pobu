@@ -28,6 +28,8 @@ import Profile from './routes/profile';
 
 import logo from './assets/logod.png';
 
+import { BrowserView, MobileView} from "react-device-detect";
+import { FaUserCircle, FaRegCalendarPlus,FaRegCalendarAlt, FaCalendarAlt} from 'react-icons/fa'
 
 const App = () => {
 
@@ -51,24 +53,48 @@ const App = () => {
                   <img src={logo} className="logo" alt="logo"/>
                 </NavLink>
               </div>
-              <div className="nav-items">
-                <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
-                <NavLink to="/about" className="navi" activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
+              <BrowserView style={{display: 'flex', flexDirection:'column', justifyContent:'center'}}>
+                <div className="nav-items">
+                  <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
+                  <NavLink to="/about" className="navi" activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
 
-                {!store.state.isLoggedIn
-                  ? (
-                  <>
-                    <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
-                    <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
-                  </>
-                  ) : (
-                  <>
-                    <NavLink to="/overview" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
-                    <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
-                    <NavLink to="/profile" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Profile</button></NavLink>
-                  </>
-                )}
-              </div>
+                  {!store.state.isLoggedIn
+                    ? (
+                    <>
+                      <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
+                      <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                    </>
+                    ) : (
+                    <>
+                      <NavLink to="/overview" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
+                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
+                      <NavLink to="/profile" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Profile</button></NavLink>
+                    </>
+                  )}
+                </div>
+              </BrowserView>
+              
+              <MobileView style={{display: 'flex', flexDirection:'column', justifyContent:'center'}}>
+                <div className="nav-items">
+                  {/* <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink> */}
+                  {!store.state.isLoggedIn
+                    ? (
+                    <>
+                      <NavLink to="/about" className="navi" style={{margin: 0}}activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
+                      <NavLink to="/login" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
+                      <NavLink to="/register" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                    </>
+                    ) : (
+                    <>
+                      {/* <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaCalendarAlt /></button></NavLink>
+                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns"><FaRegCalendarPlus /></button></NavLink> */}
+                      <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
+                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">Bookables</button></NavLink>
+                      <NavLink to="/profile" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaUserCircle /></button></NavLink>
+                    </>
+                  )}
+                </div>
+              </MobileView>
             </div>
     
 
