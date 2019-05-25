@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
+
 const Overview = () => {
 
   const { state, actions } = useContext(AppContext);
@@ -47,16 +48,15 @@ const Overview = () => {
     }());
   }, [state.user])
 
+
   return (
     <>
-
       <div className="overview-container">
 
         <div className="overview-card">
           <h1>Bookings</h1>
+          {/*Booked bookings as (client) */}
           {state.user && clientBookings && clientBookings.map(booking => {
-
-
             if (booking._client == state.user._id) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
@@ -67,14 +67,14 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-
+                      {booking._client.slice(-10)}
                     </span>
                   </div>
                   <div className="sub-card-top">
                     <span className="sub-card-date">
                       <br />
                       <span>
-                        {booking.who}
+                       Client
                       </span>
                     </span>
                     <span className="sub-card-date">
@@ -85,7 +85,7 @@ const Overview = () => {
                     </span>
                   </div>
                   <div className="sub-card-details">
-                    <i>{booking.theDuration}</i>
+                    <i>{booking.duration} min</i>
                     <i>
                       {booking.communication}
                     </i>
@@ -100,7 +100,69 @@ const Overview = () => {
               )
             }
           })}
+
+          {/*Booked bookings as (Host) */}
+          {state.user && hostBookings && hostBookings.map((booking) => {
+            if (booking._client && booking._host) {
+              return (
+                <div className="overview-sub-card" key={booking._id}>
+                  <div className="sub-card-top">
+                    <button onClick={(e) => {
+                      if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
+
+                        alert('Deleted')
+                        actions({
+                          type: 'BOOKING_DELETE',
+                          payload: { bookableId: booking._id }
+                        })
+
+                      }
+                    }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
+                    <span>
+                      {booking.name}
+                      <span>
+                        with
+                      </span>
+                      {/* {booking._host} */}
+                      {booking._client.slice(-10)}
+                    </span>
+                  </div>
+                  <div className="sub-card-top">
+                  <span className="sub-card-date">
+                  <br />
+                    host
+                  </span>
+                    <span className="sub-card-date">
+                      {moment(booking.date).format('MM/DD/YYYY')}
+                      <br />
+                      <span>
+                        {moment(booking.date).format('hh:mm')}
+                      </span>
+                  </span>
+                  </div>
+                  <div className="sub-card-details">
+                    <i>{booking.duration} min</i>
+                    <i>
+                      {booking.communication}
+                    </i>
+                    {booking.fee === 1 &&
+                      <i> Paid </i>
+                    }
+                    {booking.fee !== 1 &&
+                      <i>Free </i>
+                    }
+                  </div>
+                  <i className="sub-card-urlbox">
+                    <a href={`/booking/${booking._id}`}>
+                      {booking._id}
+                    </a>
+                  </i>
+                </div>
+              )
+            }
+          })}
         </div>
+
 
         <div className="overview-card">
           <span style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -110,7 +172,7 @@ const Overview = () => {
             </NavLink>
           </span>
 
-
+          {/*Booked bookings and bookables as (Host) */}
           {state.user && hostBookings && hostBookings.map((booking) => {
             if (booking._host._id == state.user._id) {
               return (
@@ -132,9 +194,20 @@ const Overview = () => {
                       <span>
                         with
                       </span>
+                      {/* {booking._host} */}
+                      {/* {booking._client &&
+                      <i>HE</i>
+                      } */}
                       {booking._host.firstName}
+                      (You)
                     </span>
                   </div>
+                  <div className="sub-card-top">
+                  <span className="sub-card-date">
+                  {booking._client &&
+                      <i style={{color: 'red'}}>booked</i> 
+                      }
+                      </span>
                   <span className="sub-card-date">
                     {moment(booking.date).format('MM/DD/YYYY')}
                     <br />
@@ -142,6 +215,7 @@ const Overview = () => {
                       {moment(booking.date).format('hh:mm')}
                     </span>
                   </span>
+                  </div>
                   <div className="sub-card-details">
                     <i>{booking.duration} min</i>
                     <i>
@@ -154,12 +228,16 @@ const Overview = () => {
                       <i>Free </i>
                     }
                   </div>
+
+                  {!booking._client &&
                   <i className="sub-card-urlbox">
                     <a href={`/booking/${booking._id}`}>
                       {booking._id}
                     </a>
                   </i>
+                  }
                 </div>
+                
               )
             }
           })}
