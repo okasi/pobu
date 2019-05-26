@@ -1,50 +1,128 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
 const Overview = () => {
 
   const { state, actions } = useContext(AppContext);
+  const [allBookings, setAllBookings] = useState([]);
 
-  const [hostBookings, setHostBookings] = useState([]);
-  const [clientBookings, setClientBookings] = useState([]);
+  
 
 
   useEffect(() => {
 
+    // DUUUUDE
+    // CREATE A SOLUTION TO THIS MADNESS
+    // Combine populated bookings, don't seperate logic for host & client bookings
+    // Generate cards jsx function
+    // Then return it with conditonal on which side they should be
+
     (async function () {
       if (state.user) {
         try {
-          const hostRes = await actions({
-            type: 'BOOKING_HOST',
-          })
 
-          const populatedHostBookings = await Promise.all(
-            hostRes.map(async (hostBooking) => {
-              hostBooking._host = await actions({
-                type: 'USER_ID_GET',
-                payload: hostBooking._host
-              });
+          const hBookings = await actions({ type: 'BOOKING_HOST' })
+          const cBookings = await actions({ type: 'BOOKING_CLIENT' })
 
-              return hostBooking;
+          const bookings = hBookings.concat(cBookings);
+
+          let populated = await Promise.all(
+            await bookings.map(async (booking) => {
+              booking.host = await actions({ type: 'USER_ID_GET', payload: booking._host });
+              booking.client = await actions({ type: 'USER_ID_GET', payload: booking._client });
+
+              console.log(booking)
+
+  
+              await setAllBookings([...allBookings, booking])
+
+              // console.log(booking)
+              // if (state.user._id === booking.host._id) {
+              //   console.log(booking.host)
+              //   setHostBookings([...hostBookings, booking])
+              // }
+
+              // console.log(booking.client)
+              // if (state.user._id === booking.client._id) {
+                
+              //   setClientBookings([...clientBookings, booking])
+              // }
+              
             })
+        
           );
 
-          setHostBookings(populatedHostBookings);
+  
 
-
-          const clientRes = await actions({
-            type: 'BOOKING_CLIENT',
-          })
           
-          setClientBookings(clientRes.data)
+
+          
+          
+
+
+          
+
+          // const populatedHostBookings = await Promise.all(
+          //   hostRes.map(async (hostBooking) => {
+          //     hostBooking._host = await actions({
+          //       type: 'USER_ID_GET',
+          //       payload: hostBooking._host
+          //     });
+
+          //     return hostBooking;
+          //   })
+          // );
+
+          // setHostBookings(populatedHostBookings);
+
+          // //Host names
+          // const hostRes = await actions({
+          //   type: 'BOOKING_HOST',
+          // })
+
+          // const populatedHostBookings = await Promise.all(
+          //   hostRes.map(async (hostBooking) => {
+          //     hostBooking._host = await actions({
+          //       type: 'USER_ID_GET',
+          //       payload: hostBooking._host
+          //     });
+
+          //     return hostBooking;
+          //   })
+          // );
+
+          // setHostBookings(populatedHostBookings);
+
+          // //Client names
+          // const clientRes = await actions({
+          //   type: 'BOOKING_CLIENT',
+          // })
+
+          // const populatedClientBookings = await Promise.all(
+          //   clientRes.map(async (clientBooking) => {
+          //     clientBooking._client = await actions({
+          //       type: 'USER_ID_GET',
+          //       payload: clientBooking._client
+          //     });
+
+          //     return clientBooking;
+          //   })
+          // );
+
+          // console.log(populatedClientBookings)
+
+          // setClientBookings(populatedClientBookings)
 
         } catch (e) {
           console.error(e);
         }
       }
     }());
+
+    
+    // eslint-disable-next-line
   }, [state.user])
 
   return (
@@ -53,11 +131,18 @@ const Overview = () => {
       <div className="overview-container">
 
         <div className="overview-card">
+
+        {allBookings.length}
+
+  {/* 
+        {hostBookings.length}
+        {clientBookings.length}
+  
           <h1>Bookings</h1>
-          {state.user && clientBookings && clientBookings.map(booking => {
+          {state.user && clientBookings && clientBookings.map((booking) => {
 
-
-            if (booking._client == state.user._id) {
+            if (booking.client._id === state.user._id) {
+              console.log("WOOOOOP")
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
@@ -67,7 +152,7 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-
+                      {booking._host.firstName}
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -112,7 +197,7 @@ const Overview = () => {
 
 
           {state.user && hostBookings && hostBookings.map((booking) => {
-            if (booking._host._id == state.user._id) {
+            if (booking._host._id === state.user._id) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
@@ -163,7 +248,7 @@ const Overview = () => {
               )
             }
           })}
-
+*/}
         </div>
 
       </div>

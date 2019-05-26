@@ -14,8 +14,8 @@ const Login = () => {
     actions({
       type: 'USER_LOGIN_CHECK',
     })
-
-  }, []);
+  // eslint-disable-next-line
+  }, [])
 
   return (
     <>
