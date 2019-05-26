@@ -106,7 +106,7 @@ const Overview = () => {
 
           {/*Booked bookings as (Host) */}
           {state.user && allBookings && allBookings.map((booking) => {
-            if (booking.client && booking.host) {
+            if (booking._client && booking._host && state.user._id === booking._host) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
