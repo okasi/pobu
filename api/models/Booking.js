@@ -6,18 +6,18 @@ const bookingSchema = new Schema({
   _host: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-		required: true,
+    required: true,
   },
 
   _client: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  
+
   name: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
 
   date: {
@@ -46,9 +46,9 @@ const bookingSchema = new Schema({
   },
 
   createdAt: {
-		type: Date,
-		default: Date.now,
-	},
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('Booking', bookingSchema)
