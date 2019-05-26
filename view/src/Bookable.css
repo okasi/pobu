@@ -165,3 +165,31 @@ select[name=minutes] {
 .bookable-con-sub > label {
  margin-bottom: 0;
 }
+
+
+input.apple-switch {
+  position: relative;
+  appearance: none; outline: none;
+  width: 40px; height: 20px;
+  background-color: #ffffff; border: 1px solid #D9DADC;
+  border-radius: 50px; box-shadow: inset -20px 0 0 0 #ffffff;
+  transition-duration: 200ms;
+  margin: auto 0;
+ }
+
+ input.apple-switch:after {
+  content: ""; 
+  position: absolute;
+  top: 1px; left: 1px;
+  width: 15px; height: 15px;
+  background-color: transparent;
+  border-radius: 50%; box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+ }
+ input.apple-switch:checked {
+  border-color: #3d009f;
+  box-shadow: inset 20px 0 0 0#3d009f;
+ }
+ input.apple-switch:checked:after {
+  left: 20px;
+  box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+ }

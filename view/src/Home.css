@@ -85,8 +85,10 @@
   justify-content: flex-end;
   width: 90%;
   margin: 0 auto;
+  height: 10%;
 }
 
 .home-social > a{
   color: #000;
+  margin-top: auto;
 }

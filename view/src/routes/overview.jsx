@@ -41,6 +41,7 @@ const Overview = () => {
           
           setClientBookings(clientRes.data)
 
+          
         } catch (e) {
           console.error(e);
         }
@@ -67,7 +68,7 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-                      {booking._client.slice(-10)}
+                      {booking._host.slice(-10)}
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -179,11 +180,14 @@ const Overview = () => {
 
           {/*Booked bookings and bookables as (Host) */}
           {state.user && hostBookings && hostBookings.map((booking) => {
-            if (booking._host._id == state.user._id) {
+      
+            if (booking._host._id == state.user._id && !booking._client && booking._host) {
+        
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
                     <button onClick={(e) => {
+                      
                       if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
 
                         alert('Deleted')
@@ -248,6 +252,12 @@ const Overview = () => {
           })}
 
         </div>
+
+
+
+
+
+
 
       </div>
     </>
