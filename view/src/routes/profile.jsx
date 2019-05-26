@@ -10,7 +10,8 @@ const Profile = () => {
     actions({
       type: 'USER_DATA',
     })
-  }, [state.isLoggedIn])
+  // eslint-disable-next-line
+  }, [state.user && state.user.isLoggedIn])
 
   return (
     <>

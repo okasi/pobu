@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AppContext } from '../store/context';
 import moment from 'moment';
 
@@ -7,46 +7,47 @@ import moment from 'moment';
 const Overview = () => {
 
   const { state, actions } = useContext(AppContext);
-
-  const [hostBookings, setHostBookings] = useState([]);
-  const [clientBookings, setClientBookings] = useState([]);
-
+  const [allBookings, setAllBookings] = useState([]);
 
   useEffect(() => {
 
     (async function () {
       if (state.user) {
         try {
-          const hostRes = await actions({
-            type: 'BOOKING_HOST',
+
+          const hBookings = await actions({ type: 'BOOKING_HOST' })
+          const cBookings = await actions({ type: 'BOOKING_CLIENT' })
+
+          const bookings = hBookings.concat(cBookings);
+
+          // const populatedBookings = Promise.all(await bookings.map(async booking => {
+          //   booking.host = await actions({ type: 'USER_ID_GET', payload: booking._host })
+          //   booking.client = await actions({ type: 'USER_ID_GET', payload: booking._client })
+          //   return booking;
+          // })
+
+          const populatedBookings = await bookings.map(booking => {
+            actions({ type: 'USER_ID_GET', payload: booking._host })
+              .then((data) => {booking.host = data})
+
+            booking.host = {firstName: 'Okan'}
+
+            actions({ type: 'USER_ID_GET', payload: booking._client })
+              .then((data) => {booking.client = data})
+
+            return booking;
           })
 
-          const populatedHostBookings = await Promise.all(
-            hostRes.map(async (hostBooking) => {
-              hostBooking._host = await actions({
-                type: 'USER_ID_GET',
-                payload: hostBooking._host
-              });
-
-              return hostBooking;
-            })
-          );
-
-          setHostBookings(populatedHostBookings);
-
-
-          const clientRes = await actions({
-            type: 'BOOKING_CLIENT',
-          })
-          
-          setClientBookings(clientRes.data)
-
+          console.log(populatedBookings)
+          setAllBookings(populatedBookings)
           
         } catch (e) {
           console.error(e);
         }
       }
     }());
+
+    // eslint-disable-next-line
   }, [state.user])
 
 
@@ -57,7 +58,8 @@ const Overview = () => {
         <div className="overview-card">
           <h1>Bookings</h1>
           {/*Booked bookings as (client) */}
-          {state.user && clientBookings && clientBookings.map(booking => {
+          {state.user && allBookings.length > 0 && allBookings.map(booking => {
+            console.log(booking)
             if (booking._client == state.user._id) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
@@ -68,7 +70,7 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-                      {booking._host.slice(-10)}
+                      {booking._host}
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -108,8 +110,8 @@ const Overview = () => {
           })}
 
           {/*Booked bookings as (Host) */}
-          {state.user && hostBookings && hostBookings.map((booking) => {
-            if (booking._client && booking._host) {
+          {state.user && allBookings && allBookings.map((booking) => {
+            if (booking.client && booking.host) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
@@ -179,9 +181,9 @@ const Overview = () => {
           </span>
 
           {/*Booked bookings and bookables as (Host) */}
-          {state.user && hostBookings && hostBookings.map((booking) => {
+          {state.user && allBookings && allBookings.map((booking) => {
       
-            if (booking._host._id == state.user._id && !booking._client && booking._host) {
+            if (booking._host == state.user._id && !booking._client && booking._host) {
         
               return (
                 <div className="overview-sub-card" key={booking._id}>
@@ -207,7 +209,7 @@ const Overview = () => {
                       {/* {booking._client &&
                       <i>HE</i>
                       } */}
-                      {booking._host.firstName}
+                      {booking.host && booking.host.firstName}
                       (You)
                     </span>
                   </div>
@@ -250,7 +252,7 @@ const Overview = () => {
               )
             }
           })}
-
+*/}
         </div>
 
 

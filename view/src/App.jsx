@@ -9,12 +9,12 @@ import './Auth.css';
 import './Profile.css';
 import './Booking.css';
 
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
 import history from './store/history';
 
-import useGlobalState from './hooks/useGlobalism';
+import useGlobalism from './hooks/useGlobalism';
 import { AppContext } from './store/context';
 
 import Home from './routes/home';
@@ -33,7 +33,7 @@ import { FaUserCircle, FaRegCalendarPlus,FaRegCalendarAlt, FaCalendarAlt} from '
 
 const App = () => {
 
-  const store = useGlobalState();
+  const store = useGlobalism();
 
   return (
     <Router history={history}>

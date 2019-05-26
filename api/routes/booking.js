@@ -88,8 +88,8 @@ router.route('/accept')
       )
 
         .then(data => {
-          req.user.bookings.push(data);
-          req.user.save();
+          // req.user.bookings.push(data);
+          // req.user.save();
           return res.json(data)
         })
         .catch(err => {

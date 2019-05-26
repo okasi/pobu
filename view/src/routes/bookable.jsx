@@ -8,7 +8,7 @@ import { BrowserView, MobileView} from "react-device-detect";
 
 const Bookable = withRouter(({ history }) => {
 
-  const { state, actions } = useContext(AppContext);
+  const { actions } = useContext(AppContext);
  
   const [name, setName] = useState("");
 
@@ -23,7 +23,7 @@ const Bookable = withRouter(({ history }) => {
   const [video, setVideo] = useState(false);
 
   const [theDuration, setTheDuration] = useState(10);
-  const [selDate, setSelDate] = useState(null);
+  // const [selDate, setSelDate] = useState(null);
 
 
   async function onCreateSubmit() {
@@ -88,7 +88,7 @@ const Bookable = withRouter(({ history }) => {
               Select Date :
             </label>
             <DatePicker
-              selected={selDate}
+              // selected={selDate}
               onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
               timeFormat="HH:mm"
               timeIntervals={15}
@@ -104,7 +104,7 @@ const Bookable = withRouter(({ history }) => {
               Select Time:
             </label>
             <DatePicker
-              selected={selDate}
+              // selected={selDate}
               onChange={input =>  setTime(moment(input).format("hh:mm a"))}
               showTimeSelect
               showTimeSelectOnly

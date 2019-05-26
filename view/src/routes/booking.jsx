@@ -10,7 +10,7 @@ export default function Booking({ match }) {
 
   const [who, setWho] = useState('Guest');
   const [data, setData] = useState('Guest');
-  const [already, setAlready] = useState(false);
+  const [already, setAlready] = useState(true);
 
   const [hostName, setHost] = useState('');
   const [clientName, setClient] = useState('');
@@ -36,8 +36,8 @@ export default function Booking({ match }) {
           setWho('Client');
         }
 
-        if (res.data._client) {
-          setAlready(true)
+        if (!res.data._client) {
+          setAlready(false)
         }
 
         setData(res.data)
@@ -68,16 +68,23 @@ export default function Booking({ match }) {
     }());
   }
 
+  // First load
   useEffect(() => {
-    if (state.user && state.user.isLoggedIn != true) {
-      history.push('/login');
-    }
+    (async function () {
+      if (!await actions({ type: 'USER_GET_VALID_TOKEN' })) {
+        history.push('/login');
+        window.location.reload();
+      }
+    }());
+  // eslint-disable-next-line
   }, [])
 
+  // When changes to login & router url
   useEffect(() => {
     if (state.user) {
       checkBooking()
     }
+  // eslint-disable-next-line
   }, [match.params.id, state.user])
 
   function acceptBooking() {
