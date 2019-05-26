@@ -20,27 +20,23 @@ const Overview = () => {
 
           const bookings = hBookings.concat(cBookings);
 
-          // const populatedBookings = Promise.all(await bookings.map(async booking => {
-          //   booking.host = await actions({ type: 'USER_ID_GET', payload: booking._host })
-          //   booking.client = await actions({ type: 'USER_ID_GET', payload: booking._client })
-          //   return booking;
-          // })
+          // sägTillDeBrur
+          const populatedBookings = await Promise.all(
+            await bookings.map(async booking => {
+              if (booking._host) {
+                booking.host = await actions({ type: 'USER_ID_GET', payload: booking._host })
+              }
 
-          const populatedBookings = await bookings.map(booking => {
-            actions({ type: 'USER_ID_GET', payload: booking._host })
-              .then((data) => {booking.host = data})
+              if(booking._client) {
+                booking.client = await actions({ type: 'USER_ID_GET', payload: booking._client })
+              }
 
-            booking.host = {firstName: 'Okan'}
-
-            actions({ type: 'USER_ID_GET', payload: booking._client })
-              .then((data) => {booking.client = data})
-
-            return booking;
-          })
-
-          console.log(populatedBookings)
-          setAllBookings(populatedBookings)
+              return booking 
+            })
+          )
           
+          setAllBookings(populatedBookings)
+
         } catch (e) {
           console.error(e);
         }
@@ -59,7 +55,6 @@ const Overview = () => {
           <h1>Bookings</h1>
           {/*Booked bookings as (client) */}
           {state.user && allBookings.length > 0 && allBookings.map(booking => {
-            console.log(booking)
             if (booking._client == state.user._id) {
               return (
                 <div className="overview-sub-card" key={booking._id}>
@@ -70,7 +65,7 @@ const Overview = () => {
                       <span>
                         with
                       </span>
-                      {booking._host}
+                      {booking.host.firstName}
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -132,7 +127,8 @@ const Overview = () => {
                         with
                       </span>
                       {/* {booking._host} */}
-                      {booking._client.slice(-10)}
+                      {/* booking._client.slice(-10) */}
+                      {booking.client.firstName}
                     </span>
                   </div>
                   <div className="sub-card-top">
@@ -252,15 +248,7 @@ const Overview = () => {
               )
             }
           })}
-*/}
         </div>
-
-
-
-
-
-
-
       </div>
     </>
   )
