@@ -59,7 +59,15 @@ const Overview = () => {
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
-                    <button onClick={() => alert("trying to delete")}>✖</button>
+                  <button onClick={(e) => {
+                    if (window.confirm(`Do you want to unbook ${booking.name} with ${booking.host.firstName}?`)) {
+                      actions({
+                        type: 'BOOKING_UNBOOK',
+                        payload: { bookableId: booking._id }
+                      })
+
+                    }
+                  }} className="deleteme" style={{ color: 'gray', background: 'none', border: 'none', padding: '0' }}>✖</button>
                     <span>
                       {booking.name}
                       <span>
@@ -111,7 +119,7 @@ const Overview = () => {
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
                     <button onClick={(e) => {
-                      if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
+                      if (window.confirm(`Do you want to delete ${booking.name} with ${booking.client.firstName}?`)) {
 
                         alert('Deleted')
                         actions({
@@ -176,17 +184,17 @@ const Overview = () => {
             </NavLink>
           </span>
 
-          {/*Booked bookings and bookables as (Host) */}
+          {/*Bookables as (Host) */}
           {state.user && allBookings && allBookings.map((booking) => {
       
-            if (booking._host == state.user._id && !booking._client && booking._host) {
+            if (booking._host === state.user._id && !booking._client) {
         
               return (
                 <div className="overview-sub-card" key={booking._id}>
                   <div className="sub-card-top">
                     <button onClick={(e) => {
                       
-                      if (window.confirm(`Do you want to delete ${booking.name} with ${booking.clientName}?`)) {
+                      if (window.confirm(`Do you want to delete ${booking.name}?`)) {
 
                         alert('Deleted')
                         actions({
