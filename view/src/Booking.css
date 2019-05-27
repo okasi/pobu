@@ -1,6 +1,7 @@
 .booking {
   display: flex;
   height: 90vh;
+  margin-top: 15vh;
 }
 
 .booking-con {
