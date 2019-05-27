@@ -4,17 +4,21 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 100px auto auto auto;
-  height: 80vh;
+  min-height: 80vh;
   flex-wrap: wrap;
+
+  margin-top: 15vh;
+
+  height: auto;
 }
   
 .overview-card {
   display: flex;
   max-width:315px;
   width: 80vw;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
-  margin: auto;
+  margin:0 auto;
   /* justify-content: center; */
 }
 
@@ -32,6 +36,8 @@
   padding: 20px;
   margin: 5px auto;
   text-align: right;
+
+  min-height: fit-content;
 }
 
 .sub-card-top {
@@ -64,7 +70,7 @@
   font-size: 14px;
   margin: 5px 0;
   padding: 5px 0;
-  border-bottom: 0.5px solid #d4d4d4;
+  /* border-bottom: 0.5px solid #d4d4d4; */
 }
 .sub-card-date > span {
   font-size: 16px;
@@ -86,4 +92,56 @@
   background: #e8e8e8;
   border-radius: 8px;
   padding: 5px;
+}
+
+.sub-card-urlbox > a {
+  float: right;
+}
+
+.client,
+.host {
+  padding: 4px; 
+  border-radius: 5px;
+  color: #ffffff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.client {
+  background: #40116b7a;
+}
+.host {
+  background: #1bad9f7a;
+}
+
+.deleteme {
+  color:gray;
+  background: none;
+  border: none;
+  padding: 0;
+
+}
+.sub-card-top > span > span.host,
+.sub-card-top > span > span.client {
+  margin: 0;
+}
+
+.bookablescolumn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sub-card-top > span > span.date {
+  font-size: 14px;
+}
+
+a.asclient-url {
+  color:#40116b7a;
+}
+a.ashost-url {
+  color:#1bad9f7a;
+}
+a.asbookable-url {
+  color:#4141417a;
 }
