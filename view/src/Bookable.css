@@ -8,15 +8,18 @@
   /* margin: 100px auto auto auto; */
     margin:50px auto auto auto;
   flex-wrap: wrap;
+
+  margin-top: 15vh;
 }
   
 .bookable-con-sub {
   display: flex;
   max-width: 500px;
   width: 80vw;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
   margin: auto;
+  height: auto;
 }
 
 label {
@@ -79,6 +82,8 @@ select {
   border-radius: 10px;
   padding: 20px;
   text-align: right;
+
+  min-height: fit-content;
 }
 
 .prev-name {

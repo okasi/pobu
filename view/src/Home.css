@@ -6,6 +6,7 @@
   flex-wrap: wrap-reverse; 
   justify-content: space-evenly;
   margin: auto;
+  margin-top: 50px;
 }
 
 .home-card-1 {

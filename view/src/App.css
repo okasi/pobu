@@ -15,6 +15,9 @@ html {
   flex-direction: row;
   justify-content: space-between;
   width: 100vw;
+  background: #d8d8d896;
+  position: fixed;
+  z-index: 99;
 }
 
 .nav-items {
