@@ -96,7 +96,8 @@ export default function Booking({ match }) {
         })
         console.log(res)
         checkBooking()
-
+        // alert('Booked!')
+        
         actions({
           type: 'USER_DATA',
         })
@@ -229,6 +230,16 @@ export default function Booking({ match }) {
                 Get connected with
               </div>
             }
+            {/* {who !== "Guest" && who !== "Host"&& !already &&
+              <div className="booking-sub-desc">
+                Booked {data.name}with
+              </div>
+            } */}
+            {data._client && 
+              <div className="booking-sub-desc">
+                Booked 
+              </div>
+            }
             <div className="booking-host-name">
               {hostName}
             </div>
@@ -238,7 +249,7 @@ export default function Booking({ match }) {
             <div className="booking-box">      
               <span 
                 className="book-title"
-                style={{fontWeight: 'bold', fontSize: 18}}
+                style={{fontWeight: 'bold', fontSize: 18, textTransform: 'capitalize'}}
               >
                 {data.name}
               </span>
@@ -297,10 +308,10 @@ export default function Booking({ match }) {
     <div id="videos-container"></div>
   */}
 
-  messagingBox
+  {/* messagingBox
   <div id="messagingBox">
   <textarea onKeyDown={messageHandler}></textarea>
-</div>
+</div> */}
 
 
 

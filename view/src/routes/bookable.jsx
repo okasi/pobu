@@ -158,32 +158,40 @@ const Bookable = withRouter(({ history }) => {
           </div>
 
             <br/>
-          <label htmlFor="fee" style={{fontWeight: 'bold'}}>
-            Fee:
+          <label htmlFor="fee" style={{fontWeight: 'bold', display: 'flex', flexDirection: 'row',justifyContent: 'space-between'}}>
+            <i>Fee:</i>
+            {fee === true &&
+               <i>Nano Wallet Public Key</i>
+               }
           </label>
 
-          <div className="form-input" name="fee">
-            <input 
-              type="checkbox" 
-              value={fee} 
-              name="paid"
-              onClick={ () => setFee(!fee)}
-            />
-            <label htmlFor="paid" style={{margin: 'auto 10px auto 0'}}>
-              Paid
-            </label>
-
+          <div className="form-input" name="fee" style={{justifyContent:'space-between'}}>
+            <span style={{display: 'flex', flexDirection:'row'}}>
+              <input 
+                type="checkbox" 
+                value={fee} 
+                name="paid"
+                onClick={ () => setFee(!fee)}
+                class="apple-switch" 
+              />
+              <label htmlFor="paid" style={{margin: 'auto 10px auto 0',minWidth: 40}}>
+                Paid
+              </label>
+             </span>  
+             <span>
             {fee === true &&
-              <label style={{fontWeight: 'bold'}}>
-                Nano Wallet Public Key
+              <span style={{fontWeight: 'bold', maxWidth:'80px', fontSize:12}}>
+                {/* Nano Wallet Public Key */}
                 <input 
                 type="text" 
                 name="nano"
                 onChange={e => setNano(e.target.value)}
                 maxlength="8"
+                style={{height:'15px', margin:'auto 0'}}
                 />
-              </label>
+              </span>
             }
+            </span> 
           </div>
 
             <br/>

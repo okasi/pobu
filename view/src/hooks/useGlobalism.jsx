@@ -233,6 +233,19 @@ export default function useGlobalism() {
           .catch((error) => {
             console.error(error.response);
           });
+      
+      // Sends a POST request to api/booking/accept on the backend
+      case 'BOOKING_UNBOOK':
+      return api.post('/booking/unbook', payload)
+        .then((res) => {
+          actions({
+            type: 'USER_DATA',
+          })
+          return res;
+        })
+        .catch((error) => {
+          console.error(error.response);
+        });
 
 
       // Sends a POST request to api/booking/delete on the backend    

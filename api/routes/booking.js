@@ -80,8 +80,6 @@ router.route('/accept')
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
 
-      console.log(req.body.bookableId)
-
       Booking.findOneAndUpdate(
         { _id: req.body.bookableId },
         { _client: req.user._id }
@@ -90,6 +88,27 @@ router.route('/accept')
         .then(data => {
           // req.user.bookings.push(data);
           // req.user.save();
+          return res.json(data)
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).send(res.json(err))
+        })
+
+    }
+  )
+
+router.route('/unbook')
+  .post(
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+
+      console.log(req.body)
+      Booking.findOne(
+        { _id: req.body.bookableId }
+      )
+        .then(data => {
+          data.remove(data._client)
           return res.json(data)
         })
         .catch(err => {
