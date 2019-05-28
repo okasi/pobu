@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const passport = require('passport')
+const path = require('path')
 
 const users = require('./routes/users')
 const booking = require('./routes/booking')
@@ -33,11 +34,12 @@ require('./config/passport')(passport)
 app.use('/api/users', users)
 app.use('/api/booking', booking)
 
+// static www files use express
+const wwwPath = path.join(__dirname, 'public');
+app.use('/', express.static(wwwPath));
+
 //which port
 const PORT = process.env.PORT || 5000
-
-
-
 
 // run app
 server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
