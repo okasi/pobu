@@ -1,0 +1,150 @@
+.overview-container {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 100px auto auto auto;
+  min-height: 80vh;
+  flex-wrap: wrap;
+
+  margin-top: 15vh;
+
+  height: auto;
+}
+  
+.overview-card {
+  display: flex;
+  max-width:315px;
+  width: 80vw;
+  min-height: 100vh;
+  flex-direction: column;
+  margin:0 auto;
+  /* justify-content: center; */
+}
+
+.overview-sub-card{
+  max-width: calc(315px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 5px auto;
+  text-align: right;
+
+  min-height: fit-content;
+}
+
+.sub-card-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.sub-card-top > span  {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.sub-card-top > span > span {
+  font-weight: 100;
+  margin: 0 4px;
+  text-transform: lowercase;
+}
+
+.sub-card-top > button {
+  background: none;
+  border: none;
+  color: gray;
+  padding: 0;
+}
+
+.sub-card-date {
+  font-weight: 100;
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 5px 0;
+  /* border-bottom: 0.5px solid #d4d4d4; */
+}
+.sub-card-date > span {
+  font-size: 16px;
+}
+
+.sub-card-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.sub-card-urlbox {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 13px;
+  box-shadow:inset 0px 2px 4px rgba(0, 0, 0, 0.25) ;
+  /* background: paleturquoise; */
+  background: #e8e8e8;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.sub-card-urlbox > a {
+  float: right;
+}
+
+.client,
+.host {
+  padding: 4px; 
+  border-radius: 5px;
+  color: #ffffff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.client {
+  background: #40116b7a;
+}
+.host {
+  background: #1bad9f7a;
+}
+
+.deleteme {
+  color:gray;
+  background: none;
+  border: none;
+  padding: 0;
+
+}
+.sub-card-top > span > span.host,
+.sub-card-top > span > span.client {
+  margin: 0;
+}
+
+.bookablescolumn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bookablescolumn > a {
+  color: #3d009f;
+}
+
+.sub-card-top > span > span.date {
+  font-size: 14px;
+}
+
+a.asclient-url {
+  color:#40116b7a;
+}
+a.ashost-url {
+  color:#1bad9f7a;
+}
+a.asbookable-url {
+  color:#4141417a;
+}

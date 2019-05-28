@@ -1,33 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+html {
+  background: #d8d8d8;
+  font-family: 'Quicksand', sans-serif;
+}
+
 .App {
-  text-align: center;
+  height: 100vh;
+  background: #d8d8d8;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  background: #d8d8d896;
+  position: fixed;
+  z-index: 99;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-items {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  overflow-x: overlay;
+}
+
+.nav-item-active {
+  border-bottom: 3px solid #3d009f;
+  color: #000;
+
+}
+
+.navi {
+  margin: auto 12px;
+}
+
+a { text-decoration: none;}
+
+.nav-btns {
+  border: none;
+  background: none;
+  color: #000;
+  font-family: 'Quicksand';
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+.logo-cont {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 20px;
+  height: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  height: 30px;
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.book:hover{
+  background: #777777;
+}
+
+input{
+  height: 25px;
+  border: none;
+  border-radius: 6px;
+  text-indent: 4px;
+}
+
+label {
+  color: #626263;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.reg-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 125px;
+  font-weight: 100;
+  font-size: 15px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family:'Quicksand';
+  height: 30px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  width: 315px;
+  height: 29px;
+}
+
+select {
+  width: 315px;
+  border: none;
+}
+
+.react-datepicker__input-container > input {
+  width: 315px;
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select:focus,
+textarea {
+  font-size: 16px;
+}
+
+.react-swipeable-view-container {
+  height: 100vh;
 }

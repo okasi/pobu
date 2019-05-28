@@ -1,0 +1,200 @@
+.bookable-con {
+  width: 80vw;
+  /* height: 80vh; */
+    height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin: 100px auto auto auto; */
+    margin:50px auto auto auto;
+  flex-wrap: wrap;
+
+  margin-top: 15vh;
+}
+  
+.bookable-con-sub {
+  display: flex;
+  max-width: 500px;
+  width: 80vw;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: auto;
+  height: auto;
+}
+
+label {
+  color: #626263;
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+  font-size: 14px;
+}
+
+input {
+  height: 25px;
+  border: none;
+  border-radius: 6px;
+  text-indent: 4px;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+  padding: 4px 0; 
+}
+
+.react-datepicker__input-container > input {
+  width: 100%;
+  padding: 0;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  max-width: 80vw;
+  height: 29px;
+  /* width: 315px; */
+    width: 100%;
+}
+
+select {
+  max-width: 315px;
+  border: none;
+}
+
+.bookable-con-sub > div > label {
+  margin: 0;
+}
+
+.bookable-con-sub > button {
+  width: 150px;
+}
+
+.preview{
+  max-width: calc(500px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: right;
+
+  min-height: fit-content;
+}
+
+.prev-name {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.prev-day-time {
+  font-weight: 100;
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #d4d4d4;
+}
+
+.prev-day-time > span {
+  font-size: 16px;
+}
+
+.prev-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+}
+  
+select {
+  max-width:300px;
+  border: none;
+}
+
+.boxa{
+  max-width: calc(500px - 40px);
+  width: calc(80vw - 40px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: auto; 
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+}
+ 
+.reg-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+  font-weight: 100;
+  font-size: 14px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family: 'Quicksand';
+  height: auto;
+  padding: 10px 17px;
+}
+
+input[type=date],
+input[type=time],
+select[name=minutes] {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 100% 50%;
+  background-color:#fff;
+  width: 95%;
+  height: 25px;
+}
+
+.react-datepicker-wrapper{
+  width: 100%;
+}
+
+select[name=minutes] {
+  width: 100%;
+  max-width: 100%;
+  text-indent: 6px;
+}
+
+.bookable-con-sub > label {
+ margin-bottom: 0;
+}
+
+
+input.apple-switch {
+  position: relative;
+  appearance: none; outline: none;
+  width: 40px; height: 20px;
+  background-color: #ffffff; border: 1px solid #D9DADC;
+  border-radius: 50px; box-shadow: inset -20px 0 0 0 #ffffff;
+  transition-duration: 200ms;
+  margin: auto 0;
+ }
+
+ input.apple-switch:after {
+  content: ""; 
+  position: absolute;
+  top: 1px; left: 1px;
+  width: 15px; height: 15px;
+  background-color: transparent;
+  border-radius: 50%; box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+ }
+ input.apple-switch:checked {
+  border-color: #3d009f;
+  box-shadow: inset 20px 0 0 0#3d009f;
+ }
+ input.apple-switch:checked:after {
+  left: 20px;
+  box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+ }

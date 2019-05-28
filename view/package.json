@@ -3,14 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "history": "^4.9.0",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.8.6",
+    "react-datepicker": "^2.5.0",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-icons": "^3.7.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0",
-    "react-swipeable-routes": "^0.6.0"
+    "react-scripts": "3.0.1",
+    "react-swipeable-routes": "^0.6.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0"
   }
 }

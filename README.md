@@ -28,7 +28,8 @@
   * [Kanban](#kanban)
   * [Future](#future)
 * [Visual design](#visual-design)
-  * [Wireframes w/ descriptions](#wireframes-with-descriptions)
+  * [Wireframes](#wireframes)
+  * [Graphic](#graphic)
 * [Team](#team)
 
 <br />
@@ -87,7 +88,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installation
 Clone the repo
 ```
-git clone https://github.com/chas-academy/u10-business-idea-pobu/
+git clone https://github.com/okan-s/pobu.git
 ```
 
 Change to the `api` folder and install development and production dependencies.
@@ -171,13 +172,21 @@ When Expo SDK v33 is released, convert the view to native-web.
 
 <br />
 
-## Wireframes with descriptions
-#### Client view
-- ![Mobile First | Client View](docs/wireframe-1.png)
-#### Host View
-- ![Mobile First| Host View](docs/wireframe-1.png)
+## Wireframes
+![Wireframes](docs/Wireframes-Pobu.png) 
+[link](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
+)
 
 <br />
+
+## Graphic
+![Graphic](docs/graphic-pobu.png) 
+[link](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
+)
+
+<br />
+<br />
+
 
 # Team
 - [Okan](https://github.com/okan-s)

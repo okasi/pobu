@@ -1,0 +1,95 @@
+.home {
+  height: 90vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse; 
+  justify-content: space-evenly;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.home-card-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 315px;
+  text-align: left;
+}
+
+.home-card-1 > img {
+  height: auto;
+  margin: auto;
+  width: 100%;
+}
+
+.home-card-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 315px;
+  text-align: left;
+}
+
+.why {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-weight: bold;
+  font-size: 16px;
+  max-width: 310px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3d3d3d;
+  padding: 12px;
+}
+.pitch {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-weight: bold;
+  font-size: 40px;
+  max-width: 310px;
+  /* min-width: 250px; */
+  font-family:'Quicksand';
+  border-left: 4px solid #000;
+  padding-left: 8px
+}
+.slogan {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-weight: 100;
+  font-size: 18px;
+  max-width: 310px;
+  /* min-width: 250px; */
+  font-family:'Quicksand';
+  padding: 12px;
+}
+.reg-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 125px;
+  font-weight: 100;
+  font-size: 15px;
+  background: #3d009f;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 10px;
+  font-family:'Quicksand';
+  height: 30px;
+}
+    
+.home-social {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 90%;
+  margin: 0 auto;
+  height: 10%;
+}
+
+.home-social > a{
+  color: #000;
+  margin-top: auto;
+}
