@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { withRouter } from 'react-router-dom';
-import { AppContext } from '../store/context';
+import { AppContext } from '../../store/context';
 import { BrowserView, MobileView} from "react-device-detect";
 
+import './bookable.css';
+import './datepick.css';
 
 const Bookable = withRouter(({ history }) => {
 

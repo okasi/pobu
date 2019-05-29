@@ -1,13 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import './Home.css';
-import './datepick.css';
-import './Overview.css';
-import './Bookable.css';
-import './Auth.css';
-import './Profile.css';
-import './Booking.css';
+import './routes/auth/auth.css';
 
 import { Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
@@ -17,14 +11,17 @@ import history from './store/history';
 import useGlobalism from './hooks/useGlobalism';
 import { AppContext } from './store/context';
 
-import Home from './routes/home';
+import Home from './routes/home/home';
 import About from './routes/about';
-import Login from './routes/login';
-import Register from './routes/register';
-import Overview from './routes/overview';
-import Bookable from './routes/bookable';
-import Booking from'./routes/booking';
-import Profile from './routes/profile';
+
+import Login from './routes/auth/login';
+import Register from './routes/auth/register';
+import Profile from './routes/auth/profile';
+
+import Overview from './routes/overview/overview';
+import Bookable from './routes/bookable/bookable';
+import Booking from'./routes/booking/booking';
+
 
 import logo from './assets/logod.png';
 
@@ -86,8 +83,10 @@ const App = () => {
                     </>
                     ) : (
                     <>
-                      {/* <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaCalendarAlt /></button></NavLink>
-                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns"><FaRegCalendarPlus /></button></NavLink> */}
+                      {/* 
+                      <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaCalendarAlt /></button></NavLink>
+                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns"><FaRegCalendarPlus /></button></NavLink>
+                      */}
                       <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
                       <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">Bookables</button></NavLink>
                       <NavLink to="/profile" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaUserCircle /></button></NavLink>

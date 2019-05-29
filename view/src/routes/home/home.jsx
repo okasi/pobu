@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../store/context';
+import { AppContext } from '../../store/context';
 import { NavLink } from 'react-router-dom';
 
-import vector from '../assets/logo.png';
+import vector from '../../assets/logo.png';
 import { FaTwitter } from 'react-icons/fa'
+
+import './home.css';
 
 
 function Home() {

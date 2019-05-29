@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppContext } from '../store/context';
+import { AppContext } from '../../store/context';
 
 const Register = () => {
   const { actions } = useContext(AppContext);
