@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const passport = require('passport')
 const path = require('path')
+const moment = require('moment')
 
 const users = require('./routes/users')
 const booking = require('./routes/booking')
@@ -53,6 +54,6 @@ io.on('connection', (socket) => {
 
   socket.on('SEND_MESSAGE', function(data){
     console.log(data)
-    io.emit('RECEIVE_MESSAGE', data);
+    io.emit('RECEIVE_MESSAGE', {...data, timestamp: moment().parseZone().format("HH:mm:ss")});
   })
 });

@@ -5,8 +5,6 @@ import moment from 'moment';
 import { AppContext } from '../../store/context';
 import history from '../../store/history';
 
-import io from "socket.io-client";
-
 import './booking.css';
 
 
@@ -19,7 +17,6 @@ export default function Booking({ match }) {
   const [hostName, setHost] = useState('');
   const [clientName, setClient] = useState('');
 
-  const [socket, setSocket] = useState(null);
 
   const [messages, setMessages] = useState([]);
 
@@ -51,6 +48,7 @@ export default function Booking({ match }) {
 
         setData(res.data)
 
+        // console.log(res.data)
 
         if (res.data._host) {
           let hostres = await actions({
@@ -136,12 +134,15 @@ export default function Booking({ match }) {
   function messageHandler(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
-      state.socket.emit('SEND_MESSAGE', {
-        sender: state.user.firstName,
-        msg: e.target.value,
-        timestamp: moment().format("HH:mm:ss"),
-        id: match.params.id,
-      })
+      if (e.target.value.length > 0) {
+        state.socket.emit('SEND_MESSAGE', {
+          sender: state.user.firstName,
+          msg: e.target.value,
+          // timestamp: moment().parseZone().format("HH:mm:ss"),
+          id: match.params.id,
+        })
+      }
+
 
       e.target.value = null;
 
@@ -241,9 +242,11 @@ export default function Booking({ match }) {
             {messages.map((message, i) => {
               return (
                 <li style={{ backgroundColor: 'white' }} key={i}>
-                  <span><i>{message.timestamp}</i> <u>{message.sender}</u></span>
+                  <small><i>{message.timestamp}</i></small>
                   <br></br>
-                  <span><b>{message.msg}</b></span>
+                  <u>{message.sender}</u>
+                  <br></br>
+                  <b>{message.msg}</b>
                 </li>
               )
 
