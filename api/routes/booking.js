@@ -103,12 +103,12 @@ router.route('/unbook')
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
 
-      console.log(req.body)
       Booking.findOne(
         { _id: req.body.bookableId }
       )
         .then(data => {
-          data.remove(data._client)
+          data._client = undefined
+          data.save()
           return res.json(data)
         })
         .catch(err => {
