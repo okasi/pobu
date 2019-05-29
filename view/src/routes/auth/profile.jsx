@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from '../store/context';
+import { AppContext } from '../../store/context';
 
+import './profile.css';
 
 const Profile = () => {
 

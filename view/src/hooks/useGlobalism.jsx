@@ -3,6 +3,7 @@ import { useState } from 'react';
 import history from '../store/history';
 import axios from 'axios';
 import decodeJWT from 'jwt-decode';
+import moment from 'moment';
 
 // Backend URL from .env file
 const baseURL = process.env.REACT_APP_API_URL;
@@ -262,6 +263,19 @@ export default function useGlobalism() {
           });
 
       case 'BOOKING_SESSION_INITIALIZE':
+        return;
+
+      // case 'CHAT_SEND_MESSAGE':
+      //   return socket.io 
+      //   {
+      //     user: state.user.firstName,
+      //     msg: payload,
+      //     timestamp: moment().format("HH:mm:ss"),
+      //   }
+  
+      //   return;
+
+      case 'CHAT_RECEIVE':
         return;
 
       default:
