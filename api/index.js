@@ -46,9 +46,7 @@ server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)
 
 // socket.io goes below
 const socket = require('socket.io');
-io = socket(server);
-
-console.log(io)
+global.io = socket(server);
 
 io.on('connection', (socket) => {
   console.log(socket.id);

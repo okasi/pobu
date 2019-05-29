@@ -88,6 +88,7 @@ router.route('/accept')
         .then(data => {
           // req.user.bookings.push(data);
           // req.user.save();
+          io.emit('RECEIVE_UPDATE', data);
           return res.json(data)
         })
         .catch(err => {
@@ -109,6 +110,7 @@ router.route('/unbook')
         .then(data => {
           data._client = undefined
           data.save()
+          io.emit('RECEIVE_UPDATE', data);
           return res.json(data)
         })
         .catch(err => {

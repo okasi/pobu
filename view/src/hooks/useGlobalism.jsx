@@ -4,6 +4,7 @@ import history from '../store/history';
 import axios from 'axios';
 import decodeJWT from 'jwt-decode';
 import moment from 'moment';
+import io from "socket.io-client";
 
 // Backend URL from .env file
 const baseURL = process.env.REACT_APP_API_URL;
@@ -12,6 +13,11 @@ const api = axios.create({
   baseURL: baseURL + '/api',
   headers: { 'Content-Type': 'application/json' },
 });
+
+
+
+
+
 
 // export function getDecodedToken() {
 //   const validToken = getValidToken();
@@ -262,7 +268,23 @@ export default function useGlobalism() {
             console.error(error.response);
           });
 
-      case 'BOOKING_SESSION_INITIALIZE':
+          
+      case 'SOCKET_INITIALIZE':
+        let socket = io(process.env.REACT_APP_API_URL)
+        actions({
+          type: 'setState',
+          payload: { socket: socket }
+        })
+
+        socket.on('RECEIVE_UPDATE', function (data) {
+          console.log(data)
+          if (window.location.pathname.includes('booking') && data._id === window.location.pathname.substring(9)) {
+            window.location.reload();
+          } else {
+            actions({type: 'USER_DATA'})
+          }
+        })
+        
         return;
 
       // case 'CHAT_SEND_MESSAGE':
