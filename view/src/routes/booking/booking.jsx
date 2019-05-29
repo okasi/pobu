@@ -91,7 +91,7 @@ export default function Booking({ match }) {
   useEffect(() => {
 
     if (socket === null) {
-      let socket = io(':5000')
+      let socket = io(process.env.REACT_APP_API_URL)
       setSocket(socket)
       socket.on('RECEIVE_MESSAGE', function (msgData) {
         if (msgData.id === match.params.id) {

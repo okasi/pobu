@@ -48,6 +48,8 @@ server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)
 var socket = require('socket.io');
 io = socket(server);
 
+console.log(io)
+
 io.on('connection', (socket) => {
   console.log(socket.id);
 
