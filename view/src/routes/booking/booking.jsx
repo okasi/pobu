@@ -35,28 +35,21 @@ export default function Booking({ match }) {
           payload: { bookableId: match.params.id }
         })
 
-        console.log(res.data)
-
-
         if (res.data._host === state.user._id) {
           setWho('Host');
-          console.log("you are host")
         }
 
         if (res.data._client === state.user._id) {
           setWho('Client');
-          console.log("you are client")
         }
 
         if (!res.data._client) {
           setAlreadyBooked(false)
-          console.log("available")
         } else {
           setAlreadyBooked(true)
         }
 
         setData(res.data)
-        console.log(res.data)
 
 
         if (res.data._host) {
@@ -76,8 +69,8 @@ export default function Booking({ match }) {
         }
 
         if (res.data._client !== state.user._id && res.data._host !== state.user._id && res.data._client) {
-          // history.push('/');
-          // window.location.reload();
+          history.push('/');
+          window.location.reload();
         } 
 
       }
@@ -90,19 +83,6 @@ export default function Booking({ match }) {
   // First load
   useEffect(() => {
 
-    if (socket === null) {
-      let socket = io(process.env.REACT_APP_API_URL)
-      setSocket(socket)
-      socket.on('RECEIVE_MESSAGE', function (msgData) {
-        if (msgData.id === match.params.id) {
-          setMessages(prevState => (
-            [...prevState, msgData]
-          ))
-        }
-        
-      })
-    }
-
     (async function () {
       if (!await actions({ type: 'USER_GET_VALID_TOKEN' })) {
         history.push('/login');
@@ -111,6 +91,18 @@ export default function Booking({ match }) {
     }());
     // eslint-disable-next-line
   }, [match.params.id])
+
+  useEffect(() => {
+    if (state.socket != undefined) {
+      state.socket.on('RECEIVE_MESSAGE', function (msgData) {
+        if (msgData.id === match.params.id) {
+          setMessages(prevState => (
+            [...prevState, msgData]
+          ))
+        }
+      })
+    }
+  }, [state.socket])
 
   // When changes to login & router url
   useEffect(() => {
@@ -128,9 +120,8 @@ export default function Booking({ match }) {
           type: 'BOOKING_ACCEPT',
           payload: { bookableId: match.params.id }
         })
-        console.log(res)
+
         checkBooking()
-        // alert('Booked!')
 
         actions({
           type: 'USER_DATA',
@@ -145,7 +136,7 @@ export default function Booking({ match }) {
   function messageHandler(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
-      socket.emit('SEND_MESSAGE', {
+      state.socket.emit('SEND_MESSAGE', {
         sender: state.user.firstName,
         msg: e.target.value,
         timestamp: moment().format("HH:mm:ss"),

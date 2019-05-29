@@ -11,6 +11,11 @@ const Overview = () => {
   const [allBookings, setAllBookings] = useState([]);
 
   useEffect(() => {
+    actions({ type: 'SOCKET_INITIALIZE' })
+  }, [])
+
+
+  useEffect(() => {
 
     (async function () {
       if (state.user) {
