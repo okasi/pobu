@@ -132,6 +132,7 @@ export default function Booking({ match }) {
           setMessages(prevState => (
             [...prevState, msgData]
           ))
+          document.querySelector('#messagingWindow').scrollIntoView({behavior: "smooth", block: "end"})
         }
       })
     }
@@ -249,7 +250,7 @@ export default function Booking({ match }) {
               <div className="booking-box-com">
                 <div>
                   <div id="messagingWindow">
-                    <div>
+                 
                       {messages.map((message, i) => {
                         return (
                           <div className="msg" key={i}>
@@ -264,7 +265,7 @@ export default function Booking({ match }) {
                         )
 
                       })}
-                    </div>
+                   
                   </div>
                 </div>
               </div>
