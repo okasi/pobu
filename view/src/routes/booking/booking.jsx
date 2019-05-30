@@ -5,8 +5,21 @@ import moment from 'moment';
 import { AppContext } from '../../store/context';
 import history from '../../store/history';
 
+import VideoCall from '../../helpers/peer'
+
 import './booking.css';
 
+
+let localVideo
+let remoteVideo
+let peer
+
+let localStream
+
+let initiator = false
+
+
+let videoCall = new VideoCall()
 
 export default function Booking({ match }) {
 
@@ -17,8 +30,16 @@ export default function Booking({ match }) {
   const [hostName, setHost] = useState('');
   const [clientName, setClient] = useState('');
 
-
   const [messages, setMessages] = useState([]);
+
+  const [hasMedia, setHasMedia] = useState(false);
+
+  // const [localStream, setLocalStream] = useState({});
+  // const [remoteStreamUrl, setRemoteStreamUrl] = useState('');
+  const [streamUrl, setStreamUrl] = useState('');
+  // const [initiator, setInitiator] = useState(false)
+  // const [peer, setPeer] = useState({})
+
 
   const { state, actions } = useContext(AppContext);
 
@@ -48,8 +69,6 @@ export default function Booking({ match }) {
 
         setData(res.data)
 
-        // console.log(res.data)
-
         if (res.data._host) {
           let hostres = await actions({
             type: 'USER_ID_GET',
@@ -69,7 +88,7 @@ export default function Booking({ match }) {
         if (res.data._client !== state.user._id && res.data._host !== state.user._id && res.data._client) {
           history.push('/');
           window.location.reload();
-        } 
+        }
 
       }
       catch (error) {
@@ -78,9 +97,26 @@ export default function Booking({ match }) {
     }());
   }
 
+  function getUserMedia(cb) {
+    return new Promise((resolve, reject) => {
+      navigator.getUserMedia = navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      const op = {
+        video: {
+          width: { min: 160, ideal: 640, max: 1280 },
+          height: { min: 120, ideal: 360, max: 720 },
+        },
+        audio: true
+      }
+      navigator.getUserMedia(op, stream => {
+        localStream = stream
+        localVideo.srcObject = stream
+        resolve()
+      }, () => { })
+    })
+  }
+
   // First load
   useEffect(() => {
-
     (async function () {
       if (!await actions({ type: 'USER_GET_VALID_TOKEN' })) {
         history.push('/login');
@@ -90,6 +126,30 @@ export default function Booking({ match }) {
     // eslint-disable-next-line
   }, [match.params.id])
 
+  const enter = (roomId) => {
+    peer = videoCall.init(localStream, initiator)
+    peer.on('signal', data => {
+      const signal = {
+        room: roomId,
+        desc: data
+      }
+      state.socket.emit('signal', signal)
+    })
+
+    peer.on('stream', stream => {
+      console.log("Other: ")
+      console.log(stream)
+      remoteVideo.srcObject = stream
+    })
+    peer.on('error', function (err) {
+      console.log(err)
+    })
+  }
+
+  const call = (otherId) => {
+    videoCall.connect(otherId)
+  }
+
   useEffect(() => {
     if (state.socket != undefined) {
       state.socket.on('RECEIVE_MESSAGE', function (msgData) {
@@ -98,6 +158,24 @@ export default function Booking({ match }) {
             [...prevState, msgData]
           ))
         }
+      })
+
+      getUserMedia().then(() => {
+        state.socket.emit('join', { roomId: match.params.id })
+      })
+      state.socket.on('init', () => {
+        initiator = true
+      })
+      state.socket.on('ready', () => {
+        enter(match.params.id)
+      })
+      state.socket.on('desc', (data) => {
+        if (data.type === 'offer' && initiator) return
+        if (data.type === 'answer' && !initiator) return
+        call(data)
+      })
+      state.socket.on('disconnected', () => {
+        initiator = true
       })
     }
   }, [state.socket])
@@ -143,13 +221,7 @@ export default function Booking({ match }) {
         })
       }
 
-
       e.target.value = null;
-
-      // actions({
-      //   type: 'CHAT_SEND_MESSAGE',
-      //   payload: e.target.value
-      // })
     }
 
   }
@@ -183,8 +255,8 @@ export default function Booking({ match }) {
                 Hello {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with.
               </div>
             }
-       
-        
+
+
           </div>
 
           <div className="booking-card-2">
@@ -235,29 +307,37 @@ export default function Booking({ match }) {
       </div>
 
 
-      {alreadyBooked && 
-      <center>
-        <div id="messagingWindow">
-          <ul>
-            {messages.map((message, i) => {
-              return (
-                <li style={{ backgroundColor: 'white' }} key={i}>
-                  <small><i>{message.timestamp}</i></small>
-                  <br></br>
-                  <u>{message.sender}</u>
-                  <br></br>
-                  <b>{message.msg}</b>
-                </li>
-              )
+      {alreadyBooked && (data.communication === "Chat" || data.communication === "Voice" || data.communication === "Video") &&
+        <center>
+          <div id="messagingWindow">
+            <ul>
+              {messages.map((message, i) => {
+                return (
+                  <li style={{ backgroundColor: 'white' }} key={i}>
+                    <small><i>{message.timestamp}</i></small>
+                    <br></br>
+                    <u>{message.sender}</u>
+                    <br></br>
+                    <b>{message.msg}</b>
+                  </li>
+                )
 
-            })}
-          </ul>
-        </div>
-        <div id="messagingBox">
-          <textarea placeholder="Press enter to send" onKeyDown={messageHandler}></textarea>
+              })}
+            </ul>
+          </div>
+          <div id="messagingBox">
+            <textarea placeholder="Press enter to send" onKeyDown={messageHandler}></textarea>
+          </div>
+        </center>
+      }
+
+      <center>
+        <div id="videoContainer">
+          <video id="localVideo" style={{ width: '40%', backgroundColor: 'blue' }} ref={(ref) => { localVideo = ref; }} muted autoPlay></video>
+          <br></br>
+          <video id="remoteVideo" style={{ width: '60%', backgroundColor: 'yellow' }} ref={(ref) => { remoteVideo = ref; }} autoplay></video>
         </div>
       </center>
-      }
 
 
 

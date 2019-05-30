@@ -275,7 +275,6 @@ export default function useGlobalism() {
           type: 'setState',
           payload: { socket: socket }
         })
-
         socket.on('RECEIVE_UPDATE', function (data) {
           console.log(data)
           if (window.location.pathname.includes('booking') && data._id === window.location.pathname.substring(9)) {
@@ -284,22 +283,9 @@ export default function useGlobalism() {
             actions({type: 'USER_DATA'})
           }
         })
+        return;
+
         
-        return;
-
-      // case 'CHAT_SEND_MESSAGE':
-      //   return socket.io 
-      //   {
-      //     user: state.user.firstName,
-      //     msg: payload,
-      //     timestamp: moment().format("HH:mm:ss"),
-      //   }
-  
-      //   return;
-
-      case 'CHAT_RECEIVE':
-        return;
-
       default:
         return state;
 
