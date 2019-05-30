@@ -8,6 +8,9 @@ import history from '../../store/history';
 import './booking.css';
 
 
+let myVideo
+let userVideo
+
 export default function Booking({ match }) {
 
   const [who, setWho] = useState('Guest');
@@ -19,6 +22,8 @@ export default function Booking({ match }) {
 
 
   const [messages, setMessages] = useState([]);
+
+  const [hasMedia, setHasMedia] = useState(false);
 
   const { state, actions } = useContext(AppContext);
 
@@ -48,7 +53,7 @@ export default function Booking({ match }) {
 
         setData(res.data)
 
-        // console.log(res.data)
+        console.log(res.data)
 
         if (res.data._host) {
           let hostres = await actions({
@@ -69,13 +74,38 @@ export default function Booking({ match }) {
         if (res.data._client !== state.user._id && res.data._host !== state.user._id && res.data._client) {
           history.push('/');
           window.location.reload();
-        } 
+        }
 
       }
       catch (error) {
         // alert(error.message);
       }
     }());
+  }
+
+  function getMedia() {
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        setHasMedia(true)
+
+        console.log(stream)
+
+
+        try {
+          myVideo.srcObject = stream;
+        } catch (e) {
+          myVideo.src = URL.createObjectURL(stream);
+        }
+
+        myVideo.play();
+
+        // res(stream);
+      })
+      // .catch(err => {
+      //   throw new Error(`Unable to fetch stream ${err}`);
+      // })
+  
   }
 
   // First load
@@ -87,8 +117,12 @@ export default function Booking({ match }) {
         window.location.reload();
       }
     }());
+
+    getMedia()
     // eslint-disable-next-line
   }, [match.params.id])
+
+
 
   useEffect(() => {
     if (state.socket != undefined) {
@@ -183,8 +217,8 @@ export default function Booking({ match }) {
                 Hello {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with.
               </div>
             }
-       
-        
+
+
           </div>
 
           <div className="booking-card-2">
@@ -235,29 +269,37 @@ export default function Booking({ match }) {
       </div>
 
 
-      {alreadyBooked && 
-      <center>
-        <div id="messagingWindow">
-          <ul>
-            {messages.map((message, i) => {
-              return (
-                <li style={{ backgroundColor: 'white' }} key={i}>
-                  <small><i>{message.timestamp}</i></small>
-                  <br></br>
-                  <u>{message.sender}</u>
-                  <br></br>
-                  <b>{message.msg}</b>
-                </li>
-              )
+      {alreadyBooked && (data.communication === "Chat" || data.communication === "Voice" || data.communication === "Video") &&
+        <center>
+          <div id="messagingWindow">
+            <ul>
+              {messages.map((message, i) => {
+                return (
+                  <li style={{ backgroundColor: 'white' }} key={i}>
+                    <small><i>{message.timestamp}</i></small>
+                    <br></br>
+                    <u>{message.sender}</u>
+                    <br></br>
+                    <b>{message.msg}</b>
+                  </li>
+                )
 
-            })}
-          </ul>
-        </div>
-        <div id="messagingBox">
-          <textarea placeholder="Press enter to send" onKeyDown={messageHandler}></textarea>
-        </div>
-      </center>
+              })}
+            </ul>
+          </div>
+          <div id="messagingBox">
+            <textarea placeholder="Press enter to send" onKeyDown={messageHandler}></textarea>
+          </div>
+        </center>
       }
+
+      <center>
+        <div id="videoContainer">
+          <video id="myVideo" style={{width: '40%'}} ref={(ref) => {myVideo = ref;}}></video>
+          <br></br>
+          <video id="userVideo" style={{width: '60%'}} ref={(ref) => {userVideo = ref;}}></video>
+        </div>
+    </center>    
 
 
 
