@@ -1,5 +1,5 @@
 const express = require('express')
-const dotenv = require('dotenv') 
+const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -49,11 +49,43 @@ server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)
 const socket = require('socket.io');
 global.io = socket(server);
 
+
 io.on('connection', (socket) => {
   console.log(socket.id);
 
-  socket.on('SEND_MESSAGE', function(data){
+  //Text chat stuff
+  socket.on('SEND_MESSAGE', function (data) {
     console.log(data)
-    io.emit('RECEIVE_MESSAGE', {...data, timestamp: moment().parseZone().format("HH:mm:ss")});
+    io.emit('RECEIVE_MESSAGE', { ...data, timestamp: moment().parseZone().format("HH:mm:ss") });
   })
+
+  //Video chat stuff
+  socket.on('join', function (data) {
+    socket.join(data.roomId);
+    socket.room = data.roomId;
+    const sockets = io.of('/').in().adapter.rooms[data.roomId];
+    if (sockets.length === 1) {
+      socket.emit('init')
+    } else {
+      if (sockets.length === 2) {
+        io.to(data.roomId).emit('ready')
+      } else {
+        socket.room = null
+        socket.leave(data.roomId)
+        socket.emit('full')
+      }
+    }
+  });
+
+  socket.on('signal', (data) => {
+    io.to(data.room).emit('desc', data.desc)
+  })
+
+  socket.on('disconnect', () => {
+    const roomId = Object.keys(socket.adapter.rooms)[0]
+    if (socket.room) {
+      io.to(socket.room).emit('disconnected')
+    }
+  })
+
 });
