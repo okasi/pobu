@@ -10,6 +10,8 @@ import './booking.css';
 
 let myVideo
 let userVideo
+let now = moment().format('LLLL');
+
 
 export default function Booking({ match }) {
 
@@ -28,6 +30,45 @@ export default function Booking({ match }) {
   const { state, actions } = useContext(AppContext);
 
   const [visibility, setVisibility] = useState(true);
+  const [visibility2, setVisibility2] = useState("hayir");
+
+
+
+ 
+
+  function  checkBookingDate(data) {
+   
+    var pickeddate =  moment(data.date).format('LLLL')
+    var bookdatesameafter = moment(now).isSameOrAfter(pickeddate);
+    console.log(bookdatesameafter)
+
+    if( bookdatesameafter == true) {
+      console.log('Booking has started!')
+      setVisibility2("")
+      console.log(now)
+      console.log(pickeddate)
+    } else {
+      console.log('There is still time left for this booking to start')
+      setVisibility2('hayir')
+      console.log(now)
+      console.log(pickeddate)
+    }
+  }
+ 
+  function checkDuration(data) {
+    var pickeddate =  moment(data.date).format('LLLL')
+    var enddate = moment(pickeddate).add(data.duration, "minutes")
+    console.log(enddate.format('LLLL'))
+
+    var durationup = moment(now).isSameOrAfter(enddate);
+
+    if( durationup == true) {
+      console.log('Times up!')
+    } else {
+      console.log('Still got time bro')
+    }
+  }
+
 
   function checkBooking() {
     (async function () {
@@ -76,12 +117,15 @@ export default function Booking({ match }) {
           history.push('/');
           window.location.reload();
         }
-
+        checkBookingDate(res.data)
+        checkDuration(res.data)
       }
       catch (error) {
         // alert(error.message);
       }
+
     }());
+
   }
 
   function getMedia() {
@@ -190,10 +234,11 @@ export default function Booking({ match }) {
 
   }
 
+
   return (
     <>
     
-      <div className={`booking ${visibility}`}>
+      <div className={`booking ${visibility} ${visibility2}`}>
         <div className="booking-con-com">
           <div className="booking-card-1-com">
             <div className="video-con">
@@ -335,7 +380,9 @@ export default function Booking({ match }) {
 
             {who === "Host" && !alreadyBooked &&
               <div className="booking-sub-desc">
-                Hello<br/> {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with.
+                Hello<br/> {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with. <button className="reg-btn"  onClick={() => setVisibility(!visibility)}>
+                  Start the {data.communication}
+                </button>
               </div>
             }
           </div>

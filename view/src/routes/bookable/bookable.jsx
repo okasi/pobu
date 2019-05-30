@@ -93,7 +93,7 @@ const Bookable = withRouter(({ history }) => {
               // selected={selDate}
               onChange={input =>  setDay(moment(input).format("YYYY-MM-DD"))}
               timeFormat="HH:mm"
-              timeIntervals={15}
+              timeIntervals={1}
               dateFormat="MMMM d, yyyy h:mm aa"
               placeholderText={day}
               minDate={moment().toDate()}
@@ -110,7 +110,7 @@ const Bookable = withRouter(({ history }) => {
               onChange={input =>  setTime(moment(input).format("hh:mm a"))}
               showTimeSelect
               showTimeSelectOnly
-              timeIntervals={15}
+              timeIntervals={1}
               dateFormat="h:mm aa"
               timeCaption="Time"
               placeholderText={time}
