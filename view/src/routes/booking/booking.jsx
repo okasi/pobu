@@ -27,6 +27,7 @@ export default function Booking({ match }) {
 
   const { state, actions } = useContext(AppContext);
 
+  const [visibility, setVisibility] = useState(true);
 
   function checkBooking() {
     (async function () {
@@ -190,20 +191,139 @@ export default function Booking({ match }) {
 
   return (
     <>
-      <div className="booking">
+    
+      <div className={`booking ${visibility}`}>
+        <div className="booking-con-com">
+          <div className="booking-card-1-com">
+            <div className="video-con">
+              {who === "Host" && alreadyBooked &&
+                <div className="booking-sub-desc">
+                  {data.name}
+                  <br/>
+                    You are connected with {clientName}
+                  <br/>
+                  <br/>
+                </div>
+              }
+
+              {who === "Client" && alreadyBooked &&
+                <div className="booking-sub-desc">
+                  {data.name}
+                  <br/>
+                    You are connected with {hostName}
+                  <br/>
+                  <br/>
+                </div>
+              }
+
+              {data && who === "Guest" && !alreadyBooked &&
+                <div className="booking-host-name">
+                  {data.name}
+                  <br/>
+                    You are not yet connected with {hostName}
+                  <br/>
+                  <br/>
+                </div>
+              }
+
+              {who === "Host" && !alreadyBooked &&
+                <div className="booking-sub-desc">
+                  {hostName}!<br></br> Your booking is not yet accepted
+                  <br/>
+                  <br/>
+                </div>
+              }
+      
+              <div id="videoContainer">
+                <video id="myVideo" style={{width: '80%'}} ref={(ref) => {myVideo = ref;}}></video>
+                {/* <video id="userVideo" style={{width: '60%'}} ref={(ref) => {userVideo = ref;}}></video> */}
+              </div>
+            </div>    
+          </div>
+
+          {alreadyBooked && (data.communication === "Chat" || data.communication === "Voice" || data.communication === "Video") &&
+            <div className="booking-card-2-com">
+              <button className="reg-btn"  onClick={() => setVisibility(!visibility)}>
+                See details
+              </button>
+              <div className="booking-box-com">
+                <div>
+                  <div id="messagingWindow">
+                    <div>
+                      {messages.map((message, i) => {
+                        return (
+                          <div className="msg" key={i}>
+                            <div className="msg-sender">
+                              <span>{message.sender}</span>
+                              <span><i>{message.timestamp}</i></span>
+                            </div>
+                            <br/>
+                            <li className="msg-it">{message.msg}</li>
+                            <br/>
+                          </div>
+                        )
+
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="messagingBox" className="book-com">
+                <textarea placeholder="Press enter to send..." onKeyDown={messageHandler}></textarea>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div className="booking" >
         <div className="booking-con">
           <div className="booking-card-1">
-
             {who === "Host" && alreadyBooked &&
-              <div className="booking-sub-desc">
-                Hello {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You will get connected with:<br></br>{clientName}
+              // <div className="booking-sub-desc">
+              //   Hello {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You will get connected with:<br></br>{clientName}
+              // </div>
+              <div>
+                <div className="booking-sub-desc">
+                  {/* Hello,
+                  <br/> */}
+                  You are this booking's host.
+                </div>
+                <div className="booking-host-name">
+                  {hostName}
+                </div>
+                <div className="booking-sub-desc">
+                  <br/>
+                  <br/>
+                  You will get connected with:
+                  <br/>
+                  {clientName}
+                </div>
+                <button className="reg-btn"  onClick={() => setVisibility(!visibility)}>
+                  Start the {data.communication}
+                </button>
               </div>
             }
 
             {who === "Client" && alreadyBooked &&
+            <div>
               <div className="booking-sub-desc">
-                Hello {clientName}!<br></br><br></br>You are this booking's client.<br></br><br></br>You will get connected with:<br></br>{hostName}
+                You are this booking's client.
               </div>
+              <div className="booking-host-name">
+                  {clientName}
+                </div>
+                <div className="booking-sub-desc">
+                  <br/>
+                  <br/>
+                  You will get connected with:
+                  <br/>
+                  {hostName}
+                </div>
+                <button className="reg-btn"  onClick={() => setVisibility(!visibility)}>
+                Start the {data.communication}
+              </button>
+               </div>
             }
 
             {data && who === "Guest" && !alreadyBooked &&
@@ -214,11 +334,9 @@ export default function Booking({ match }) {
 
             {who === "Host" && !alreadyBooked &&
               <div className="booking-sub-desc">
-                Hello {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with.
+                Hello<br/> {hostName}!<br></br><br></br>You are this booking's host.<br></br><br></br>You don't have any client yet.<br></br><br></br>Share the URL with someone you would like to connect with.
               </div>
             }
-
-
           </div>
 
           <div className="booking-card-2">
@@ -262,48 +380,11 @@ export default function Booking({ match }) {
                 }
               >
                 Accept booking
-            </button>
+              </button>
             }
           </div>
         </div>
       </div>
-
-
-      {alreadyBooked && (data.communication === "Chat" || data.communication === "Voice" || data.communication === "Video") &&
-        <center>
-          <div id="messagingWindow">
-            <ul>
-              {messages.map((message, i) => {
-                return (
-                  <li style={{ backgroundColor: 'white' }} key={i}>
-                    <small><i>{message.timestamp}</i></small>
-                    <br></br>
-                    <u>{message.sender}</u>
-                    <br></br>
-                    <b>{message.msg}</b>
-                  </li>
-                )
-
-              })}
-            </ul>
-          </div>
-          <div id="messagingBox">
-            <textarea placeholder="Press enter to send" onKeyDown={messageHandler}></textarea>
-          </div>
-        </center>
-      }
-
-      <center>
-        <div id="videoContainer">
-          <video id="myVideo" style={{width: '40%'}} ref={(ref) => {myVideo = ref;}}></video>
-          <br></br>
-          <video id="userVideo" style={{width: '60%'}} ref={(ref) => {userVideo = ref;}}></video>
-        </div>
-    </center>    
-
-
-
-
     </>
   );
 }
