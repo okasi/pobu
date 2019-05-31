@@ -319,6 +319,14 @@ export default function Booking({ match }) {
         </div>
       </div>
 
+      <center>
+        <div id="videoContainer">
+          <video id="localVideo" style={{ width: '40%', backgroundColor: 'blue' }} ref={(ref) => { localVideo = ref; }} muted autoPlay></video>
+          <br></br>
+          <video id="remoteVideo" style={{ width: '60%', backgroundColor: 'yellow' }} ref={(ref) => { remoteVideo = ref; }} autoPlay></video>
+        </div>
+      </center>
+
 
       {alreadyBooked && (data.communication === "Chat" || data.communication === "Voice" || data.communication === "Video") &&
         <center>
@@ -343,17 +351,6 @@ export default function Booking({ match }) {
           </div>
         </center>
       }
-
-      <center>
-        <div id="videoContainer">
-          <video id="localVideo" style={{ width: '40%', backgroundColor: 'blue' }} ref={(ref) => { localVideo = ref; }} muted autoPlay></video>
-          <br></br>
-          <video id="remoteVideo" style={{ width: '60%', backgroundColor: 'yellow' }} ref={(ref) => { remoteVideo = ref; }} autoPlay></video>
-        </div>
-      </center>
-
-
-
 
     </>
   );
