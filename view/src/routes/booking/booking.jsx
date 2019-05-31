@@ -99,7 +99,8 @@ export default function Booking({ match }) {
 
   function getUserMedia(cb) {
     return new Promise((resolve, reject) => {
-      navigator.getUserMedia = navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      navigator.getWebcam = (navigator.getUserMedia || navigator.webKitGetUserMedia || navigator.moxGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+      
       const op = {
         video: {
           width: { min: 160, ideal: 640, max: 1280 },
@@ -107,11 +108,22 @@ export default function Booking({ match }) {
         },
         audio: true
       }
-      navigator.getUserMedia(op, stream => {
-        localStream = stream
-        localVideo.srcObject = stream
-        resolve()
-      }, () => { })
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(op, stream => {
+          localStream = stream
+          localVideo.srcObject = stream
+          resolve()
+        }, () => { })
+      }
+
+      if (navigator.getWebcam) {
+        navigator.getWebcam(op, stream => {
+          localStream = stream
+          localVideo.srcObject = stream
+          resolve()
+        }, () => { })
+      }
+      
     })
   }
 
@@ -138,8 +150,9 @@ export default function Booking({ match }) {
 
     peer.on('stream', stream => {
       console.log("Other: ")
-      console.log(stream)
+      
       remoteVideo.srcObject = stream
+      console.log(remoteVideo.srcObject)
     })
     peer.on('error', function (err) {
       console.log(err)
@@ -335,7 +348,7 @@ export default function Booking({ match }) {
         <div id="videoContainer">
           <video id="localVideo" style={{ width: '40%', backgroundColor: 'blue' }} ref={(ref) => { localVideo = ref; }} muted autoPlay></video>
           <br></br>
-          <video id="remoteVideo" style={{ width: '60%', backgroundColor: 'yellow' }} ref={(ref) => { remoteVideo = ref; }} autoplay></video>
+          <video id="remoteVideo" style={{ width: '60%', backgroundColor: 'yellow' }} ref={(ref) => { remoteVideo = ref; }} autoPlay></video>
         </div>
       </center>
 
