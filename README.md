@@ -7,9 +7,9 @@
 ![Logo](docs/logo.png) 
 
 
-[twitter](https://twitter.com/pobu_io)
+[Twitter](https://twitter.com/pobu_io)
 
-[instagram](https://instagram.com/pobu.io)
+[Instagram](https://instagram.com/pobu.io)
 
 <br />
 
@@ -47,24 +47,18 @@ These instructions will get you a copy of the project up and running on your loc
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~4.1.1",
     "dotenv": "^8.0.0",
-    "express": "^4.16.4",
-    "http-errors": "~1.7.2",
-    "jade": "~1.11.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
-    "mongoose": "^5.5.7",
-    "mongoose-timestamp": "^0.6.0",
+    "mongoose": "^5.5.12",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^5.0.1",
-    "validator": "^10.11.0"
+    "socket.io": "^2.2.0",
+    "validator": "^11.0.0"
   },
 ```
 
@@ -73,14 +67,23 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```json
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
+    "cypress": "^3.3.1",
+    "history": "^4.9.0",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
+    "react-datepicker": "^2.6.0",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
-    "react-swipeable-routes": "^0.6.0"
+    "react-swipeable-routes": "^0.6.0",
+    "simple-peer": "^9.3.0",
+    "socket.io-client": "^2.2.0"
   },
 ```
 <br />
@@ -98,19 +101,25 @@ cd api
 npm install
 ```
 
-Change to the `view` folder and install development and producation dependencies.
+You will need to set up MongoDB. 
+Probably easiest to use is MongoDB atlas. 
+Enter the url in .env file located inside api folder.
+
+
+Change to the `view` folder and install development and production dependencies.
 ```
 cd view
 npm install
 ```
-
-You will need to set up MongoDB. 
+In order to make WebRTC signaling work with STUN and TURN servers you need to create a account at:
+http://numb.viagenie.ca/cgi-bin/numbacct
+Then you need to fill in your credentials in the .env file located inside the view folder.
 
 
 Go to the `api` folder and start the server.
 ```
 cd api
-npm server
+npm run server
 ```
 
 Go to the `view` folder and run the script start script.
@@ -135,15 +144,13 @@ A web based application that allows clients to book appointments with hosts on o
 <br />
 
 # Planning
-
+Inte tänka bara göra, maskin.
 <br />
 
 
 ## Personas
 - Clients
 - Hosts
-- Admins
-
 
 <br />
 
@@ -164,7 +171,7 @@ A web based application that allows clients to book appointments with hosts on o
 ## Future
 *Future plans/ideas*
 
-When Expo SDK v33 is released, convert the view to native-web.
+When Expo SDK v33 is released, rewrite the view w/ Expo for Web.
 
 <br />
 
@@ -174,14 +181,14 @@ When Expo SDK v33 is released, convert the view to native-web.
 
 ## Wireframes
 ![Wireframes](docs/Wireframes-Pobu.png) 
-[link](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
+[Link to Figma file](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
 )
 
 <br />
 
 ## Graphic
 ![Graphic](docs/graphic-pobu.png) 
-[link](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
+[Link to Figma file](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
 )
 
 <br />
