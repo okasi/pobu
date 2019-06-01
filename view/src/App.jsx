@@ -6,6 +6,15 @@ import './routes/auth/auth.css';
 import { Router, Route, NavLink } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
+import { BrowserView, MobileView } from 'react-device-detect';
+
+import {
+  FaUserCircle,
+  FaRegCalendarPlus,
+  FaRegCalendarAlt,
+  FaCalendarAlt,
+} from 'react-icons/fa';
+
 import history from './store/history';
 
 import useGlobalism from './hooks/useGlobalism';
@@ -20,16 +29,11 @@ import Profile from './routes/auth/profile';
 
 import Overview from './routes/overview/overview';
 import Bookable from './routes/bookable/bookable';
-import Booking from'./routes/booking/booking';
-
+import Booking from './routes/booking/booking';
 
 import logo from './assets/logod.png';
 
-import { BrowserView, MobileView} from "react-device-detect";
-import { FaUserCircle, FaRegCalendarPlus,FaRegCalendarAlt, FaCalendarAlt} from 'react-icons/fa'
-
 const App = () => {
-
   const store = useGlobalism();
 
   return (
@@ -47,59 +51,170 @@ const App = () => {
             <div className="nav">
               <div className="logo-cont">
                 <NavLink exact to="/">
-                  <img src={logo} className="logo" alt="logo"/>
+                  <img src={logo} className="logo" alt="logo" />
                 </NavLink>
               </div>
-              <BrowserView style={{display: 'flex', flexDirection:'column', justifyContent:'center'}}>
+              <BrowserView
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
                 <div className="nav-items">
-                  <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink>
-                  <NavLink to="/about" className="navi" activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
+                  <NavLink
+                    exact
+                    to="/"
+                    className="navi"
+                    activeClassName="nav-item-active"
+                  >
+                    <button type="button" className="nav-btns">
+                      Home
+                    </button>
+                  </NavLink>
+                  <NavLink
+                    to="/about"
+                    className="navi"
+                    activeClassName="nav-item-active"
+                  >
+                    <button type="button" className="nav-btns">
+                      About
+                    </button>
+                  </NavLink>
 
-                  {!store.state.isLoggedIn
-                    ? (
+                  {!store.state.isLoggedIn ? (
                     <>
-                      <NavLink to="/login" className="navi" activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
-                      <NavLink to="/register" className="navi" activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                      <NavLink
+                        to="/login"
+                        className="navi"
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Login
+                        </button>
+                      </NavLink>
+                      <NavLink
+                        to="/register"
+                        className="navi"
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Register
+                        </button>
+                      </NavLink>
                     </>
-                    ) : (
+                  ) : (
                     <>
-                      <NavLink to="/overview" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
-                      <NavLink to="/bookable" className="navi" activeClassName="nav-item-active"><button className="nav-btns">Bookable</button></NavLink>
-                      <NavLink to="/profile" className="navi" activeClassName="nav-item-active"><button type="button" className="nav-btns">Profile</button></NavLink>
+                      <NavLink
+                        to="/overview"
+                        className="navi"
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Overview
+                        </button>
+                      </NavLink>
+                      <NavLink
+                        to="/bookable"
+                        className="navi"
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Bookable
+                        </button>
+                      </NavLink>
+                      <NavLink
+                        to="/profile"
+                        className="navi"
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Profile
+                        </button>
+                      </NavLink>
                     </>
                   )}
                 </div>
               </BrowserView>
-              
-              <MobileView style={{display: 'flex', flexDirection:'column', justifyContent:'center'}}>
+
+              <MobileView
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
                 <div className="nav-items">
                   {/* <NavLink exact to="/" className="navi" activeClassName="nav-item-active"><button className="nav-btns">home</button></NavLink> */}
-                  {!store.state.isLoggedIn
-                    ? (
+                  {!store.state.isLoggedIn ? (
                     <>
-                      <NavLink to="/about" className="navi" style={{margin: 0}}activeClassName="nav-item-active"><button className="nav-btns">About</button></NavLink>
-                      <NavLink to="/login" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">login</button></NavLink>
-                      <NavLink to="/register" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">register</button></NavLink>
+                      <NavLink
+                        to="/about"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">About</button>
+                      </NavLink>
+                      <NavLink
+                        to="/login"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">login</button>
+                      </NavLink>
+                      <NavLink
+                        to="/register"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">register</button>
+                      </NavLink>
                     </>
-                    ) : (
+                  ) : (
                     <>
-                      {/* 
-                      <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaCalendarAlt /></button></NavLink>
-                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns"><FaRegCalendarPlus /></button></NavLink>
+                      {/*
+                        <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaCalendarAlt /></button></NavLink>
+                        <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns"><FaRegCalendarPlus /></button></NavLink>
                       */}
-                      <NavLink to="/overview" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns">Overview</button></NavLink>
-                      <NavLink to="/bookable" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button className="nav-btns">Bookables</button></NavLink>
-                      <NavLink to="/profile" className="navi" style={{margin: 0}} activeClassName="nav-item-active"><button type="button" className="nav-btns"><FaUserCircle /></button></NavLink>
+                      <NavLink
+                        to="/overview"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          Overview
+                        </button>
+                      </NavLink>
+                      <NavLink
+                        to="/bookable"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">Bookables</button>
+                      </NavLink>
+                      <NavLink
+                        to="/profile"
+                        className="navi"
+                        style={{ margin: 0 }}
+                        activeClassName="nav-item-active"
+                      >
+                        <button type="button" className="nav-btns">
+                          <FaUserCircle />
+                        </button>
+                      </NavLink>
                     </>
                   )}
                 </div>
               </MobileView>
             </div>
-    
 
             {/* Content */}
-            {!store.state.isLoggedIn
-              ? (
+            {!store.state.isLoggedIn ? (
               <>
                 <SwipeableRoutes enableMouseEvents>
                   <Route path="/" component={Home} />
@@ -109,7 +224,7 @@ const App = () => {
                   <Route path="/booking/:id" component={Booking} />
                 </SwipeableRoutes>
               </>
-              ) : (
+            ) : (
               <>
                 <SwipeableRoutes enableMouseEvents>
                   <Route path="/" component={Home} />
@@ -120,7 +235,7 @@ const App = () => {
                   <Route path="/booking/:id" component={Booking} />
                 </SwipeableRoutes>
               </>
-            )}  
+            )}
           </div>
         </AppContext.Provider>
       </div>

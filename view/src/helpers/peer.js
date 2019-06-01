@@ -2,7 +2,7 @@ import Peer from 'simple-peer'
 
 export default class VideoCall {
   peer = null
-  init = (stream, initiator) => {    
+  init = (stream, initiator) => { 
     this.peer = new Peer({
       initiator: initiator,
       stream: stream,
