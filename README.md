@@ -2,9 +2,9 @@
 *A peer-to-peer booking platform with WebRTC, Socket.IO, React, Express, Node.js and MongoDB.*
 
 
-![Logo](docs/pobu2.png)
+![HLogo](docs/horizontal-logo.png)
 
-![Logo](docs/logo.png) 
+![SLogo](docs/square-logo.png) 
 
 
 [Twitter](https://twitter.com/pobu_io)
@@ -198,7 +198,8 @@ Be able to video & voice chat on booking page.<br />
 <br /> 
 
 ## Entity Relationship Diagram
-- ![ER | ER ](docs/er.png)
+- ![uS](docs/userSchema.png)
+- ![bS](docs/bookingSchema.png)
 
 <br />
 
@@ -221,14 +222,14 @@ Be able to video & voice chat on booking page.<br />
 <br />
 
 ## Wireframes
-![Wireframes](docs/Wireframes-Pobu.png) 
+![Wireframes](docs/wireframes.png) 
 [Link to Figma file](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
 )
 
 <br />
 
-## Graphic
-![Graphic](docs/graphic-pobu.png) 
+## Graphic Profile
+![Graphic](docs/graphic-profile.png) 
 [Link to Figma file](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
 )
 
