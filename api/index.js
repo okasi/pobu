@@ -51,12 +51,9 @@ global.io = socket(server);
 
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
-
   //Text chat stuff
   socket.on('SEND_MESSAGE', function (data) {
-    console.log(data)
-    io.emit('RECEIVE_MESSAGE', { ...data, timestamp: moment().parseZone().format("HH:mm:ss") });
+    socket.emit('RECEIVE_MESSAGE', { ...data, timestamp: moment().parseZone().format("HH:mm:ss") });
   })
 
   //Video chat stuff
