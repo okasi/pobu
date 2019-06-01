@@ -1,5 +1,5 @@
 # pobu.io
-*A peer-to-peer booking platform with WebRTC, React, Express, Node.js and MongoDB.*
+*A peer-to-peer booking platform with WebRTC, Socket.IO, React, Express, Node.js and MongoDB.*
 
 
 ![Logo](docs/pobu2.png)
@@ -40,8 +40,6 @@ These instructions will get you a copy of the project up and running on your loc
 #### Back-end:
 - MongoDB
 - Express
-- Node.js
-- WebRTC
 
 ```json
   "dependencies": {
@@ -63,7 +61,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 
 #### Front-end:
-- React 16.8
+- React
 
 ```json
   "dependencies": {
@@ -102,7 +100,7 @@ npm install
 ```
 
 You will need to set up MongoDB. 
-Probably easiest to use is MongoDB atlas. 
+Probably would be easiest to use MongoDB Atlas. 
 Enter the url in .env file located inside api folder.
 
 
@@ -134,27 +132,68 @@ npm run start
 # About project
 
 ### Problem
-Services such as Calendly, in their current state doesn't provide direct communication on their platform. 
-Therefore the hosts and clients are dependent on third-party solutions for communication, that creates an issue of privacy.
+Appointment services such as Calendly, in their current state do not provide direct communication on their platform. 
+Therefore the hosts and clients are dependent on third-party solutions for communication.
+We feel like that is a area that could be effectivized.
+It also creates an issue of privacy for the host, because they need to share their "third-party solution" details.
 
 ### Solution
-A web based application that allows clients to book appointments with hosts on our platform. We provide live communication without any middle interferance which in term increases the privacy of our users.
-
+A web based application that allows clients to book appointments with hosts on our platform. 
+We provide live communication on the platform so they don't have to be concered about how & where to have the meeting.
+The privacy of our users is in our best interest. We promise to not sniff our users conversations. 
+This repo will be public so that they can check the source code for themselves. 
+Lastest changes made in the master branch automaticly deploys to our digitalocean droplet via buddy.works.
 
 <br />
 
 # Planning
-Inte tänka bara göra, maskin.
 <br />
 
 
 ## Personas
-- Clients
 - Hosts
+- Clients
+- Users (Hosts + Clients)
 
 <br />
 
 ## User Stories
+
+As a User, I want to be able to register as a user on the platform, <br /> 
+so that my bookables and bookings will be connected to me.<br /> 
+*Acceptance criteria:*<br /> 
+Be able to register as a user with first name, last name, email, password.<br /> 
+
+As a User, I want to be see my profile details.<br /> 
+*Acceptance criteria:*<br /> 
+Be able to see user first name, last name, email.<br /> 
+
+As a Host, I want to be able to create a bookable.<br /> 
+*Acceptance criteria:*<br /> 
+Input bookable name, date, time, duration, type of communication.<br /> 
+
+As a User, I want to be able to see my bookables and bookings in a overview page.<br /> 
+*Acceptance criteria:*<br /> 
+List all bookables and bookings in a overview page.<br /> 
+
+As a Host, I want to be able to share a created bookable to my future Client.<br /> 
+*Acceptance criteria:*<br /> 
+Unique url to share.<br /> 
+
+As a Client, I want to be able to view the details of a booking and be able to accept it.<br /> 
+*Acceptance criteria:*<br /> 
+Show bookable details by visiting the unique url, if not already booked be able to accept it.<br /> 
+
+As a User, I want to be able to see changes made to my bookings and bookables in realtime.<br /> 
+*Acceptance criteria:*<br /> 
+When a booking is accepted, update it live for both host and client without page reload.<br /> 
+When a booking is deleted, remove it from overview without page reload.<br /> 
+When a booking is unbooked, update it live for both host and client without page reload.<br /> 
+
+As a User, I want to communicate with my peer in realtime when the time is in for my appointment.<br /> 
+*Acceptance criteria:*<br /> 
+Be able to text chat on booking page.<br /> 
+Be able to video & voice chat on booking page.<br /> 
 
 <br /> 
 
@@ -168,10 +207,12 @@ Inte tänka bara göra, maskin.
 
 <br />
 
-## Future
-*Future plans/ideas*
+## Future plans
+* When Expo SDK v33 is released, rewrite the view w/ Expo for Web.
 
-When Expo SDK v33 is released, rewrite the view w/ Expo for Web.
+* Time zone intelligence.
+
+* Reusable bookables with multiple/range of avaliable dates & times.
 
 <br />
 
