@@ -4,15 +4,14 @@ import { AppContext } from '../../store/context';
 import './profile.css';
 
 const Profile = () => {
-
   const { state, actions } = useContext(AppContext);
 
   useEffect(() => {
     actions({
       type: 'USER_DATA',
-    })
-  // eslint-disable-next-line
-  }, [state.user && state.user.isLoggedIn])
+    });
+    // eslint-disable-next-line
+  }, [state.user && state.user.isLoggedIn]);
 
   return (
     <>
@@ -24,7 +23,7 @@ const Profile = () => {
           onClick={() => {
             actions({
               type: 'USER_LOGOUT',
-            })
+            });
           }}
           className="reg-btn"
         />
@@ -32,33 +31,26 @@ const Profile = () => {
           <>
             <label>
               Firstname:
-              <h3>
-                {state.user.firstName}
-              </h3>
+              <h3>{state.user.firstName}</h3>
             </label>
             <label>
               Lastname:
-              <h3>
-                {state.user.lastName}
-              </h3>
+              <h3>{state.user.lastName}</h3>
             </label>
             <label>
               Email:
-              <h3>
-                {state.user.email}
-              </h3>
+              <h3>{state.user.email}</h3>
             </label>
             <label>
               <details>
                 <summary>User ID:</summary>
-                <h3>
-                  {state.user._id}
-                </h3>
+                <h3>{state.user._id}</h3>
               </details>
             </label>
           </>
-        ) : ( <h1>Please login</h1> )
-        }
+        ) : (
+          <h1>Please login</h1>
+        )}
       </div>
     </>
   );
