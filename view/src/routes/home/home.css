@@ -34,7 +34,7 @@
 .why {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 16px;
   max-width: 310px;
@@ -45,7 +45,7 @@
 .pitch {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 40px;
   max-width: 310px;
@@ -57,7 +57,7 @@
 .slogan {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: 100;
   font-size: 18px;
   max-width: 310px;
