@@ -98,9 +98,9 @@ cd api
 npm install
 ```
 
-You will need to set up MongoDB. 
-Probably would be easiest to use MongoDB Atlas. 
-Enter the url in .env file located inside api folder.
+You will need to set up MongoDB.<br /> 
+Probably would be easiest to use MongoDB Atlas.<br /> 
+Enter the url in .env file located inside api folder.<br /> 
 
 
 Change to the `view` folder and install development and production dependencies.
@@ -108,8 +108,8 @@ Change to the `view` folder and install development and production dependencies.
 cd view
 npm install
 ```
-In order to make WebRTC signaling work with STUN and TURN servers you need to create a account at:
-http://numb.viagenie.ca/cgi-bin/numbacct
+In order to make WebRTC signaling work with STUN and TURN servers you need to create a account at:<br /> 
+http://numb.viagenie.ca/cgi-bin/numbacct<br /> 
 Then you need to fill in your credentials in the .env file located inside the view folder.
 
 
@@ -131,16 +131,16 @@ npm run start
 # About project
 
 ### Problem
-Appointment services such as Calendly, in their current state do not provide direct communication on their platform. 
-Therefore the hosts and clients are dependent on third-party solutions for communication.
-We feel like that is a area that could be effectivized.
+Appointment services such as Calendly, in their current state do not provide direct communication on their platform.<br /> 
+Therefore the hosts and clients are dependent on third-party solutions for communication.<br /> 
+We feel like that is a area that could be effectivized.<br /> 
 It also creates an issue of privacy for the host, because they need to share their "third-party solution" details.
 
 ### Solution
-A web based application that allows clients to book appointments with hosts on our platform. 
-We provide live communication on the platform so they don't have to be concered about how & where to have the meeting.
-The privacy of our users is in our best interest. We promise to not sniff our users conversations. 
-This repo will be public so that they can check the source code for themselves. 
+A web based application that allows clients to book appointments with hosts on our platform.<br /> 
+We provide live communication on the platform so they don't have to be concered about how & where to have the meeting.<br /> 
+The privacy of our users is in our best interest. We promise to not sniff our users conversations.<br /> 
+This repo will be public so that they can check the source code for themselves.<br /> 
 Lastest changes made in the master branch automaticly deploys to our digitalocean droplet via buddy.works.
 
 <br />
