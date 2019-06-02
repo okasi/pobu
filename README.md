@@ -1,11 +1,9 @@
 # pobu.io
 *A peer-to-peer booking platform with WebRTC, Socket.IO, React, Express, Node.js and MongoDB.*
 
-
 ![HLogo](docs/horizontal-logo.png)
 
 ![SLogo](docs/square-logo.png) 
-
 
 [Twitter](https://twitter.com/pobu_io)
 
@@ -24,6 +22,7 @@
 * [Planning](#planning)
   * [Personas](#personas)
   * [User stories](#user-stories)
+  * [Factitious Budgeting](#factitious-budgeting)
   * [Entity Relationship Diagram](#entity-relationship-diagram)
   * [Kanban](#kanban)
   * [Future](#future)
@@ -149,7 +148,6 @@ Lastest changes made in the master branch automaticly deploys to our digitalocea
 # Planning
 <br />
 
-
 ## Personas
 - Hosts
 - Clients
@@ -158,7 +156,6 @@ Lastest changes made in the master branch automaticly deploys to our digitalocea
 <br />
 
 ## User Stories
-
 As a User, I want to be able to register as a user on the platform, <br /> 
 so that my bookables and bookings will be connected to me.<br /> 
 *Acceptance criteria:*<br /> 
@@ -197,9 +194,19 @@ Be able to video & voice chat on booking page.<br />
 
 <br /> 
 
+## Factitious Budgeting
+Income:
+- Transaction fees (1.25%) {lower than Klarna (1.35%) & PayPal (2.9%)}
+
+Expenses:
+- Domain (pobu.io) 350 SEK per year
+- Hosting (deploys.io) [8 GB RAM] 200 SEK per month
+- Office space (workaround.io) 2000 SEK per person per month
+
+<br /> 
+
 ## Entity Relationship Diagram
-- ![uS](docs/userSchema.png)
-- ![bS](docs/bookingSchema.png)
+![uS](docs/userSchema.png) ![bS](docs/bookingSchema.png)
 
 <br />
 
@@ -234,8 +241,6 @@ Be able to video & voice chat on booking page.<br />
 )
 
 <br />
-<br />
-
 
 # Team
 - [Okan](https://github.com/okan-s)

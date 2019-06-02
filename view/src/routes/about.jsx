@@ -10,16 +10,18 @@ export default function About() {
           About
         </h1>
         <p style={{textAlign: 'right'}}> 
-          Zap zap! Pobu pobu!
+          <a href="https://github.com/okan-s/pobu" target="_blank" rel="noopener noreferrer">https://github.com/okan-s/pobu</a>
           <br/>
-          pobu pobu pobu pobu pobu!
+          <br/>
+          Zap zap! Pobu pobu!
         </p>
+
         <br/>
         <span style={{textAlign: 'right'}}>
-          <a href="http://twitter.com/pobu_io/" target="_blank" rel="noopener noreferrer" style={{color: '#000', marginRight:'5px'}}>
+          <a href="https://www.instagram.com/pobu.io/" target="_blank" rel="noopener noreferrer" style={{color: '#000', marginRight:'5px'}}>
             <FaInstagram />
           </a>
-          <a href="http://twitter.com/pobu_io/" target="_blank" rel="noopener noreferrer" style={{color: '#000'}}>
+          <a href="https://twitter.com/pobu_io/" target="_blank" rel="noopener noreferrer" style={{color: '#000'}}>
             <FaTwitter />
           </a>
         </span>

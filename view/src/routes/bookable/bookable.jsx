@@ -19,8 +19,8 @@ const Bookable = withRouter(({ history }) => {
   const [fee, setFee] = useState(false);
   const [nano, setNano] = useState(false);
 
-  const [chat, setChat] = useState(true);
-  const [voice, setVoice] = useState(false);
+  const [text, setText] = useState(true);
+  // const [voice, setVoice] = useState(false);
   const [video, setVideo] = useState(false);
 
   const [theDuration, setTheDuration] = useState(10);
@@ -33,10 +33,10 @@ const Bookable = withRouter(({ history }) => {
       if (video) {
         return 'Video';
       }
-      if (voice) {
-        return 'Voice';
-      }
-      if (chat) {
+      // if (voice) {
+      //   return 'Voice';
+      // }
+      if (text) {
         return 'Chat';
       }
     })();
@@ -101,7 +101,7 @@ const Bookable = withRouter(({ history }) => {
               onChange={input => setTime(moment(input).format('hh:mm a'))}
               showTimeSelect
               showTimeSelectOnly
-              timeIntervals={1}
+              timeIntervals={15}
               dateFormat="h:mm aa"
               timeCaption="Time"
               placeholderText={time}
@@ -146,6 +146,7 @@ const Bookable = withRouter(({ history }) => {
           </div>
 
           <br />
+          {/* 
           <label
             htmlFor="fee"
             style={{
@@ -159,6 +160,7 @@ const Bookable = withRouter(({ history }) => {
             {fee === true && <i>Nano Wallet Public Key</i>}
           </label>
 
+          
           <div
             className="form-input"
             name="fee"
@@ -179,12 +181,13 @@ const Bookable = withRouter(({ history }) => {
                 Paid
               </label>
             </span>
+            
             <span>
               {fee === true && (
                 <span
                   style={{ fontWeight: 'bold', maxWidth: '80px', fontSize: 12 }}
                 >
-                  {/* Nano Wallet Public Key */}
+                  
                   <input
                     type="text"
                     name="nano"
@@ -196,6 +199,8 @@ const Bookable = withRouter(({ history }) => {
               )}
             </span>
           </div>
+          */}
+          
 
           <br />
 
@@ -203,6 +208,18 @@ const Bookable = withRouter(({ history }) => {
             Communication:
           </label>
           <div className="form-input" name="communication">
+          <select onChange={e => {
+            if (e.target.value === "Video") {
+              setVideo(true)
+            }
+            if (e.target.value === "Chat") {
+              setVideo(false)
+            }
+          }}>
+            <option value="Chat">Text Chat</option>
+            <option value="Video">Text + Video Chat</option>
+          </select>
+          {/*
             <input
               type="checkbox"
               value={chat}
@@ -234,6 +251,7 @@ const Bookable = withRouter(({ history }) => {
             <label htmlFor="Video" style={{ margin: 'auto 10px auto 0' }}>
               Video
             </label>
+          */}
           </div>
 
           <div className="preview">
@@ -253,8 +271,8 @@ const Bookable = withRouter(({ history }) => {
                 min
               </i>
               <i>
-                {chat === true && <i> Chat</i>}
-                {voice === true && <i>, Voice</i>}
+                {text === true && <i> Text</i>}
+                {/* {voice === true && <i>, Voice</i>} */}
                 {video === true && <i>, Video</i>}
               </i>
               {fee === true && <i> Paid </i>}

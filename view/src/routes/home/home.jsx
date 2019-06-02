@@ -18,9 +18,11 @@ function Home() {
         </div>
         <div className="home-card-2">
           <div className="why">WHY POBU?</div>
-          <div className="pitch">Bookings + connections, made easy</div>
+          <div className="pitch">Appointments, made efficent</div>
           <div className="slogan">
-            we value your privacy & efficiency, with pobu you got it all blabla.
+            We value your privacy & time,
+            <br/>
+            with pobu you got it all.
           </div>
           {!state.isLoggedIn ? (
             <NavLink to="/register">
