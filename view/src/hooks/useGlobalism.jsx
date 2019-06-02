@@ -21,12 +21,14 @@ const api = axios.create({
 //   return null;
 // }
 
+
 // This hook acts like a global accessible reducer.
 // It has cases which are the type of the action.
 // We don't send actions with a dispatch,
 // we refer actions directly via "actions()" in order to simplify complexity.
 // Actions only describe what happened & sometimes with a payload,
-// but don't describe how the application's state changes.
+// but don't directly describe how the application's state changes.
+
 export default function useGlobalism() {
   const [state, setState] = useState('');
 
@@ -133,7 +135,6 @@ export default function useGlobalism() {
             history.push('/login');
           })
           .catch((error) => {
-            console.error(error.response.data);
             alert(JSON.stringify(error.response.data, null, 4));
           });
 

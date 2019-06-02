@@ -11,6 +11,7 @@ const Overview = () => {
 
   useEffect(() => {
     actions({ type: 'SOCKET_INITIALIZE' });
+  // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -129,6 +130,7 @@ const Overview = () => {
                   </div>
                 );
               }
+              return true;
             })}
 
           {/* Booked bookings as (Host) */}
@@ -205,6 +207,7 @@ const Overview = () => {
                   </div>
                 );
               }
+              return true;
             })}
         </div>
 
@@ -280,6 +283,7 @@ const Overview = () => {
                   </div>
                 );
               }
+              return true;
             })}
         </div>
       </div>

@@ -16,9 +16,12 @@ const Bookable = withRouter(({ history }) => {
   const [day, setDay] = useState(null);
   const [time, setTime] = useState(null);
 
+  // eslint-disable-next-line
   const [fee, setFee] = useState(false);
+  // eslint-disable-next-line
   const [nano, setNano] = useState(false);
 
+  // eslint-disable-next-line
   const [text, setText] = useState(true);
   // const [voice, setVoice] = useState(false);
   const [video, setVideo] = useState(false);

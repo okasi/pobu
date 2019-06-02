@@ -10,9 +10,9 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 import {
   FaUserCircle,
-  FaRegCalendarPlus,
-  FaRegCalendarAlt,
-  FaCalendarAlt,
+  // FaRegCalendarPlus,
+  // FaRegCalendarAlt,
+  // FaCalendarAlt,
 } from 'react-icons/fa';
 
 import history from './store/history';

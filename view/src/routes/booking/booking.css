@@ -25,7 +25,7 @@
 .booking-sub-desc {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 16px;
   max-width: 310px;
@@ -36,7 +36,7 @@
 .booking-host-name {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 40px;
   max-width: 310px;

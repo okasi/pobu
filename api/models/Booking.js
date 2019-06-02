@@ -17,7 +17,6 @@ const bookingSchema = new Schema({
   name: {
     type: String,
     required: true,
-    // unique: true,
   },
 
   date: {
@@ -32,12 +31,10 @@ const bookingSchema = new Schema({
 
   fee: {
     type: Number,
-    // default: 0,
   },
 
   nanoWalletPublicKey: {
     type: String,
-    // default: "",
   },
 
   communication: {
