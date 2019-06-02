@@ -202,10 +202,9 @@ const Bookable = withRouter(({ history }) => {
               )}
             </span>
           </div>
-          */}
-          
 
           <br />
+          */}
 
           <label htmlFor="communication" style={{ fontWeight: 'bold' }}>
             Communication:
@@ -222,6 +221,7 @@ const Bookable = withRouter(({ history }) => {
             <option value="Chat">Text Chat</option>
             <option value="Video">Text + Video Chat</option>
           </select>
+          
           {/*
             <input
               type="checkbox"
@@ -256,6 +256,8 @@ const Bookable = withRouter(({ history }) => {
             </label>
           */}
           </div>
+
+          <br />
 
           <div className="preview">
             <span className="prev-name">{name}</span>
