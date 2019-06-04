@@ -1,3 +1,6 @@
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat) [![buddy pipeline](https://app.buddy.works/chas-academy/pobu/pipelines/pipeline/189961/badge.svg?token=bd6d95c0722525d87413fe6f13408373af7df69b0b3e559a6713e80c9a29b1a8 "buddy pipeline")](https://app.buddy.works/chas-academy/pobu/pipelines/pipeline/189961)
+
+
 # pobu.io
 *A peer-to-peer booking platform with WebRTC, Socket.IO, React, Express, Node.js and MongoDB.*
 
@@ -15,27 +18,29 @@
 
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Installation](#installation) 
 * [About project](#about-project)
   * [Problem](#problem)
   * [Solution](#solution)
 * [Planning](#planning)
   * [Personas](#personas)
   * [User stories](#user-stories)
-  * [Factitious Budgeting](#factitious-budgeting)
-  * [Entity Relationship Diagram](#entity-relationship-diagram)
+  * [Business model](#business-model)
+  * [Mongoose schemas](#mongoose-schemas)
   * [Kanban](#kanban)
-  * [Future](#future)
+  * [Future plans](#future-plans)
 * [Visual design](#visual-design)
   * [Wireframes](#wireframes)
-  * [Graphic](#graphic)
+  * [Graphic profile](#graphic-profile)
 * [Team](#team)
 
 <br />
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
+
 ### Prerequisites
+
 #### Back-end:
 - MongoDB
 - Express
@@ -102,6 +107,7 @@ You will need to set up MongoDB.<br />
 Probably would be easiest to use MongoDB Atlas.<br /> 
 Enter the url in .env file located inside api folder.<br /> 
 
+<br /> 
 
 Change to the `view` folder and install development and production dependencies.
 ```
@@ -112,6 +118,7 @@ In order to make WebRTC signaling work with STUN and TURN servers you need to cr
 http://numb.viagenie.ca/cgi-bin/numbacct<br /> 
 Then you need to fill in your credentials in the .env file located inside the view folder.
 
+<br /> 
 
 Go to the `api` folder and start the server.
 ```
@@ -146,7 +153,6 @@ Lastest changes made in the master branch automaticly deploys to our digitalocea
 <br />
 
 # Planning
-<br />
 
 ## Personas
 - Hosts
@@ -155,7 +161,7 @@ Lastest changes made in the master branch automaticly deploys to our digitalocea
 
 <br />
 
-## User Stories
+## User stories
 As a User, I want to be able to register as a user on the platform, <br /> 
 so that my bookables and bookings will be connected to me.<br /> 
 *Acceptance criteria:*<br /> 
@@ -194,9 +200,9 @@ Be able to video & voice chat on booking page.<br />
 
 <br /> 
 
-## Factitious Budgeting
+## Business model
 Income:
-- Transaction fees (1.25%) {lower than Klarna (1.35%) & PayPal (2.9%)}
+- Commission-based model: Transaction fees (1.25%) {lower than Klarna (1.35%) & PayPal (2.9%)}
 
 Expenses:
 - Domain (pobu.io) 350 SEK per year
@@ -205,18 +211,18 @@ Expenses:
 
 <br /> 
 
-## Entity Relationship Diagram
+## Mongoose schemas
 ![uS](docs/userSchema.png) ![bS](docs/bookingSchema.png)
 
 <br />
 
 ## Kanban
-- [Github Projects](https://github.com/okan-s/pobu/projects/1)
+- [Link to Github Projects](https://github.com/okan-s/pobu/projects/1)
 
 <br />
 
 ## Future plans
-* When Expo SDK v33 is released, rewrite the view w/ Expo for Web.
+* When Expo SDK v33 is released, rewrite the view with Expo for Web.
 
 * Time zone intelligence.
 
@@ -235,7 +241,7 @@ Expenses:
 
 <br />
 
-## Graphic Profile
+## Graphic profile
 ![Graphic](docs/graphic-profile.png) 
 [Link to Figma file](https://www.figma.com/file/5rzpAg2jOawC0mHHJrVnms/Wireframes-Copy?node-id=9%3A2
 )
@@ -245,3 +251,8 @@ Expenses:
 # Team
 - [Okan](https://github.com/okan-s)
 - [Esra](https://github.com/esraod)
+
+<br />
+<br />
+
+[![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
