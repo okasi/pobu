@@ -7,7 +7,7 @@ import moment from 'moment';
 import { AppContext } from '../../store/context';
 import history from '../../store/history';
 
-import VideoCall from '../../helpers/peer';
+import VideoCall from './peer';
 
 import './booking.css';
 
