@@ -130,7 +130,6 @@ Go to the `view` folder and run the script start script.
 ```
 cd view
 npm run start
-
 ```
 
 <br />
