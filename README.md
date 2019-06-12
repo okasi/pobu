@@ -127,7 +127,7 @@ cd api
 npm run server
 ```
 
-Go to the `view` folder and run the script start script.
+Go to the `view` folder and run the start script.
 ```
 cd view
 npm run start
