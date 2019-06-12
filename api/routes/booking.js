@@ -12,8 +12,8 @@ router.route('/add')
         name: req.body.name,
         date: req.body.date,
         duration: req.body.duration,
-        fee: req.body.fee,
-        nanoWalletPublicKey: req.body.nano,
+        feeAmount: req.body.feeAmount,
+        nanoWalletPublicKey: req.body.nanoWalletPublicKey,
         communication: req.body.communication,
       });
 

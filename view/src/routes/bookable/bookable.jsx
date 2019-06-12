@@ -18,8 +18,9 @@ const Bookable = withRouter(({ history }) => {
 
   // eslint-disable-next-line
   const [fee, setFee] = useState(false);
+  const [feeAmount, setFeeAmount] = useState(0);
   // eslint-disable-next-line
-  const [nano, setNano] = useState(false);
+  const [nanoWalletPublicKey, setNanoWalletPublicKey] = useState('');
 
   // eslint-disable-next-line
   const [text, setText] = useState(true);
@@ -51,8 +52,8 @@ const Bookable = withRouter(({ history }) => {
       payload: {
         name,
         date,
-        ...(fee && { fee }),
-        ...(nano && { nano }),
+        ...(feeAmount && { feeAmount }),
+        ...(nanoWalletPublicKey && { nanoWalletPublicKey }),
         communication,
         duration,
       },
@@ -149,7 +150,7 @@ const Bookable = withRouter(({ history }) => {
           </div>
 
           <br />
-          {/* 
+          
           <label
             htmlFor="fee"
             style={{
@@ -160,7 +161,7 @@ const Bookable = withRouter(({ history }) => {
             }}
           >
             <i>Fee:</i>
-            {fee === true && <i>Nano Wallet Public Key</i>}
+            {/* {fee === true && <i>Nano Wallet Public Key</i>} */}
           </label>
 
           
@@ -194,8 +195,16 @@ const Bookable = withRouter(({ history }) => {
                   <input
                     type="text"
                     name="nano"
-                    onChange={e => setNano(e.target.value)}
-                    maxLength="8"
+                    onChange={e => setNanoWalletPublicKey(e.target.value)}
+                    maxLength="65"
+                    placeholder="Nano Wallet Public Key"
+                    style={{ height: '15px', margin: 'auto 0' }}
+                  />
+
+                  <input
+                    placeholder="Nano Price (μ)"
+                    type="number"
+                    onChange={e => setFeeAmount(e.target.value)}
                     style={{ height: '15px', margin: 'auto 0' }}
                   />
                 </span>
@@ -204,7 +213,7 @@ const Bookable = withRouter(({ history }) => {
           </div>
 
           <br />
-          */}
+          
 
           <label htmlFor="communication" style={{ fontWeight: 'bold' }}>
             Communication:
@@ -284,21 +293,27 @@ const Bookable = withRouter(({ history }) => {
               {fee === false && <i>Free </i>}
             </div>
 
-            {/* Checks if wallet key is vaild by checking that it has 8 digits atm */}
-            {fee === true && nano.length === 8 && (
-              <i style={{ fontSize: '12px' }}>Payment Added</i>
+            {/* Checks if wallet key is vaild by checking that it has 65 chars atm */}
+            {fee === true && nanoWalletPublicKey.length === 65 && (
+              <i style={{ fontSize: '12px' }}>Valid address</i>
             )}
             {/* Checks if there is any input yet for the key */}
-            {fee === true && nano.length === 0 && (
-              <i style={{ fontSize: '12px' }}>Please add payment key</i>
+            {fee === true && nanoWalletPublicKey.length === 0 && (
+              <i style={{ fontSize: '12px' }}>Please enter wallet address</i>
             )}
             {/* Checks if the key has an invaild count for the key */}
-            {fee === true && nano.length >= 1 && nano.length < 8 && (
-              <i style={{ fontSize: '12px' }}>Invaild key</i>
+            {fee === true && nanoWalletPublicKey.length > 0 && nanoWalletPublicKey.length !== 65 && (
+              <i style={{ fontSize: '12px' }}>Invalid address</i>
             )}
           </div>
 
-          <button type="submit" className="reg-btn" onClick={onCreateSubmit}>
+            {/* add valiadation  */}
+          <button type="submit" className="reg-btn" onClick={() => {
+            if (fee === true && nanoWalletPublicKey.length !== 65) {
+              return false
+            }
+            onCreateSubmit()
+          }}>
             Create bookable
           </button>
         </div>
