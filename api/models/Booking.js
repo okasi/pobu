@@ -29,7 +29,7 @@ const bookingSchema = new Schema({
     required: true,
   },
 
-  fee: {
+  feeAmount: {
     type: Number,
   },
 

@@ -4,10 +4,12 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import moment from 'moment';
 
+import { ReblocksPayment } from 'reblocks';
+
 import { AppContext } from '../../store/context';
 import history from '../../store/history';
 
-import VideoCall from '../../helpers/peer';
+import VideoCall from './peer';
 
 import './booking.css';
 
@@ -22,6 +24,9 @@ export default function Booking({ match }) {
   const [bookingData, setBookingData] = useState({});
   const [whoIsViewing, setWhoIsViewing] = useState('Guest');
   const [alreadyBooked, setAlreadyBooked] = useState(true);
+
+  const [pendingTransaction, setPendingTransaction] = useState(false);
+  const [publicKey, setPublicKey] = useState('');
 
   const [hostName, setHost] = useState('');
   const [clientName, setClient] = useState('');
@@ -97,6 +102,7 @@ export default function Booking({ match }) {
           setClient(`${clientres.firstName} ${clientres.lastName}`);
         }
 
+
         if (
           res.data._client !== state.user._id
           && res.data._host !== state.user._id
@@ -119,6 +125,8 @@ export default function Booking({ match }) {
         const endDate = moment(startDate).add(bookingData.duration, 'minutes').format('LLLL')
 
         let status = ''
+
+        checkPaymentRequired()
    
         setInterval(() => { 
          
@@ -140,6 +148,32 @@ export default function Booking({ match }) {
       }
       //eslint-disable-next-line
     }, [bookingData]);
+
+
+  const onPaymentSuccess = (data) => {
+    console.log('Got transaction token', data.token);
+    setPendingTransaction(false)
+    acceptBooking();
+  };
+
+  function checkPaymentRequired() {
+    console.log(bookingData)
+    if (bookingData.feeAmount && bookingData.nanoWalletPublicKey) {
+      
+      if(bookingData.nanoWalletPublicKey.includes("nano")){
+        let oldXRBifyed = bookingData.nanoWalletPublicKey.replace("nano", "xrb");
+        console.log(oldXRBifyed)
+        setPublicKey(oldXRBifyed) 
+      } else {
+        setPublicKey(bookingData.nanoWalletPublicKey) 
+      }
+      setPendingTransaction(true)
+      
+      return true
+    } else {
+      return false
+    }
+  }
 
   function startTextChat() {
     if (state.socket !== undefined) {
@@ -510,16 +544,17 @@ export default function Booking({ match }) {
 
               <div className="book-details">
                 <i>{bookingData.communication}</i>
-                {bookingData.fee === 1 && <i>Paid</i>}
-                {bookingData.fee !== 1 && <i>Free</i>}
+                {bookingData.feeAmount && <i>Paid</i>}
+                {!bookingData.feeAmount && <i>Free</i>}
               </div>
             </div>
 
-            {whoIsViewing === 'Guest' && !alreadyBooked && (
+            {whoIsViewing === 'Guest' && !alreadyBooked && !pendingTransaction && (
               <button
                 type="submit"
                 className="book"
                 onClick={() => {
+          
                   if (
                     // eslint-disable-next-line no-alert
                     window.confirm(
@@ -532,10 +567,20 @@ export default function Booking({ match }) {
                   ) {
                     acceptBooking();
                   }
+                
                 }}
               >
                 Accept booking
               </button>
+              )
+            }
+
+            {whoIsViewing === 'Guest' && !alreadyBooked && pendingTransaction && (
+              <ReblocksPayment
+                accountId={publicKey}
+                amount={bookingData.feeAmount}
+                onPaymentSuccess={onPaymentSuccess}
+              />
             )}
           </div>
         </div>
