@@ -249,7 +249,7 @@ Expenses:
 <br />
 
 # Team
-- [Okan](https://github.com/okan-s)
+- [Okan](https://github.com/okasi)
 - [Esra](https://github.com/esraod)
 
 <br />
