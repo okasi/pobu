@@ -94,7 +94,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installation
 Clone the repo
 ```
-git clone https://github.com/okan-s/pobu.git
+git clone https://github.com/okasi/pobu.git
 ```
 
 Change to the `api` folder and install development and production dependencies.
@@ -217,7 +217,7 @@ Expenses:
 <br />
 
 ## Kanban
-- [Link to Github Projects](https://github.com/okan-s/pobu/projects/1)
+- [Link to Github Projects](https://github.com/okasi/pobu/projects/1)
 
 <br />
 
