@@ -1,4 +1,4 @@
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat) [![buddy pipeline](https://app.buddy.works/chas-academy/pobu/pipelines/pipeline/189961/badge.svg?token=bd6d95c0722525d87413fe6f13408373af7df69b0b3e559a6713e80c9a29b1a8 "buddy pipeline")](https://app.buddy.works/chas-academy/pobu/pipelines/pipeline/189961)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 
 
 # pobu.io
